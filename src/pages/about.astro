@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Arrow from '../components/Arrow.astro';
+import { site } from '../data/site';
+import { profile } from '../data/profile';
+import { Image } from 'astro:assets';
+import portrait from '../assets/yuning-lei.webp';
+import CurriculumVitae from '../components/CurriculumVitae.astro';
+import PublicationCitation from '../components/PublicationCitation.astro';
+import { getCollection } from 'astro:content';
+import { isPublicEntry } from '../lib/content';
+const publications = (await getCollection('publications', isPublicEntry)).sort((a, b) => ('year' in b.data ? b.data.year : 0) - ('year' in a.data ? a.data.year : 0));
+---
+<Layout title="About / CV" description="About Yuning Lei, Ph.D., Research Associate at the University of Oldenburg, Germany.">
+  <PageIntro eyebrow="About / Curriculum vitae" title="Yuning Lei, Ph.D." description="Research Associate in Microrobotics and Control Engineering at the University of Oldenburg, Germany." />
+  <div class="shell page-body">
+    <div class="profile-overview">
+      <div><p>I have been a Research Associate at the University of Oldenburg since April 2023. My research focuses on liquid-metal nanocharacterization, microassembly in SEM-FIB and nanorobotic structures.</p><p>I received my Ph.D. in Engineering Science from Université Bourgogne Franche-Comté in 2023, following doctoral research at FEMTO-ST Institute. I previously studied at the University of Orléans.</p><div class="profile-contact"><a class="text-link" href={`mailto:${profile.email}`}>{profile.email}</a><span>{site.location}</span></div><div class="hero-actions screen-only"><a class="button" href={profile.cvDownload} download>Public CV (PDF) <span aria-hidden="true">↓</span></a><a class="text-link" href="/publications/">Publications <Arrow /></a></div><p class="record-date">Academic record as of {profile.cvDate}.</p></div>
+      <Image class="profile-portrait screen-only" src={portrait} alt="Yuning Lei" width={200} height={210} widths={[160, 240, 320, 480]} sizes="(max-width: 700px) 160px, 200px" format="webp" loading="eager" />
+    </div>
+    <nav class="cv-nav screen-only" aria-label="On this page"><a href="#experience">Experience</a><a href="#education">Education</a><a href="#teaching">Teaching</a><a href="#skills">Skills</a><a href="#service">Service</a><a href="#awards">Awards</a></nav>
+    <CurriculumVitae />
+    <section class="print-only cv-section" aria-labelledby="cv-publications-heading"><div><h2 id="cv-publications-heading">Publications</h2></div><div>{publications.map(entry => <article class="cv-print-publication"><h3>{entry.data.title}</h3><PublicationCitation data={entry.data} />{'doi' in entry.data && <p class="cv-print-doi">{entry.data.doi}</p>}</article>)}</div></section>
+  </div>
+</Layout>

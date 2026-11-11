@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { site } from '../data/site';
+import { profile } from '../data/profile';
+import Arrow from '../components/Arrow.astro';
+---
+<Layout title="Contact" description="Contact Yuning Lei at the University of Oldenburg: professional email, institutional address and academic profiles.">
+  <PageIntro eyebrow="Contact" title="Research & collaboration." description="For research inquiries and academic collaboration, please get in touch by email." />
+  <div class="shell page-body contact-grid">
+    <section class="affiliation-card" aria-labelledby="affiliation-heading"><p class="eyebrow">University of Oldenburg</p><h2 id="affiliation-heading">{site.name}, {site.qualification}</h2><p>{site.role}<br />{profile.department}<br />{profile.group}</p><address>{profile.address.map(line => <span>{line}</span>)}</address><a class="text-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a></section>
+    <section class="academic-profiles" aria-labelledby="profiles-heading"><p class="eyebrow">Find my work</p><h2 id="profiles-heading">Academic & professional profiles</h2><ul role="list">{profile.links.map(link => <li><a class="text-link" href={link.href}>{link.label}<Arrow diagonal /></a></li>)}</ul></section>
+  </div>
+</Layout>

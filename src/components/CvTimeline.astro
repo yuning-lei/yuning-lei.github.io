@@ -1,0 +1,14 @@
+---
+interface Props {
+  entries: readonly { title: string; institution: string; location: string; period: string; details: readonly string[] }[];
+}
+const { entries } = Astro.props;
+---
+<div class="cv-timeline">
+  {entries.map(entry => <article class="cv-entry">
+    <p class="cv-period">{entry.period}</p>
+    <div><h3>{entry.title}</h3><p class="cv-institution">{entry.institution}<span> · {entry.location}</span></p>
+      {entry.details.length > 0 && <ul>{entry.details.map(detail => <li>{detail}</li>)}</ul>}
+    </div>
+  </article>)}
+</div>

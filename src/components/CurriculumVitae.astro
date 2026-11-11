@@ -1,0 +1,14 @@
+---
+import { profile } from '../data/profile';
+import CvTimeline from './CvTimeline.astro';
+---
+<div class="cv-content">
+  <section class="cv-section" id="experience" aria-labelledby="experience-heading"><div><p class="eyebrow">Career</p><h2 id="experience-heading">Research & experience</h2></div><CvTimeline entries={profile.appointments} /></section>
+  <section class="cv-section" id="education" aria-labelledby="education-heading"><div><p class="eyebrow">Academic background</p><h2 id="education-heading">Education</h2></div><CvTimeline entries={profile.education} /></section>
+  <section class="cv-section" id="teaching" aria-labelledby="teaching-heading"><div><p class="eyebrow">Teaching</p><h2 id="teaching-heading">Lectures & tutorials</h2></div><div class="cv-timeline">{profile.teaching.map(course => <article class="cv-entry"><p class="cv-period">{course.period}</p><div><h3>{course.title}</h3><p class="cv-institution">{course.institution}</p><p class="cv-description">{course.format} · {course.workload}</p></div></article>)}</div></section>
+  <section class="cv-section" id="skills" aria-labelledby="skills-heading"><div><p class="eyebrow">Methods & tools</p><h2 id="skills-heading">Technical skills</h2></div><dl class="cv-skills">{profile.skills.map(skill => <div class="cv-skill"><dt>{skill.title}</dt><dd>{skill.description}</dd></div>)}</dl></section>
+  <section class="cv-section" id="service" aria-labelledby="service-heading"><div><p class="eyebrow">Academic community</p><h2 id="service-heading">Service & memberships</h2></div><div class="cv-timeline">{profile.service.map(item => <article class="cv-entry"><p class="cv-period">{item.period}</p><div><h3>{item.title}</h3><p class="cv-description">{item.description}</p></div></article>)}</div></section>
+  <section class="cv-section" id="awards" aria-labelledby="awards-heading"><div><p class="eyebrow">Recognition</p><h2 id="awards-heading">Honors & awards</h2></div><div class="cv-timeline">{profile.awards.map(award => <article class="cv-entry"><p class="cv-period">{award.period}</p><div><h3>{award.title}</h3><p class="cv-description">{award.event}</p></div></article>)}</div></section>
+  <section class="cv-section" aria-labelledby="qualification-heading"><div><p class="eyebrow">Qualification</p><h2 id="qualification-heading">CNU qualification</h2></div><article class="cv-entry"><p class="cv-period">{profile.qualification.period}</p><div><h3>{profile.qualification.title}</h3><p class="cv-description">{profile.qualification.description}</p></div></article></section>
+  <section class="cv-section" aria-labelledby="languages-heading"><div><p class="eyebrow">Languages</p><h2 id="languages-heading">Languages</h2></div><dl class="cv-skills">{profile.languages.map(language => <div class="cv-skill"><dt>{language.name}</dt><dd>{language.description}</dd></div>)}</dl></section>
+</div>

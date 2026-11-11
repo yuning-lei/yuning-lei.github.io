@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import EntryList from '../../components/EntryList.astro';
+import { isPublicEntry } from '../../lib/content';
+const entries = (await getCollection('projects', isPublicEntry)).sort((a, b) => a.data.order - b.data.order);
+---
+<Layout title="Projects" description="Research projects by Yuning Lei.">
+  <PageIntro eyebrow="Projects" title="Research projects." description={entries.length ? 'Specific research work, methods and associated outputs.' : 'Project details are not available on this website yet.'} />
+  {entries.length > 0 && <section class="shell page-body" aria-label="Research projects"><EntryList entries={entries} collection="projects" /></section>}
+</Layout>

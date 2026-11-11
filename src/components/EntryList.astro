@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Arrow from './Arrow.astro';
+import PublicationCitation from './PublicationCitation.astro';
+import PublicationLinks from './PublicationLinks.astro';
+interface Props {
+  entries: (CollectionEntry<'research'> | CollectionEntry<'projects'> | CollectionEntry<'publications'>)[];
+  collection: 'research' | 'projects' | 'publications';
+  headingLevel?: 2 | 3;
+}
+const { entries, collection, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+---
+<div class="entry-list">
+  {entries.map((entry, i) => <article class="entry-row">
+    <span class="entry-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+    <div>
+      <span class="eyebrow">{entry.data.category}</span>
+      <Heading class="entry-title"><a class="entry-link" href={`/${collection}/${entry.id}/`}>{entry.data.title}<Arrow diagonal /></a></Heading>
+      <p>{entry.data.summary}</p>
+      {'publicationStatus' in entry.data && <span class="publication-status">{entry.data.publicationStatus}</span>}
+      {'role' in entry.data && entry.data.role && <p class="entry-role">{entry.data.role}{entry.data.period && <> · {entry.data.period}</>}</p>}
+      {entry.collection === 'publications' && <><PublicationCitation data={entry.data} /><PublicationLinks entry={entry} /></>}
+    </div>
+  </article>)}
+</div>

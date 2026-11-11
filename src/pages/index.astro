@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Arrow from '../components/Arrow.astro';
+import EntryList from '../components/EntryList.astro';
+import { isPublicEntry } from '../lib/content';
+import { site } from '../data/site';
+import { profile } from '../data/profile';
+
+const research = (await getCollection('research', isPublicEntry)).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects', isPublicEntry)).filter(entry => entry.data.featured).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const publications = (await getCollection('publications', isPublicEntry))
+  .filter(entry => entry.data.featured && 'publicationStatus' in entry.data && entry.data.publicationStatus === 'published')
+  .sort((a, b) => ('year' in b.data ? b.data.year : 0) - ('year' in a.data ? a.data.year : 0))
+  .slice(0, 3);
+---
+<Layout>
+  <section class="shell hero" aria-labelledby="intro-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Research / Micro & nanorobotics</p>
+      <h1 id="intro-heading">{site.name}<span class="hero-degree">{site.qualification}</span></h1>
+      <p class="hero-role">{site.role}<br /><span>{site.institution}, Germany</span></p>
+      <p class="hero-description">My research focuses on microrobotics, nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.</p>
+      <div class="hero-actions"><a class="button" href="/research/">Explore research <Arrow /></a><a class="text-link" href="/about/">About me <Arrow diagonal /></a></div>
+    </div>
+    <aside class="intro-note" aria-labelledby="focus-heading">
+      <span class="note-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Research focus</p>
+      <h2 id="focus-heading">Robotics at<br />micro & nanoscales.</h2>
+      <p>Manipulation, fabrication<br />and actuation at small scales.</p>
+      <span class="intro-location">{site.location}</span>
+    </aside>
+  </section>
+
+  {research.length > 0 && <section class="research-band" aria-labelledby="research-heading">
+    <div class="shell section research-section">
+      <div class="section-aside"><p class="eyebrow">Research themes</p><h2 id="research-heading">Areas of focus.</h2><p>Long-term research specializations across robotics, manipulation and fabrication.</p><a class="text-link" href="/research/">Research overview <Arrow /></a></div>
+      <EntryList entries={research} collection="research" headingLevel={3} />
+    </div>
+  </section>}
+
+  {projects.length > 0 && <section class="shell section" aria-labelledby="projects-heading">
+    <div class="section-heading"><p class="eyebrow">Selected work</p><h2 id="projects-heading">Research projects.</h2></div>
+    <EntryList entries={projects} collection="projects" headingLevel={3} />
+    <a class="text-link section-link" href="/projects/">All projects <Arrow /></a>
+  </section>}
+
+  {publications.length > 0 && <section class="shell section" aria-labelledby="publications-heading">
+    <div class="section-heading"><p class="eyebrow">Scientific contributions</p><h2 id="publications-heading">Featured publications.</h2></div>
+    <EntryList entries={publications} collection="publications" headingLevel={3} />
+    <a class="text-link section-link" href="/publications/">All publications <Arrow /></a>
+  </section>}
+
+  <section class="shell section profile-section" aria-labelledby="profile-heading">
+    <div><p class="eyebrow">Academic profile</p><h2 id="profile-heading">About Yuning.</h2></div>
+    <div><p class="profile-lead">I am a {site.role} in {profile.group} at the {site.institution}.</p><p>I received my Ph.D. in Engineering Science from Université Bourgogne Franche-Comté in 2023, following doctoral research on nanorobotic origami at FEMTO-ST Institute.</p><a class="text-link section-link" href="/about/">About & CV <Arrow diagonal /></a></div>
+  </section>
+  <section class="shell home-contact" aria-labelledby="contact-heading"><div><p class="eyebrow">Contact</p><h2 id="contact-heading">Research & collaboration.</h2></div><a class="text-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a></section>
+</Layout>
