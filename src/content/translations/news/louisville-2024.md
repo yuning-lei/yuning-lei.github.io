@@ -9,7 +9,7 @@ location: 美国路易斯维尔
 venue: 路易斯维尔大学 · J.B. Speed 工程学院
 sourceLabel: AMiR 新闻
 photos:
-  - alt: Yuning Lei 与同事在路易斯维尔大学工程学院内合影。
+  - alt: 雷宇宁与同事在路易斯维尔大学工程学院内合影。
     caption: 访问 J.B. Speed 工程学院期间与同事合影。
   - alt: 来访研究人员与同事在题为 Plenty of Beauty at the Nano Scale 的展示墙旁合影。
     caption: 路易斯维尔访问期间，在显微图像展示墙旁的合影。

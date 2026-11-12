@@ -15,7 +15,7 @@ Routing follows [Astro's i18n documentation](https://docs.astro.build/en/guides/
 
 Eighteen Chinese Markdown records in `src/content/translations/` reference the three research areas, three projects, five publications/thesis and seven news activities. The schema checks references; the loader rejects missing translations, duplicate keys and photo-caption count mismatches. Chinese CV/profile/conference copy is in `src/data/localized-profile.ts`, with matching-array coverage checks. Navigation, footer, contact information labels, dates, statuses, gallery captions/alt text, filters, counters, viewer controls and accessible names are localized.
 
-Translations are derived from the existing reviewed English records and their documented CV/ORCID/HAL/programme/owner-photo sources. There are no newly imported academic claims. Original publication/conference titles remain visible alongside Chinese display translations. Author order, identifiers, publication years/statuses, metadata, external URLs and BibTeX remain canonical. Names remain in their verified spelling, including **Yuning Lei**. Chinese display wording does not assert certified official credential translations or additional institutional positions.
+Translations are derived from the existing reviewed English records and their documented CV/ORCID/HAL/programme/owner-photo sources. Original publication/conference titles remain visible alongside Chinese display translations. Author order, identifiers, publication years/statuses, metadata, external URLs and BibTeX remain canonical. On 13 November 2026 the owner confirmed **雷宇宁** as his Chinese name for all Chinese pages and the Chinese CV. English pages and canonical citations retain **Yuning Lei** / **Y. Lei**, with only Chinese display author/speaker credits localized. Chinese display wording does not assert certified official credential translations or additional institutional positions.
 
 The existing accuracy distinctions remain: Research Associate is **科研人员（Research Associate）**, not a new academic rank; the CNU record is eligibility for positions; DU/DUT remain diplomas, and computer-science first-year study remains incomplete-degree study. ORCID-confirmed date corrections, the 24 March 2023 defense, HAL's two formal directors versus the CV's broader supervision credit, LiCoVac's project role versus the DFG applicant, conference presentations versus papers, and JJCR's speaker-only credit are preserved.
 
@@ -28,7 +28,7 @@ The generator accepts `--locale=en` (default) or `--locale=zh`, validates the co
 | File | Bytes | SHA-256 |
 | --- | --- | --- |
 | `public/files/yuning-lei-cv.pdf` | 375,757 | `99CA76A23C21A3D7B55EE73FBB728EFDF881A6F217A9F04DA84A65515293F4A3` |
-| `public/files/yuning-lei-cv-zh.pdf` | 564,574 | `90DD1B015BC57B18289D0C4A0E327AAE0F8530F88C46950BB07A676604E5DE9F` |
+| `public/files/yuning-lei-cv-zh.pdf` (updated 13 November 2026) | 546,986 | `B8B985636C9C593C644CC31D8C2D23B8AAF2A88B0FBB63F105EFB6BA4DCCA2A1` |
 
 Source/build PDF hashes match. Generation and the following static build are sequential. All five Chinese PDF pages, Chinese desktop/mobile Home and Publications, and the complete scientific figure on mobile were visually reviewed. A screenshot taken before the asynchronously decoded hero image painted was recaptured after explicitly awaiting image decoding; mobile and desktop image loads were verified.
 
@@ -42,3 +42,11 @@ Source/build PDF hashes match. Generation and the following static build are seq
 - Additional PDF/text/font/privacy checks pass, including unchanged English CV text, embedded Chinese glyphs, both source/build hashes, and no private source files in `public/`/`dist/`.
 
 Existing `NEEDS_VERIFICATION` limitations in `content-provenance.md` remain unchanged and excluded from unsupported public claims. The owner has already authorized direct publication of this completed bilingual version.
+
+## Owner corrections — 13 November 2026
+
+The owner confirmed the Chinese name **雷宇宁**, requested removal of visible `**` in the Chinese thesis record, clarified teaching detail wording as **每学期 … 小时 × … 节**, and explicitly requested pushing the completed corrections. The centralized Chinese identity now covers the header/footer, body copy, metadata/Person record, image alt text/credits, publication/conference display names and Chinese PDF header/footer. Original data and English spellings remain canonical. All seven Chinese course descriptions use the confirmed per-semester wording with existing hour/session values; the Chinese profile date is updated to 13 November 2026.
+
+The nine thesis-record labels now place punctuation outside Markdown emphasis so they render as real bold text instead of visible asterisks. Browser inspection confirmed nine `<strong>` labels, no literal `**`, all 19 Chinese pages using the confirmed name in body/metadata/accessible text, and all seven teaching details. The regenerated Chinese PDF is five pages with the corrected name and seven workloads; the English PDF is byte-identical to the previous release. The PDF generator obtains its footer author from the corresponding page metadata.
+
+Validation for these corrections: `npm run check` passed for 47 files with zero errors/warnings/hints; `npm run build` generated 38 pages; `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual` all passed. Additional checks confirmed the new Chinese PDF's name on all five page footers, all seven workloads, four DOI links, the HAL record, four conferences, approved professional email only, and matching source/build hashes. All five Chinese PDF pages and mobile thesis/teaching screenshots were visually reviewed. `git diff --check` passed. Original citation records, scientific/event assets and the English PDF have no changes.

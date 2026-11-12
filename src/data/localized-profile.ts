@@ -1,10 +1,10 @@
 import { profile } from './profile';
 import type { Locale } from '../lib/i18n';
 
-// Display translations only. Names, source links, author order and identifiers come from profile.ts.
+// Display translations only. Source links, author order and identifiers come from profile.ts.
 const chinese = {
   ...profile,
-  cvDate: '2026 年 11 月 12 日',
+  cvDate: '2026 年 11 月 13 日',
   cvDownload: '/files/yuning-lei-cv-zh.pdf',
   department: '计算机科学系', group: '微机器人与控制工程研究组（AMiR）',
   address: [...profile.address.slice(0, 2), '德国'],
@@ -42,13 +42,13 @@ const chinese = {
     { title: '设计与仿真', description: 'SolidWorks、Creo、AutoCAD/Inventor、Blender、Inkscape、Alphacam；COMSOL 和 ANSYS。' },
   ],
   teaching: [
-    { title: '力传感（微机器人 I）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '1.5 小时 × 1 次' },
-    { title: '扫描探针显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '1.5 小时 × 1 次' },
-    { title: '扫描电镜中的原子力显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '1.5 小时 × 1 次' },
-    { title: '自动化纳米操纵（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2023 年春季', format: '讲授', workload: '1.5 小时 × 2 次' },
-    { title: '数字控制', institution: 'MIR 硕士课程，UFR-ST', period: '2021 年及 2022 年秋季', format: '习题课', workload: '4 小时 × 5 次' },
-    { title: '自动化与控制', institution: 'ISIFC，UFC', period: '2020 年及 2021 年秋季', format: '习题课', workload: '4 小时 × 8 次' },
-    { title: '基于 MATLAB 与 Simulink 的伺服控制', institution: 'SAPIAA 硕士课程，UFR-ST', period: '2020 年及 2021 年秋季', format: '习题课', workload: '1.5 小时 × 4 次' },
+    { title: '力传感（微机器人 I）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
+    { title: '扫描探针显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
+    { title: '扫描电镜中的原子力显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
+    { title: '自动化纳米操纵（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2023 年春季', format: '讲授', workload: '每学期 1.5 小时 × 2 节' },
+    { title: '数字控制', institution: 'MIR 硕士课程，UFR-ST', period: '2021 年及 2022 年秋季', format: '习题课', workload: '每学期 4 小时 × 5 节' },
+    { title: '自动化与控制', institution: 'ISIFC，UFC', period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 4 小时 × 8 节' },
+    { title: '基于 MATLAB 与 Simulink 的伺服控制', institution: 'SAPIAA 硕士课程，UFR-ST', period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 1.5 小时 × 4 节' },
   ],
   awards: [
     { title: 'Micron d’Or 奖', event: 'Micronora 2022 展会，Micronora 协会', period: '2022 年 9 月' },

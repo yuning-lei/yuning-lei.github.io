@@ -10,9 +10,9 @@ venue: MARSS 2024 · 代尔夫特理工大学
 sourceLabel: AMiR 新闻
 relatedLabel: MARSS 2024 论文
 photos:
-  - alt: Yuning Lei 在代尔夫特理工大学的阶梯教室内向听众介绍研究。
+  - alt: 雷宇宁在代尔夫特理工大学的阶梯教室内向听众介绍研究。
     caption: 在代尔夫特理工大学举办的 MARSS 2024 上介绍我的研究。
-  - alt: Yuning Lei 在 MARSS 2024 报告期间站在投影图表旁讲解。
+  - alt: 雷宇宁在 MARSS 2024 报告期间站在投影图表旁讲解。
     caption: 在代尔夫特理工大学作会议报告。
   - alt: AMiR 同事在 MARSS 2024 Delft 会议标识旁合影。
     caption: 与 AMiR 同事在 MARSS 2024 会场合影。

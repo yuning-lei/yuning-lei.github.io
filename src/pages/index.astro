@@ -56,7 +56,7 @@ const publications = (await localizedCollection('publications', locale))
   </section>}
 
   <section class="shell section profile-section" aria-labelledby="profile-heading">
-    <div><p class="eyebrow">{t('Academic profile', '学术履历')}</p><h2 id="profile-heading">{t('About Yuning.', '关于 Yuning Lei')}</h2></div>
+    <div><p class="eyebrow">{t('Academic profile', '学术履历')}</p><h2 id="profile-heading">{t('About Yuning.', '关于雷宇宁')}</h2></div>
     <div><p class="profile-lead">{t(`I am a ${site.role} in ${profile.group} at the ${site.institution}.`, '我在奥尔登堡大学微机器人与控制工程研究组（AMiR）担任科研人员（Research Associate）。')}</p><p>{t('I received my Ph.D. in Engineering Science from Université Bourgogne Franche-Comté in 2023, following doctoral research on nanorobotic origami at FEMTO-ST Institute.', '我在 FEMTO-ST 研究所开展纳米机器人折纸研究，并于 2023 年获得勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）工程科学博士学位。')}</p><a class="text-link section-link" href={localePath('/about/', locale)}>{t('About & CV', '关于我与简历')} <Arrow diagonal /></a></div>
   </section>
   <section class="shell home-contact" aria-labelledby="contact-heading"><div><p class="eyebrow">{t('Contact', '联系')}</p><h2 id="contact-heading">{t('Research & collaboration.', '科研交流与合作')}</h2></div><a class="text-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a></section>

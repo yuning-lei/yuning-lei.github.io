@@ -8,7 +8,7 @@ const locale = localeFromPath(Astro.url.pathname);
 const t = (en: string, zh: string) => tr(locale, en, zh);
 const entries = (await localizedCollection('projects', locale)).sort((a, b) => a.data.order - b.data.order);
 ---
-<Layout title={t('Projects', '研究项目')} description={t('Research projects by Yuning Lei.', 'Yuning Lei 的研究项目。')}>
+<Layout title={t('Projects', '研究项目')} description={t('Research projects by Yuning Lei.', '雷宇宁的研究项目。')}>
   <PageIntro eyebrow={t('Projects', '项目')} title={t('Research projects.', '研究项目')} description={entries.length ? t('Specific research work, methods and associated outputs.', '具体研究工作、采用的方法与相关成果。') : t('Project details are not available on this website yet.', '本网站暂未提供项目详情。')} />
   {entries.length > 0 && <section class="shell page-body" aria-label={t('Research projects', '研究项目')}><EntryList entries={entries} collection="projects" /></section>}
 </Layout>

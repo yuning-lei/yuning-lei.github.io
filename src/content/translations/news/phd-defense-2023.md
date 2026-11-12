@@ -10,9 +10,9 @@ venue: FEMTO-ST 研究所
 sourceLabel: FEMTO-ST 答辩公告
 relatedLabel: 博士论文
 photos:
-  - alt: Yuning Lei 在 FEMTO-ST 向论文答辩委员会介绍博士研究。
+  - alt: 雷宇宁在 FEMTO-ST 向论文答辩委员会介绍博士研究。
     caption: 2023 年 3 月，在 FEMTO-ST 介绍我的博士研究。
-  - alt: 博士论文答辩期间，Yuning Lei 在 FEMTO-ST 标识旁使用笔记本电脑。
+  - alt: 博士论文答辩期间，雷宇宁在 FEMTO-ST 标识旁使用笔记本电脑。
     caption: 在 FEMTO-ST 博士论文答辩现场。
 ---
 

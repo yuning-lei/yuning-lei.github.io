@@ -6,7 +6,7 @@ This file provides standing instructions for AI coding agents working anywhere i
 
 - Repository: `yuning-lei/yuning-lei.github.io`
 - Public website: `https://ylei.de/` (primary custom domain; GitHub Pages hosting).
-- Owner: **Yuning Lei, Ph.D.**, Research Associate, University of Oldenburg, Germany.
+- Owner: **Yuning Lei, Ph.D.** (**雷宇宁** on Chinese pages, confirmed by the owner), Research Associate, University of Oldenburg, Germany.
 - Focus: microrobotics, SEM-based nanomanipulation, micro/nanofabrication, microactuation, and related engineering research.
 - Audience: researchers, academic collaborators, recruitment committees, and engineering professionals.
 - Languages: professional, clear, concise **English by default**, with a complete **Simplified Chinese** version under `/zh/` and corresponding-page language links. Keep original scholarly citation metadata and verified names intact.

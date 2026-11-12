@@ -11,7 +11,7 @@ const site = getSite(locale);
 const profile = getProfile(locale);
 const t = (en: string, zh: string) => tr(locale, en, zh);
 ---
-<Layout title={t('Contact', '联系')} description={t('Contact Yuning Lei at the University of Oldenburg: professional email, institutional address and academic profiles.', '联系奥尔登堡大学的 Yuning Lei：工作邮箱、机构地址与学术主页。')}>
+<Layout title={t('Contact', '联系')} description={t('Contact Yuning Lei at the University of Oldenburg: professional email, institutional address and academic profiles.', '联系奥尔登堡大学的雷宇宁：工作邮箱、机构地址与学术主页。')}>
   <PageIntro eyebrow={t('Contact', '联系')} title={t('Research & collaboration.', '科研交流与合作')} description={t('For research inquiries and academic collaboration, please get in touch by email.', '欢迎通过电子邮件联系，交流研究问题与学术合作。')} />
   <div class="shell page-body contact-grid">
     <section class="affiliation-card" aria-labelledby="affiliation-heading"><p class="eyebrow">{site.institution}</p><h2 id="affiliation-heading">{site.name}, {site.qualification}</h2><p>{site.role}<br />{profile.department}<br />{profile.group}</p><address>{profile.address.map(line => <span>{line}</span>)}</address><a class="text-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a></section>

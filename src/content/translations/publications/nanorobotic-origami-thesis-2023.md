@@ -15,14 +15,14 @@ category: 博士论文
 
 ## 学位论文记录
 
-- **作者：**Yuning Lei。
-- **授予学位机构：**勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）。
-- **学科：**微纳技术／微电子学（Micro and nanotechnologies / Microelectronics）。
-- **博士生院：**École doctorale Sciences Physiques pour l’Ingénieur et Microtechniques（工程物理与微技术博士生院）。
-- **HAL 登记的论文导师：**Cédric Clévy 和 Jean-Yves Rauch。
-- **答辩日期：**2023 年 3 月 24 日。
-- **论文语言：**英文。HAL 引文采用法文题名 *Origami nanorobotique déployé en bout de fibre*，同时提供上述英文题名。
-- **法国学位论文编号（NNT）：**2023UBFCD012。
-- **HAL 存档：**2023 年 6 月 29 日，第 1 版，标识符 `tel-04146180v1`。
+- **作者**：雷宇宁。
+- **授予学位机构**：勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）。
+- **学科**：微纳技术／微电子学（Micro and nanotechnologies / Microelectronics）。
+- **博士生院**：École doctorale Sciences Physiques pour l’Ingénieur et Microtechniques（工程物理与微技术博士生院）。
+- **HAL 登记的论文导师**：Cédric Clévy 和 Jean-Yves Rauch。
+- **答辩日期**：2023 年 3 月 24 日。
+- **论文语言**：英文。HAL 引文采用法文题名 *Origami nanorobotique déployé en bout de fibre*，同时提供上述英文题名。
+- **法国学位论文编号（NNT）**：2023UBFCD012。
+- **HAL 存档**：2023 年 6 月 29 日，第 1 版，标识符 `tel-04146180v1`。
 
 [通过 HAL 查看论文记录并访问存档稿件](https://theses.hal.science/tel-04146180v1)。

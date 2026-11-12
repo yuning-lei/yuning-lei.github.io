@@ -11,7 +11,7 @@ const t = (en: string, zh: string) => tr(locale, en, zh);
 const entries = await localizedCollection('publications', locale);
 const years = [...new Set(entries.map(entry => 'year' in entry.data ? entry.data.year : 0))].sort((a, b) => b - a);
 ---
-<Layout title={t('Publications', '学术成果')} description={t('Publications by Yuning Lei.', 'Yuning Lei 的期刊论文、会议论文、博士论文与会议报告。')}>
+<Layout title={t('Publications', '学术成果')} description={t('Publications by Yuning Lei.', '雷宇宁的期刊论文、会议论文、博士论文与会议报告。')}>
   <PageIntro eyebrow={t('Publications', '学术成果')} title={t('Scientific contributions.', '学术成果')} description={entries.length ? t('Journal articles, conference papers and my doctoral thesis, grouped by year, followed by conference contributions.', '期刊论文、会议论文与博士论文按年份列出，随后列出会议报告。') : t('Publication details are not available on this website yet.', '本网站暂未提供论文详情。')} />
   {entries.length > 0 && <div class="shell page-body">
     {years.map(year => <section class="publication-year" aria-labelledby={`year-${year}`}><h2 id={`year-${year}`}>{year}</h2><EntryList entries={entries.filter(entry => 'year' in entry.data && entry.data.year === year).sort((a, b) => a.data.order - b.data.order)} collection="publications" headingLevel={3} /></section>)}

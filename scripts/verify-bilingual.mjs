@@ -104,7 +104,7 @@ try {
   await page.goto(base + '/zh/publications/');
   assert.equal(await page.locator('.entry-row').count(), 5);
   assert.equal(await page.locator('.conference-contribution').count(), 4);
-  assert.match(await page.locator('.conference-contribution').last().innerText(), /报告人：Yuning Lei/);
+  assert.match(await page.locator('.conference-contribution').last().innerText(), /报告人：雷宇宁/);
   await page.screenshot({ path: '.preview/bilingual-review/publications-zh-mobile.png', fullPage: true });
   for (const width of [375, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
