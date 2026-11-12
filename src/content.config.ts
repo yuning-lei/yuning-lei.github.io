@@ -43,6 +43,12 @@ const publications = defineCollection({
       year: z.number().int().min(1900).max(2100),
       venue: z.string().min(1),
       publicationType: z.enum(['journal', 'conference', 'thesis']),
+      thesisNumber: z.string().min(1).optional(),
+      repository: z.object({
+        name: z.literal('HAL'),
+        id: z.string().min(1),
+        version: z.number().int().positive(),
+      }).optional(),
       volume: z.string().optional(),
       issue: z.string().optional(),
       pages: z.string().optional(),
@@ -51,6 +57,7 @@ const publications = defineCollection({
       publicationStatus: z.enum(['published', 'accepted', 'under review', 'submitted', 'in preparation', 'unpublished']),
       listingApproved: z.boolean().default(false),
       doi: z.url().startsWith('https://doi.org/').optional(),
+      showDoiLink: z.boolean().default(true),
       url: z.url().optional(),
     }),
   ]).superRefine((data, context) => {

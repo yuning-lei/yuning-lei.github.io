@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { publicationReadingUrl } from './publications';
 
 /** Generate a real citation file from reviewed metadata without fetching a paper. */
 export function toBibtex(entry: CollectionEntry<'publications'>) {
@@ -11,11 +12,13 @@ export function toBibtex(entry: CollectionEntry<'publications'>) {
     [data.publicationType === 'thesis' ? 'school' : data.publicationType === 'conference' ? 'booktitle' : 'journal', data.venue],
     ['year', String(data.year)],
     ['volume', data.volume],
-    ['number', data.issue],
+    ['number', data.publicationType === 'thesis' ? data.thesisNumber : data.issue],
     ['pages', data.pages?.replace(/[–—]/g, '--')],
     ['eid', data.articleNumber],
     ['doi', data.doi?.replace('https://doi.org/', '')],
-    ['url', data.doi ?? data.url],
+    ['url', publicationReadingUrl(data)],
+    ['hal_id', data.repository?.id],
+    ['hal_version', data.repository ? `v${data.repository.version}` : undefined],
     ['note', data.publicationStatus !== 'published' ? data.publicationStatus : undefined],
   ];
   const type = data.publicationType === 'thesis' ? 'phdthesis' : data.publicationType === 'conference' ? 'inproceedings' : 'article';

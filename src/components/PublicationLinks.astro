@@ -5,8 +5,8 @@ interface Props { entry: CollectionEntry<'publications'>; }
 const { entry } = Astro.props;
 ---
 {entry.data.visibility === 'public' && <div class="publication-links screen-only">
-  {entry.data.doi && <a class="text-link" href={entry.data.doi}>DOI <Arrow diagonal /></a>}
-  {entry.data.pdf && <a class="text-link" href={entry.data.pdf}>PDF at publisher <Arrow diagonal /></a>}
-  {entry.data.url && entry.data.url !== entry.data.doi && <a class="text-link" href={entry.data.url}>Publication record <Arrow diagonal /></a>}
+  {entry.data.doi && entry.data.showDoiLink && <a class="text-link" href={entry.data.doi}>DOI <Arrow diagonal /></a>}
+  {entry.data.pdf && <a class="text-link" href={entry.data.pdf}>PDF at {entry.data.repository?.name ?? 'publisher'} <Arrow diagonal /></a>}
+  {entry.data.url && entry.data.url !== entry.data.doi && <a class="text-link" href={entry.data.url}>{entry.data.repository ? `${entry.data.repository.name} record` : 'Publication record'} <Arrow diagonal /></a>}
   <a class="text-link" href={`/publications/${entry.id}.bib`} download={`${entry.id}.bib`}>BibTeX <span aria-hidden="true">↓</span></a>
 </div>}

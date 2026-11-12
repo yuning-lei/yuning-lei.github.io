@@ -42,9 +42,30 @@ try {
   }
   await verifyNews({ page, base });
   await page.goto(base + '/publications/');
-  assert.equal(await page.locator('.entry-row').count(), 5, 'Four papers plus the ORCID/Crossref-verified doctoral thesis');
+  assert.equal(await page.locator('.entry-row').count(), 5, 'Four papers plus the HAL-verified doctoral thesis');
   assert.deepEqual(await page.locator('.publication-year > h2').allTextContents(), ['2025', '2024', '2023', '2022']);
-  assert.equal(await page.locator('#conference-contributions .conference-contribution').count(), 1, 'MARSS 2022 contribution is listed separately');
+  assert.equal(await page.locator('#conference-contributions .conference-contribution').count(), 4, 'ICRA 2023, MARSS 2022, ISOT 2021 and JJCR 2021 contributions are listed separately');
+  const icra = page.locator('#conference-contributions .conference-contribution').filter({ hasText: 'Large-Workspace Polyarticulated Micro-Structures Based-On Folded Silica for Tethered Nanorobotics' });
+  assert.equal(await icra.count(), 1, 'ICRA 2023 presentation appears once among conference contributions');
+  assert.match(await icra.locator('.eyebrow').innerText(), /Oral presentation · 2023/i);
+  assert.equal(await icra.locator('.contribution-authors').innerText(), 'Yuning Lei; Cédric Clévy; Jean-Yves Rauch; Philippe Lutz');
+  assert.match(await icra.innerText(), /1 June 2023, 15:30–15:40/);
+  assert.match(await icra.innerText(), /Sensing and Control session \(ThBT4\.4\)/);
+  assert.match(await icra.innerText(), /2022 IEEE Robotics and Automation Letters article/);
+  assert.equal(await icra.getByRole('link', { name: 'Related journal article' }).getAttribute('href'), '/publications/folded-silica-nanorobotics-2022/');
+  assert.equal(await icra.getByRole('link', { name: 'Official programme (PDF)' }).count(), 0, 'Private sources are not misrepresented as a public programme');
+  const isot = page.locator('#conference-contributions .conference-contribution').filter({ hasText: 'Improving Optothermal Activation Effect of Micro Bilayer Cantilever with FIB Milling Gap' });
+  assert.equal(await isot.count(), 1, 'ISOT 2021 report appears once');
+  assert.equal(await isot.locator('.contribution-authors').innerText(), 'Yuning Lei; Cédric Clévy; Jean-Yves Rauch; Philippe Lutz');
+  assert.match(await isot.innerText(), /4 November 2021 at 17:05/);
+  assert.match(await isot.innerText(), /Emerging photonic concepts/);
+  assert.equal(await isot.getByRole('link', { name: 'Official programme (PDF)' }).getAttribute('href'), 'https://isot2021.sciencesconf.org/data/pages/programme_isot_2021.pdf');
+  const jjcr = page.locator('#conference-contributions .conference-contribution').filter({ hasText: 'Nanorobotic Origami Unfolded at the Tip of an Optical Fiber' });
+  assert.equal(await jjcr.count(), 1, 'JJCR 2021 talk appears once with the programme title');
+  assert.equal(await jjcr.locator('.contribution-authors').innerText(), 'Speaker: Yuning Lei', 'Programme names the speaker without establishing a coauthor list');
+  assert.match(await jjcr.innerText(), /12 October 2021, scheduled for 10:15/);
+  assert.match(await jjcr.innerText(), /Paris, France/);
+  assert.equal(await jjcr.getByRole('link', { name: 'Official programme', exact: true }).getAttribute('href'), 'https://jjcr2021.sciencesconf.org/resource/page/id/8.html?lang=fr');
   for (const href of await page.locator('a[download$=".bib"]').evaluateAll(elements => elements.map(el => el.getAttribute('href')))) {
     const citation = await page.request.get(base + href);
     assert.equal(citation.status(), 200, `Downloadable BibTeX: ${href}`);
@@ -54,7 +75,23 @@ try {
   const thesisBib = await (await page.request.get(base + '/publications/nanorobotic-origami-thesis-2023.bib')).text();
   assert.match(thesisBib, /^@phdthesis\{/);
   assert.match(thesisBib, /school = \{Université Bourgogne Franche-Comté\}/);
+  assert.match(thesisBib, /number = \{2023UBFCD012\}/);
+  assert.match(thesisBib, /url = \{https:\/\/theses\.hal\.science\/tel-04146180v1\}/);
+  assert.match(thesisBib, /hal_id = \{tel-04146180\}/);
+  assert.match(thesisBib, /hal_version = \{v1\}/);
+  assert.doesNotMatch(thesisBib, /https:\/\/(?:www\.)?theses\.fr|https:\/\/doi\.org\/10\.70675/);
   assert.doesNotMatch(thesisBib, /journal =|booktitle =/);
+  await page.goto(base + '/publications/nanorobotic-origami-thesis-2023/');
+  assert.equal(await page.getByRole('link', { name: 'HAL record', exact: true }).getAttribute('href'), 'https://theses.hal.science/tel-04146180v1');
+  assert.equal(await page.getByRole('link', { name: 'DOI', exact: true }).count(), 0, 'Unavailable catalogue DOI button is hidden');
+  assert.equal(await page.getByRole('link', { name: 'PDF at HAL', exact: true }).count(), 0, 'Unverified direct PDF is not promoted');
+  assert.match(await page.locator('main').innerText(), /29 June 2023/);
+  assert.match(await page.locator('main').innerText(), /Language: English/);
+  assert.equal(await page.locator('a[href*="theses.fr"], a[href^="https://doi.org/10.70675/"]').count(), 0, 'Unavailable thesis links are absent');
+  const thesisAccessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  assert.deepEqual(thesisAccessibility.violations.map(({ id, nodes }) => ({ id, elements: nodes.map(node => node.target) })), [], 'Updated thesis page accessibility');
+  await page.goto(base + '/projects/nanorobotic-origami/');
+  assert.ok(await page.locator('a[href="https://theses.hal.science/tel-04146180v1"]').count() > 0, 'Doctoral project reaches HAL');
   await page.goto(base + '/projects/');
   assert.equal(await page.locator('.entry-row').count(), 3, 'CV/ORCID-supported projects include LicLoM');
   await page.goto(base + '/projects/liclom/');
@@ -150,7 +187,7 @@ try {
   assert.equal(await noJsPage.locator('img').evaluate(image => image.complete && image.naturalWidth > 0), true, 'Full photo links work without JavaScript');
   await noJs.close();
   assert.deepEqual(failures, [], 'No browser errors');
-  console.log('PASS: seven primary routes, ORCID links/structured identity, five publications including the doctoral thesis, separate MARSS 2022 contribution, three projects with verified funding IDs, BibTeX/PDF downloads, seven activities / 20 photos, gallery filters/keyboard/focus/no-JS behavior, portrait/Teaser, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, mobile navigation, drafts, sitemap, 404 and automated WCAG A/AA checks.');
+  console.log('PASS: seven primary routes, ORCID links/structured identity, five publications including the doctoral thesis, separate ICRA 2023 / MARSS 2022 / ISOT 2021 / JJCR 2021 contributions, three projects with verified funding IDs, BibTeX/PDF downloads, seven activities / 20 photos, gallery filters/keyboard/focus/no-JS behavior, portrait/Teaser, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, mobile navigation, drafts, sitemap, 404 and automated WCAG A/AA checks.');
 } finally {
   await browser.close();
 }

@@ -258,9 +258,9 @@ p { color: var(--color-text); }
   .cv-skill { display: grid; grid-template-columns: 115px minmax(0, 1fr); gap: 15px; break-inside: avoid; }
   .cv-skill + .cv-skill { margin-top: 8px; }
   .cv-skill dd { margin: 0; }
-  .cv-print-publication { break-inside: avoid; margin-bottom: 12px; }
+  .cv-print-publication { break-inside: avoid; margin-bottom: 8px; }
   .cv-print-publication h3 { font-size: 10pt; line-height: 1.5; }
-  .citation-block { margin-top: 5px; }
+  .citation-block { margin-top: 3px; }
   .citation-block .citation-authors, .citation-block .citation-venue, .cv-print-doi { font-size: 8pt; line-height: 1.5; }
-  .cv-print-doi { margin-top: 5px; overflow-wrap: anywhere; }
+  .cv-print-doi { margin-top: 3px; overflow-wrap: anywhere; }
 }

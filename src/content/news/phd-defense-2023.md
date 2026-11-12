@@ -11,13 +11,14 @@ sources:
   - owner-news-photos-2026-11-12
   - owner-cv-2026-10-20
   - owner-defense-date-confirmation-2026-11-12
+  - owner-hal-thesis-2026-11-12
   - https://www.femto-st.fr/fr/L-institut/evenements/yuning-lei-origami-nanorobotique-deploye-en-bout-de-fibre
 sourceLink:
   label: FEMTO-ST defense notice
   url: https://www.femto-st.fr/fr/L-institut/evenements/yuning-lei-origami-nanorobotique-deploye-en-bout-de-fibre
 relatedLink:
-  label: Doctoral research
-  href: /projects/nanorobotic-origami/
+  label: Doctoral thesis
+  href: /publications/nanorobotic-origami-thesis-2023/
 mediaPermission: owner-provided-for-website
 photos:
   - image: ../../assets/news/defense-presentation.webp

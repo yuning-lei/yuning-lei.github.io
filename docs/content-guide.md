@@ -67,9 +67,23 @@ Editorial `visibility` is separate from `publicationStatus`. Allowed publication
 
 The Publications page groups public entries by year (newest first), then `order`. Shared citation components display author order, venue, year, volume/issue/pages or article identifier. BibTeX files are generated from the reviewed metadata at `/publications/[id].bib`; no external file is guessed. Verify all citation data before making it public. A `pdf` link is optional and must point to an actual verified publisher/authorized file. Do not rehost a paper or figure without permission.
 
-For a doctoral thesis, use `publicationType: thesis`, retain the original thesis title, and set `venue` to the verified degree-awarding institution. Citations visibly identify the thesis, and BibTeX uses `@phdthesis` with `school`. A public thesis catalogue record does not establish journal peer review. Never invent a downloadable thesis PDF from a catalogue URL.
+For a doctoral thesis, use `publicationType: thesis`, retain the original thesis title, and set `venue` to the verified degree-awarding institution. Citations visibly identify the thesis, and BibTeX uses `@phdthesis` with `school`. Optional `thesisNumber` exports the verified national identifier as `number`. A public thesis catalogue record does not establish journal peer review. Never invent a downloadable thesis PDF from a catalogue URL.
 
-Programme-only conference contributions are maintained in `profile.conferenceContributions` and displayed in their own section through `ConferenceContributions.astro`. Each needs verified author order and an official programme source; they are not counted as journal articles or proceedings papers. An ORCID work type alone does not establish archival publication, pages, DOI or peer-review status.
+The doctoral thesis uses the owner-supplied HAL record as its reading URL. Its reviewed frontmatter includes:
+
+```yaml
+thesisNumber: 2023UBFCD012
+showDoiLink: false
+url: https://theses.hal.science/tel-04146180v1
+repository:
+  name: HAL
+  id: tel-04146180
+  version: 1
+```
+
+`showDoiLink` defaults to `true`; setting it to `false` hides an unavailable DOI button without deleting the verified DOI identifier from the citation or BibTeX. `src/lib/publications.ts` selects the repository URL for BibTeX and the printable CV, while the shared links component labels it **HAL record**. The optional repository fields also export `hal_id` and `hal_version`. A direct `pdf` remains absent until the actual file response is verified; a repository landing page is not a PDF.
+
+Conference contributions are maintained in `profile.conferenceContributions` and displayed in their own section through `ConferenceContributions.astro`. Each needs an official programme or owner-supplied presentation confirmation. Use `authors` only when the author list/order is verified; when a programme names only the presenter, use `speaker` instead, rendered with an explicit **Speaker:** label. `kind` distinguishes a programme listing from a confirmed oral presentation; `link` contains an accurate `label` and public `href`, such as an official programme PDF, HTML programme or related journal article. Keep private confirmation emails and attendance certificates outside the public assets. Contributions are not counted as additional journal articles or proceedings papers; an ORCID work type or conference appearance alone does not establish archival publication, pages, DOI or peer-review status. Link an existing journal paper when that work is presented at a later conference, preserving its original publication year.
 
 The owner-confirmed identifier is stored in `profile.orcid` and rendered through `OrcidLink.astro` on About/Contact and the public CV. The shared layout emits `rel="me"` and Person `sameAs` metadata. Read only public ORCID data for manual updates; record reviewed additions and source discrepancies in `content-provenance.md`. Do not overwrite a CV date or job title merely because an imported record differs, and do not remove CV-verified work that is missing from ORCID.
 

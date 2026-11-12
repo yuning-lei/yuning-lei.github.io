@@ -12,6 +12,7 @@ import ConferenceContributions from '../components/ConferenceContributions.astro
 import PublicationCitation from '../components/PublicationCitation.astro';
 import { getCollection } from 'astro:content';
 import { isPublicEntry } from '../lib/content';
+import { publicationReadingUrl } from '../lib/publications';
 const publications = (await getCollection('publications', isPublicEntry)).sort((a, b) => ('year' in b.data ? b.data.year : 0) - ('year' in a.data ? a.data.year : 0));
 ---
 <Layout title="About / CV" description="About Yuning Lei, Ph.D., Research Associate at the University of Oldenburg, Germany.">
@@ -23,7 +24,7 @@ const publications = (await getCollection('publications', isPublicEntry)).sort((
     </div>
     <nav class="cv-nav screen-only" aria-label="On this page"><a href="#experience">Experience</a><a href="#education">Education</a><a href="#teaching">Teaching</a><a href="#skills">Skills</a><a href="#service">Service</a><a href="#awards">Awards</a></nav>
     <CurriculumVitae />
-    <section class="print-only cv-section" aria-labelledby="cv-publications-heading"><div><h2 id="cv-publications-heading">Publications</h2></div><div>{publications.map(entry => <article class="cv-print-publication"><h3>{entry.data.title}</h3><PublicationCitation data={entry.data} />{'doi' in entry.data && <p class="cv-print-doi">{entry.data.doi}</p>}</article>)}</div></section>
+    <section class="print-only cv-section" aria-labelledby="cv-publications-heading"><div><h2 id="cv-publications-heading">Publications</h2></div><div>{publications.map(entry => <article class="cv-print-publication"><h3>{entry.data.title}</h3><PublicationCitation data={entry.data} />{publicationReadingUrl(entry.data) && <p class="cv-print-doi"><a href={publicationReadingUrl(entry.data)}>{publicationReadingUrl(entry.data)}</a></p>}</article>)}</div></section>
     <section class="print-only cv-section" aria-labelledby="cv-contributions-heading"><div><h2 id="cv-contributions-heading">Conference contributions</h2></div><ConferenceContributions /></section>
   </div>
 </Layout>
