@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Home from '../index.astro';
+import Research from '../research/index.astro';
+import Projects from '../projects/index.astro';
+import Publications from '../publications/index.astro';
+import About from '../about.astro';
+import Contact from '../contact.astro';
+import News from '../news.astro';
+import NotFound from '../404.astro';
+import Detail from '../[collection]/[id].astro';
+import { detailPaths } from '../../lib/paths';
+
+export async function getStaticPaths() {
+  const primary = ['home', 'research', 'projects', 'publications', 'about', 'contact', 'news', '404'];
+  return [
+    ...primary.map(view => ({ params: { path: view === 'home' ? undefined : view }, props: { view } })),
+    ...(await detailPaths()).map(({ params, props }) => ({ params: { path: `${params.collection}/${params.id}` }, props: { view: 'detail', ...props } })),
+  ];
+}
+interface Props {
+  view: string;
+  entry?: CollectionEntry<'research' | 'projects' | 'publications'>;
+  collection?: 'research' | 'projects' | 'publications';
+}
+const { view, entry, collection } = Astro.props;
+---
+{view === 'home' && <Home />}
+{view === 'research' && <Research />}
+{view === 'projects' && <Projects />}
+{view === 'publications' && <Publications />}
+{view === 'about' && <About />}
+{view === 'contact' && <Contact />}
+{view === 'news' && <News />}
+{view === '404' && <NotFound />}
+{view === 'detail' && entry && collection && <Detail entry={entry} collection={collection} />}

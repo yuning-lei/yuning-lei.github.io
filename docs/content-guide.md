@@ -10,6 +10,16 @@ Do not add empty biography sections or non-functional CV/profile links. The prov
 
 ## Collection visibility
 
+### English and Chinese content
+
+English stays at the existing root URLs; Chinese pages use `/zh/`. The same Astro page components render both languages. Use `localeFromPath`, `localePath` and `tr` from `src/lib/i18n.ts` for interface copy and internal HTML links. `localePath` keeps media/download URLs shared and preserves anchors. Do not auto-redirect visitors away from the default English site.
+
+For each public English Markdown record, maintain `src/content/translations/<collection>/<id>.md` with `locale: zh`, `sourceCollection`, an Astro `source` reference, and translated `title`, `summary`, `category` and body. Project roles/periods and news venue/location/link labels can be translated in optional display fields. News translations must include exactly one `alt`/`caption` pair per source photo, in source order; image files stay in the original record. Add `/zh/` to translated Markdown's internal HTML links. Missing translations, duplicate source keys or mismatched photo counts fail the build.
+
+`src/lib/localized-content.ts` adds a translated `view` and optional Markdown entry without modifying canonical `data`. Continue editing authors, original titles, DOI, dates, publication status and image sources only in the original collections. Chinese publication and conference titles are display translations; keep the source title visible and BibTeX unchanged. Preserve the user's verified Latin name **Yuning Lei**; do not invent Chinese name characters or collaborator name translations.
+
+CV/teaching/service/award translations are in `src/data/localized-profile.ts`, with coverage checks against the source arrays. Preserve date precision, responsibilities, quantities and qualification context. In particular, Research Associate is displayed as **科研人员（Research Associate）**, CNU is an eligibility qualification, and DU/DUT must not become bachelor's degrees. Both PDF downloads are generated from their reviewed About pages with `npm run cv:pdf` and `npm run cv:pdf -- --locale=zh`, sequentially, followed by a rebuild. Check text, original citations, embedded Chinese fonts and page layout. Run `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual` before publishing a bilingual update.
+
 Research, projects and publications use Markdown in their respective `src/content/` directories. Local drafts are validated but generate no public listing or detail page. Both collection queries and route generation use `src/lib/content.ts` to exclude drafts.
 
 Use simple filenames with lowercase letters and hyphens. An approved `example.md` entry becomes `/research/example/`, `/projects/example/` or `/publications/example/`.

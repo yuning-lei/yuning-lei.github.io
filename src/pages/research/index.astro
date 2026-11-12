@@ -1,12 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import EntryList from '../../components/EntryList.astro';
-import { isPublicEntry } from '../../lib/content';
-const entries = (await getCollection('research', isPublicEntry)).sort((a, b) => a.data.order - b.data.order);
+import { localizedCollection } from '../../lib/localized-content';
+import { localeFromPath, tr } from '../../lib/i18n';
+const locale = localeFromPath(Astro.url.pathname);
+const t = (en: string, zh: string) => tr(locale, en, zh);
+const entries = (await localizedCollection('research', locale)).sort((a, b) => a.data.order - b.data.order);
 ---
-<Layout title="Research" description="Yuning Lei’s research areas: micro and nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.">
-  <PageIntro eyebrow="Research / Areas of focus" title="Research at small scales." description="Microrobotics, nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation." />
-  <section class="shell page-body" aria-label="Research areas"><EntryList entries={entries} collection="research" /></section>
+<Layout title={t('Research', '研究方向')} description={t('Yuning Lei’s research areas: micro and nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.', 'Yuning Lei 的研究方向：微机器人、纳米机器人、扫描电镜下的纳米操纵、微纳制造与微致动。')}>
+  <PageIntro eyebrow={t('Research / Areas of focus', '研究／方向概览')} title={t('Research at small scales.', '微纳尺度研究')} description={t('Microrobotics, nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.', '微机器人、纳米机器人、扫描电镜下的纳米操纵、微纳制造与微致动。')} />
+  <section class="shell page-body" aria-label={t('Research areas', '研究方向')}><EntryList entries={entries} collection="research" /></section>
 </Layout>

@@ -8,7 +8,9 @@ export default defineConfig({
   site: 'https://ylei.de',
   output: 'static',
   trailingSlash: 'always',
+  i18n: { defaultLocale: 'en', locales: ['en', 'zh'], routing: { prefixDefaultLocale: false } },
   integrations: [sitemap({
+    i18n: { defaultLocale: 'en', locales: { en: 'en', zh: 'zh-CN' } },
     // Keep explicitly noindex pages out of the sitemap. Drafts have no generated routes.
     filter(page) {
       const path = new URL(page).pathname;

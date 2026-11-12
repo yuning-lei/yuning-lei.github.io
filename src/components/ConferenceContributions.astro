@@ -1,15 +1,19 @@
 ---
-import { profile } from '../data/profile';
+import { getConferenceContributions } from '../data/localized-profile';
+import { localeFromPath, localePath, tr } from '../lib/i18n';
 import Arrow from './Arrow.astro';
+const locale = localeFromPath(Astro.url.pathname);
+const entries = getConferenceContributions(locale);
 ---
 <div class="conference-contributions">
-  {profile.conferenceContributions.map(item => <article class="conference-contribution">
+  {entries.map(item => <article class="conference-contribution">
     <p class="eyebrow">{item.kind} · {item.year}</p>
     <h3>{item.title}</h3>
-    <p class="contribution-authors">{'speaker' in item ? <>Speaker: <strong>{item.speaker}</strong></> : item.authors.map((author, index) => <>{index > 0 && '; '}{author === 'Yuning Lei' ? <strong>{author}</strong> : author}</>)}</p>
+    {item.originalTitle && <p class="original-title"><span>{tr(locale, 'Original title: ', '原题：')}</span><span lang="en">{item.originalTitle}</span></p>}
+    <p class="contribution-authors">{item.speaker ? <>{tr(locale, 'Speaker: ', '报告人：')}<strong>{item.speaker}</strong></> : item.authors?.map((author, index) => <>{index > 0 && '; '}{author === 'Yuning Lei' ? <strong>{author}</strong> : author}</>)}</p>
     <p>{item.venue} · {item.location}</p>
     <p>{item.description}</p>
-    <a class="text-link screen-only" href={item.link.href}>{item.link.label} <Arrow diagonal /></a>
+    <a class="text-link screen-only" href={localePath(item.link.href, locale)}>{item.link.label} <Arrow diagonal /></a>
   </article>)}
 </div>
 <style>

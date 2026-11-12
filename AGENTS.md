@@ -9,7 +9,7 @@ This file provides standing instructions for AI coding agents working anywhere i
 - Owner: **Yuning Lei, Ph.D.**, Research Associate, University of Oldenburg, Germany.
 - Focus: microrobotics, SEM-based nanomanipulation, micro/nanofabrication, microactuation, and related engineering research.
 - Audience: researchers, academic collaborators, recruitment committees, and engineering professionals.
-- Language: professional, clear, concise **English**.
+- Languages: professional, clear, concise **English by default**, with a complete **Simplified Chinese** version under `/zh/` and corresponding-page language links. Keep original scholarly citation metadata and verified names intact.
 - Identity: **academic website + research portfolio**, with scientific credibility taking priority over visual spectacle.
 
 ## 2. Non-negotiable: academic accuracy

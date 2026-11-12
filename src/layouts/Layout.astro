@@ -1,13 +1,18 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../data/site';
+import { getSite } from '../data/site';
 import { profile } from '../data/profile';
+import { localeFromPath, localePath, languageTag, openGraphLocale, tr } from '../lib/i18n';
 import '../styles/global.css';
 interface Props { title?: string; description?: string; noindex?: boolean; }
+const locale = localeFromPath(Astro.url.pathname);
+const site = getSite(locale);
 const { title, description = site.description, noindex = false } = Astro.props;
-const pageTitle = title ? `${title} | ${site.name}` : `${site.name}, ${site.qualification} | Micro & Nanorobotics`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name}, ${site.qualification} | ${tr(locale, 'Micro & Nanorobotics', '微纳机器人研究')}`;
+const canonical = new URL(localePath(Astro.url.pathname, locale), Astro.site);
+const english = new URL(localePath(Astro.url.pathname, 'en'), Astro.site);
+const chinese = new URL(localePath(Astro.url.pathname, 'zh'), Astro.site);
 const person = {
   '@context': 'https://schema.org', '@type': 'Person',
   '@id': new URL('/#person', Astro.site).href,
@@ -17,7 +22,7 @@ const person = {
 };
 ---
 <!doctype html>
-<html lang="en">
+<html lang={languageTag[locale]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,11 +33,15 @@ const person = {
     <script type="application/ld+json" set:html={JSON.stringify(person).replace(/</g, '\\u003c')} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={english} />
+    <link rel="alternate" hreflang="zh-CN" href={chinese} />
+    <link rel="alternate" hreflang="x-default" href={english} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content={`${site.name} · Academic portfolio`} />
+    <meta property="og:locale" content={openGraphLocale[locale]} />
+    <meta property="og:locale:alternate" content={openGraphLocale[locale === 'en' ? 'zh' : 'en']} />
+    <meta property="og:site_name" content={`${site.name} · ${tr(locale, 'Academic portfolio', '学术主页')}`} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -40,7 +49,7 @@ const person = {
     <title>{pageTitle}</title>
   </head>
   <body id="top">
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{tr(locale, 'Skip to content', '跳转到正文')}</a>
     <Header />
     <main id="main-content" tabindex="-1"><slot /></main>
     <Footer />

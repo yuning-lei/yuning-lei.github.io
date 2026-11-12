@@ -1,12 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Arrow from './Arrow.astro';
+import { localeFromPath, tr } from '../lib/i18n';
 interface Props { entry: CollectionEntry<'publications'>; }
 const { entry } = Astro.props;
+const locale = localeFromPath(Astro.url.pathname);
 ---
 {entry.data.visibility === 'public' && <div class="publication-links screen-only">
   {entry.data.doi && entry.data.showDoiLink && <a class="text-link" href={entry.data.doi}>DOI <Arrow diagonal /></a>}
-  {entry.data.pdf && <a class="text-link" href={entry.data.pdf}>PDF at {entry.data.repository?.name ?? 'publisher'} <Arrow diagonal /></a>}
-  {entry.data.url && entry.data.url !== entry.data.doi && <a class="text-link" href={entry.data.url}>{entry.data.repository ? `${entry.data.repository.name} record` : 'Publication record'} <Arrow diagonal /></a>}
+  {entry.data.pdf && <a class="text-link" href={entry.data.pdf}>{tr(locale, `PDF at ${entry.data.repository?.name ?? 'publisher'}`, `PDF（${entry.data.repository?.name ?? '出版社'}）`)} <Arrow diagonal /></a>}
+  {entry.data.url && entry.data.url !== entry.data.doi && <a class="text-link" href={entry.data.url}>{entry.data.repository ? tr(locale, `${entry.data.repository.name} record`, `${entry.data.repository.name} 记录`) : tr(locale, 'Publication record', '发表记录')} <Arrow diagonal /></a>}
   <a class="text-link" href={`/publications/${entry.id}.bib`} download={`${entry.id}.bib`}>BibTeX <span aria-hidden="true">↓</span></a>
 </div>}

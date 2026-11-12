@@ -1,25 +1,28 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { DetailEntry } from '../lib/localized-content';
+import { localeFromPath, localePath, publicationStatusLabel } from '../lib/i18n';
 import Arrow from './Arrow.astro';
 import PublicationCitation from './PublicationCitation.astro';
 import PublicationLinks from './PublicationLinks.astro';
 interface Props {
-  entries: (CollectionEntry<'research'> | CollectionEntry<'projects'> | CollectionEntry<'publications'>)[];
+  entries: DetailEntry[];
   collection: 'research' | 'projects' | 'publications';
   headingLevel?: 2 | 3;
 }
 const { entries, collection, headingLevel = 2 } = Astro.props;
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const locale = localeFromPath(Astro.url.pathname);
 ---
 <div class="entry-list">
   {entries.map((entry, i) => <article class="entry-row">
     <span class="entry-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
     <div>
-      <span class="eyebrow">{entry.data.category}</span>
-      <Heading class="entry-title"><a class="entry-link" href={`/${collection}/${entry.id}/`}>{entry.data.title}<Arrow diagonal /></a></Heading>
-      <p>{entry.data.summary}</p>
-      {'publicationStatus' in entry.data && <span class="publication-status">{entry.data.publicationStatus}</span>}
-      {'role' in entry.data && entry.data.role && <p class="entry-role">{entry.data.role}{entry.data.period && <> · {entry.data.period}</>}</p>}
+      <span class="eyebrow">{entry.view.category}</span>
+      <Heading class="entry-title"><a class="entry-link" href={localePath(`/${collection}/${entry.id}/`, locale)}>{entry.view.title}<Arrow diagonal /></a></Heading>
+      {locale === 'zh' && entry.collection === 'publications' && entry.data.visibility === 'public' && <p class="original-title"><span>原题：</span><span lang={entry.data.publicationType === 'thesis' ? 'fr' : 'en'}>{entry.data.title}</span></p>}
+      <p>{entry.view.summary}</p>
+      {'publicationStatus' in entry.data && <span class="publication-status">{publicationStatusLabel(entry.data.publicationStatus, locale, entry.data.publicationType === 'thesis')}</span>}
+      {entry.view.role && <p class="entry-role">{entry.view.role}{entry.view.period && <> · {entry.view.period}</>}</p>}
       {entry.collection === 'publications' && <><PublicationCitation data={entry.data} /><PublicationLinks entry={entry} /></>}
     </div>
   </article>)}

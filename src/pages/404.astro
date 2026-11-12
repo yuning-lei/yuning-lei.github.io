@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Arrow from '../components/Arrow.astro';
+import { localeFromPath, localePath, tr } from '../lib/i18n';
+const locale = localeFromPath(Astro.url.pathname);
 ---
-<Layout title="Page not found" noindex>
-  <section class="shell page-intro error-page"><p class="eyebrow">404 / Page not found</p><h1>A little out of scale.</h1><p class="page-description">The page you’re looking for could not be found.</p><a class="button mt-8" href="/">Return home <Arrow /></a></section>
+<Layout title={tr(locale, 'Page not found', '页面未找到')} noindex>
+  <section class="shell page-intro error-page"><p class="eyebrow">{tr(locale, '404 / Page not found', '404／页面未找到')}</p><h1>{tr(locale, 'A little out of scale.', '没有找到这个页面')}</h1><p class="page-description">{tr(locale, 'The page you’re looking for could not be found.', '你访问的页面不存在。')}</p><a class="button mt-8" href={localePath('/', locale)}>{tr(locale, 'Return home', '返回首页')} <Arrow /></a></section>
 </Layout>

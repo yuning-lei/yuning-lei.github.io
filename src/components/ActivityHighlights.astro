@@ -2,31 +2,33 @@
 import { Image } from 'astro:assets';
 import Arrow from './Arrow.astro';
 import { activityDate, type Activity } from '../lib/news';
+import { localeFromPath, localePath, tr } from '../lib/i18n';
 import '../styles/news.css';
 
 interface Props { entries: Activity[]; }
 const { entries } = Astro.props;
+const locale = localeFromPath(Astro.url.pathname);
 ---
 {entries.length > 0 && <section class="activity-highlights" aria-labelledby="news-heading">
   <div class="shell section">
     <div class="journal-section-heading">
-      <div><p class="eyebrow">Visits, talks & milestones</p><h2 id="news-heading">News & activities.</h2></div>
-      <a class="text-link" href="/news/">Explore the journal <Arrow /></a>
+      <div><p class="eyebrow">{tr(locale, 'Visits, talks & milestones', '科研访问、报告与学术历程')}</p><h2 id="news-heading">{tr(locale, 'News & activities.', '新闻与活动')}</h2></div>
+      <a class="text-link" href={localePath('/news/', locale)}>{tr(locale, 'Explore the journal', '查看活动记录')} <Arrow /></a>
     </div>
     <div class="activity-highlights-grid">
       {entries.map((entry, index) => <article class:list={['activity-highlight', { 'activity-highlight-lead': index === 0 }]}>
-        <a class="activity-highlight-link" href={`/news/#${entry.id}`}>
+        <a class="activity-highlight-link" href={localePath(`/news/#${entry.id}`, locale)}>
           <div class="activity-highlight-image">
-            <Image src={entry.data.photos[0].image} alt={entry.data.photos[0].alt}
+            <Image src={entry.data.photos[0].image} alt={entry.view.photos![0].alt}
               widths={index === 0 ? [400, 640, 960] : [240, 400, 640]}
               sizes={index === 0 ? '(min-width: 960px) 620px, (min-width: 701px) 52vw, calc(100vw - 40px)' : '(min-width: 960px) 170px, (min-width: 701px) 38vw, calc(100vw - 40px)'}
               format="webp" loading="lazy" />
           </div>
           <div class="activity-highlight-copy">
-            <p class="activity-meta"><span>{entry.data.category}</span><span>{activityDate(entry.data.date, entry.data.endDate)}</span></p>
-            <h3>{entry.data.title} <Arrow diagonal /></h3>
-            <p class="activity-highlight-summary">{entry.data.summary}</p>
-            <p class="activity-location">{entry.data.location}</p>
+            <p class="activity-meta"><span>{entry.view.category}</span><span>{activityDate(entry.data.date, entry.data.endDate, locale)}</span></p>
+            <h3>{entry.view.title} <Arrow diagonal /></h3>
+            <p class="activity-highlight-summary">{entry.view.summary}</p>
+            <p class="activity-location">{entry.view.location}</p>
           </div>
         </a>
       </article>)}

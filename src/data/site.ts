@@ -1,3 +1,5 @@
+import type { Locale } from '../lib/i18n';
+
 export const site = {
   name: 'Yuning Lei',
   qualification: 'Ph.D.',
@@ -6,6 +8,14 @@ export const site = {
   location: 'Oldenburg, Germany',
   description: 'Yuning Lei, Ph.D., Research Associate at the University of Oldenburg, Germany. Research in microrobotics, nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.',
 };
+
+export function getSite(locale: Locale) {
+  return locale === 'zh' ? { ...site,
+    qualification: '博士', role: '科研人员（Research Associate）',
+    institution: '奥尔登堡大学', location: '德国奥尔登堡',
+    description: 'Yuning Lei，博士，德国奥尔登堡大学科研人员。研究方向包括微机器人、纳米机器人、扫描电子显微镜下的纳米操纵、微纳制造与微致动。',
+  } : site;
+}
 
 export const navigation = [
   { label: 'Research', href: '/research/' },

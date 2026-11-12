@@ -1,10 +1,13 @@
 ---
-import { site } from '../data/site';
-const isNews = Astro.url.pathname === '/news/';
+import { getSite } from '../data/site';
+import { localeFromPath, localePath, tr } from '../lib/i18n';
+const locale = localeFromPath(Astro.url.pathname);
+const site = getSite(locale);
+const isNews = Astro.url.pathname === localePath('/news/', locale);
 ---
 <footer class="site-footer">
   <div class="shell footer-inner">
     <p>© {new Date().getUTCFullYear()} {site.name}<span class="footer-dot">·</span><span>{site.location}</span></p>
-    <div><a href="/news/" aria-current={isNews ? 'page' : undefined}>News & activities</a><a href="/about/">About / CV</a><a href="/contact/">Contact</a><a href="#top">Back to top ↑</a></div>
+    <div><a href={localePath('/news/', locale)} aria-current={isNews ? 'page' : undefined}>{tr(locale, 'News & activities', '新闻与活动')}</a><a href={localePath('/about/', locale)}>{tr(locale, 'About / CV', '关于我／简历')}</a><a href={localePath('/contact/', locale)}>{tr(locale, 'Contact', '联系')}</a><a href="#top">{tr(locale, 'Back to top ↑', '返回顶部 ↑')}</a></div>
   </div>
 </footer>

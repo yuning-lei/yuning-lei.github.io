@@ -106,4 +106,21 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { research, projects, publications, news };
+const translatedFields = z.object({
+  locale: z.literal('zh'),
+  title: z.string().min(1), summary: z.string().min(1), category: z.string().min(1),
+  role: z.string().optional(), period: z.string().optional(),
+  venue: z.string().optional(), location: z.string().optional(),
+  sourceLabel: z.string().optional(), relatedLabel: z.string().optional(),
+  photos: z.array(z.object({ alt: z.string().min(1), caption: z.string().min(1) })).optional(),
+});
+const translations = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/translations' }),
+  schema: z.discriminatedUnion('sourceCollection', [
+    translatedFields.extend({ sourceCollection: z.literal('research'), source: reference('research') }),
+    translatedFields.extend({ sourceCollection: z.literal('projects'), source: reference('projects') }),
+    translatedFields.extend({ sourceCollection: z.literal('publications'), source: reference('publications') }),
+    translatedFields.extend({ sourceCollection: z.literal('news'), source: reference('news') }),
+  ]),
+});
+export const collections = { research, projects, publications, news, translations };

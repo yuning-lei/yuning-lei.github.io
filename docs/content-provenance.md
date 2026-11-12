@@ -49,7 +49,9 @@ All four entries are listed as **published**, following the supplied CV. No addi
 
 The mobile number, older résumé contacts, quotation, template examples and unverified presentation dates are omitted. The source PDFs/ZIP and private ICRA documents are not copied into public assets. Only the professional institution/email and owner-confirmed academic profiles/ORCID are used. The generated PDF is tagged, has page numbers, and was checked for the four paper DOIs, the HAL thesis link, updated roles/education, ORCID and all four conference contributions. Citation links are clickable PDF annotations. Text extraction confirms only the approved professional email and no phone number, email logistics, placeholder, old thesis access URL or internal verification notes. The former four-page version was visually reviewed; pages 4–5 were checked after adding ICRA, and page 5 again after adding JJCR, keeping all contributions together on the final page.
 
-Final derivative: **375,757 bytes**, SHA-256 `BBC019293DEC9F45EF38393DEE6EA64C5D58893FE5751A47DE5D8C21AC77F590`. The PDF is regenerated serially and copied into `dist/files/yuning-lei-cv.pdf` by the subsequent build; compare both hashes before publication. During earlier ORCID preparation, simultaneous PDF generation/build verification produced file conflicts; recovery copies were moved to ignored `.preview/orcid-review/` storage. The generator now validates a complete PDF buffer before writing a temporary file and renaming it into place. Generation and build must be sequential. No conflict/recovery PDF is exposed under `public/` or `dist/`.
+Current English derivative: **375,757 bytes**, SHA-256 `99CA76A23C21A3D7B55EE73FBB728EFDF881A6F217A9F04DA84A65515293F4A3`. Its extracted text is identical to the preceding English release. The Chinese derivative, `public/files/yuning-lei-cv-zh.pdf`, is **564,574 bytes**, SHA-256 `90DD1B015BC57B18289D0C4A0E327AAE0F8530F88C46950BB07A676604E5DE9F`. Both have five pages; Chinese glyphs are embedded, original citation titles and links are retained, and all Chinese pages were visually reviewed. Source/build hashes match for both files. The generator accepts `--locale=en` (default) or `--locale=zh` and updates only the selected derivative.
+
+The PDFs are regenerated serially and copied into `dist/files/` by the subsequent build; compare both hashes before publication. During earlier ORCID preparation, simultaneous PDF generation/build verification produced file conflicts; recovery copies were moved to ignored `.preview/orcid-review/` storage. The generator validates a complete PDF buffer before writing a temporary file and renaming it into place. Generation and build must be sequential. No conflict/recovery PDF is exposed under `public/` or `dist/`.
 
 ## Media register
 
@@ -193,12 +195,20 @@ Validation: `npm run check` passed across 41 files with zero errors/warnings/hin
 
 After reviewing the locally prepared HAL, ISOT 2021, ICRA 2023 and JJCR 2021 updates, the owner explicitly requested **“把目前的版本推送上线。”** This authorizes committing and pushing the current reviewed website sources and five-page public CV to `main`, triggering the existing GitHub Pages workflow. The preceding local-only notes describe preparation before this approval. Private source documents, raw snapshots and previews remain excluded. The existing MARSS archival-publication and HAL direct-file verification limitations remain handled as documented: no invented proceedings metadata or unverified direct PDF button is published.
 
+## owner-bilingual-site-2026-11-12
+
+The owner requested a complete Chinese website, English as the default, corresponding-page language controls, and direct push after completion: **“把整个网站做一个中文版本，加入语言切换按键，英文版本仍然是默认版本，但每个网页都要能切换成对应的中文版本。完成后直接推送。”** This explicitly authorizes the bilingual implementation and publication.
+
+All 19 English pages have Simplified Chinese counterparts under `/zh/`, including detail and error pages. Chinese display copy derives from the existing reviewed records and the sources documented above; no new academic facts or media are imported. Original scholarly titles remain visible with the Chinese translations, and author order, identifiers, statuses, URLs, BibTeX, verified names and scientific assets remain unchanged. Names such as Yuning Lei retain their verified Latin spelling. Research Associate, CNU eligibility, DU/DUT diplomas, incomplete-degree studies, defense date and ORCID-confirmed corrections retain their original scope and precision.
+
+Eighteen schema-validated Chinese Markdown entries reference the canonical collections; profile and conference translations have coverage checks. All 20 event-photo alt/caption pairs are translated without changing the shared images. The source documents, snapshots, private mail and personal contact details remain excluded from public assets. Both public CVs are generated from their corresponding reviewed About pages. Architecture, source boundaries, PDF hashes and actual local validation results are recorded in [bilingual-site.md](bilingual-site.md). Existing verification limitations below are unchanged.
+
 ## Font register
 
 - Inter: `@fontsource-variable/inter` 5.3.0; [Fontsource package](https://fontsource.org/fonts/inter); SIL OFL 1.1; notice shipped in `public/licenses/Inter-OFL.txt`.
 - Manrope: `@fontsource-variable/manrope` 5.3.0; [Fontsource package](https://fontsource.org/fonts/manrope); SIL OFL 1.1; notice shipped in `public/licenses/Manrope-OFL.txt`.
 
-Only unmodified Latin normal variable WOFF2 assets are bundled. Browser requests stay on the site's own origin. Font package versions and integrity hashes are locked in `package-lock.json`; no external font service is used.
+Only unmodified Latin normal variable WOFF2 assets are bundled. Chinese uses installed system CJK fallbacks without downloading or redistributing additional web fonts; the generated Chinese PDF embeds the glyph subsets needed for its text. Browser requests stay on the site's own origin. Font package versions and integrity hashes are locked in `package-lock.json`; no external font service is used.
 
 ## NEEDS_VERIFICATION
 

@@ -24,8 +24,8 @@
   --color-accent-hover: #87371F;
   --color-secondary-accent: #B58B53;
   --color-border: #E6D9CB;
-  --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
-  --font-heading: "Manrope", "Inter", Arial, sans-serif;
+  --font-sans: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+  --font-heading: "Manrope", "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
 }
 
 :root { color-scheme: light; }
@@ -58,8 +58,11 @@ p { color: var(--color-text); }
 .monogram { font-family: var(--font-heading); font-weight: 600; font-size: 1.6rem; letter-spacing: -.1em; padding-right: 4px; }
 .monogram span { color: var(--color-accent); }
 .menu-toggle { display: none; }
+.language-switch { order: 1; margin-left: auto; margin-right: 12px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 10px; border: 1px solid var(--color-border); border-radius: 3px; color: var(--color-accent); font-size: .76rem; line-height: 1.5; white-space: nowrap; }
+.language-switch:hover { border-color: var(--color-accent); color: var(--color-accent-hover); background: var(--color-surface); }
+.menu-toggle { order: 2; }
 .menu-toggle:not([hidden]) { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 0 8px 14px; background: transparent; border: 0; color: var(--color-accent); font-size: .82rem; cursor: pointer; }
-#primary-nav { display: flex; flex-wrap: wrap; width: 100%; gap: 0 24px; padding-block: 4px 18px; }
+#primary-nav { order: 3; display: flex; flex-wrap: wrap; width: 100%; gap: 0 24px; padding-block: 4px 18px; }
 #primary-nav.collapsible { display: none; }
 .menu-toggle[aria-expanded="true"] + #primary-nav.collapsible { display: flex; }
 #primary-nav a { position: relative; padding-block: 12px; color: var(--color-text); font-size: .82rem; white-space: nowrap; transition: color .15s; }
@@ -263,4 +266,19 @@ p { color: var(--color-text); }
   .citation-block { margin-top: 3px; }
   .citation-block .citation-authors, .citation-block .citation-venue, .cv-print-doi { font-size: 8pt; line-height: 1.5; }
   .cv-print-doi { margin-top: 3px; overflow-wrap: anywhere; }
+}
+
+/* Chinese uses installed CJK fonts and natural character spacing; no font download is needed. */
+html[lang="zh-CN"] h1, html[lang="zh-CN"] h2, html[lang="zh-CN"] h3 { letter-spacing: 0; line-height: 1.45; }
+html[lang="zh-CN"] .eyebrow { letter-spacing: .04em; }
+html[lang="zh-CN"] .prose { line-height: 1.95; }
+.original-title { color: var(--color-text); font-size: .82rem; line-height: 1.75; margin-top: 10px; overflow-wrap: anywhere; }
+.entry-row .original-title { margin-top: 7px; }
+@media (min-width: 960px) {
+  #primary-nav { order: 1; }
+  .language-switch { order: 2; margin-left: 24px; margin-right: 0; }
+}
+@media print {
+  .original-title { font-size: 8pt; margin-top: 3px; }
+  html[lang="zh-CN"] .cv-section h2 { line-height: 1.4; }
 }

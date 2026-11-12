@@ -1,9 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { localeFromPath, tr } from '../lib/i18n';
 interface Props { data: CollectionEntry<'publications'>['data']; }
 const { data } = Astro.props;
+const locale = localeFromPath(Astro.url.pathname);
 ---
 {data.visibility === 'public' && <div class="citation-block">
   <p class="citation-authors">{data.authors.map((author, index) => <>{index > 0 && '; '}{author === 'Yuning Lei' || author === 'Y. Lei' ? <strong>{author}</strong> : author}</>)}</p>
-  <p class="citation-venue">{data.publicationType === 'thesis' && <>Ph.D. thesis, </>}<cite>{data.venue}</cite>{data.volume && <>, {data.volume}</>}{data.issue && <>({data.issue})</>}{data.pages && <>, pp. {data.pages}</>}{data.articleNumber && <>, article {data.articleNumber}</>}, {data.year}.</p>
+  <p class="citation-venue">{data.publicationType === 'thesis' && <>{tr(locale, 'Ph.D. thesis, ', '博士论文，')}</>}<cite>{data.venue}</cite>{data.volume && <>, {data.volume}</>}{data.issue && <>({data.issue})</>}{data.pages && <>{tr(locale, ', pp. ', '，页码 ')}{data.pages}</>}{data.articleNumber && <>{tr(locale, ', article ', '，文章编号 ')}{data.articleNumber}</>}, {data.year}.</p>
 </div>}

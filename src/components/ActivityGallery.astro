@@ -1,26 +1,29 @@
 ---
 import { getImage, Image } from 'astro:assets';
 import type { Activity } from '../lib/news';
+import { localeFromPath, tr } from '../lib/i18n';
 interface Props { entry: Activity; eager?: boolean; }
 const { entry, eager = false } = Astro.props;
-const photos = await Promise.all(entry.data.photos.map(async photo => ({ ...photo,
+const locale = localeFromPath(Astro.url.pathname);
+const photos = await Promise.all(entry.data.photos.map(async (photo, index) => ({ ...photo, ...entry.view.photos![index],
   full: (await getImage({ src: photo.image, width: Math.min(1600, photo.image.width), format: 'webp', quality: 90 })).src,
 })));
+const openLabel = photos.length > 1 ? tr(locale, `View ${photos.length} photos`, `查看 ${photos.length} 张照片`) : tr(locale, 'View photo', '查看照片');
 ---
-<div class="activity-gallery" data-gallery={entry.id} data-gallery-title={entry.data.title}>
+<div class="activity-gallery" data-gallery={entry.id} data-gallery-title={entry.view.title}>
   <figure>
     <a class="activity-photo-link" href={photos[0].full} data-gallery-item data-caption={photos[0].caption} data-photo-width={photos[0].image.width} data-photo-height={photos[0].image.height}
-      aria-label={`${photos.length > 1 ? `View ${photos.length} photos` : 'View photo'}: ${photos[0].caption}`}>
+      aria-label={`${openLabel}: ${photos[0].caption}`}>
       <Image src={photos[0].image} alt={photos[0].alt} widths={[400, 640, 960]}
         sizes="(min-width: 960px) 540px, (min-width: 701px) 45vw, calc(100vw - 40px)"
         format="webp" loading={eager ? 'eager' : 'lazy'} />
-      <span class="photo-open-label"><span aria-hidden="true">↗</span> {photos.length > 1 ? `View ${photos.length} photos` : 'View photo'}</span>
+      <span class="photo-open-label"><span aria-hidden="true">↗</span> {openLabel}</span>
     </a>
     <figcaption>{photos[0].caption}</figcaption>
   </figure>
-  {photos.length > 1 && <div class="activity-thumbnails" role="group" aria-label={`More photos: ${entry.data.title}`}>
+  {photos.length > 1 && <div class="activity-thumbnails" role="group" aria-label={tr(locale, `More photos: ${entry.view.title}`, `更多照片：${entry.view.title}`)}>
     {photos.slice(1).map((photo, index) => <a href={photo.full} data-gallery-item data-caption={photo.caption} data-photo-width={photo.image.width} data-photo-height={photo.image.height}
-      aria-label={`View photo ${index + 2} of ${photos.length}: ${photo.caption}`}>
+      aria-label={tr(locale, `View photo ${index + 2} of ${photos.length}: ${photo.caption}`, `查看第 ${index + 2} 张照片，共 ${photos.length} 张：${photo.caption}`)}>
       <Image src={photo.image} alt={photo.alt} width={112} widths={[112, 224]} sizes="84px" format="webp" loading="lazy" />
     </a>)}
   </div>}

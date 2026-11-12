@@ -1,33 +1,36 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Arrow from '../components/Arrow.astro';
 import ActivityGallery from '../components/ActivityGallery.astro';
 import PhotoViewer from '../components/PhotoViewer.astro';
-import { isPublicEntry } from '../lib/content';
+import { localizedCollection } from '../lib/localized-content';
+import { localeFromPath, localePath, tr } from '../lib/i18n';
 import { activityDate, newestFirst } from '../lib/news';
 import '../styles/news.css';
 
-const entries = (await getCollection('news', isPublicEntry)).sort(newestFirst);
+const locale = localeFromPath(Astro.url.pathname);
+const t = (en: string, zh: string) => tr(locale, en, zh);
+const entries = (await localizedCollection('news', locale)).sort(newestFirst);
 const years = [...new Set(entries.map(entry => entry.data.date.slice(0, 4)))];
-const rendered = await Promise.all(entries.map(async entry => ({ entry, Content: (await render(entry)).Content })));
+const rendered = await Promise.all(entries.map(async entry => ({ entry, Content: (await render(entry.translation ?? entry)).Content })));
 const categories = [
-  { value: 'all', label: 'All activities' },
-  { value: 'Research visit', label: 'Research visits' },
-  { value: 'Conference', label: 'Conferences' },
-  { value: 'Milestone', label: 'Milestones' },
+  { value: 'all', label: t('All activities', '全部活动') },
+  { value: 'Research visit', label: t('Research visits', '科研访问') },
+  { value: 'Conference', label: t('Conferences', '学术会议') },
+  { value: 'Milestone', label: t('Milestones', '学术里程碑') },
 ];
 ---
-<Layout title="News & activities" description="Research visits, conference presentations and academic milestones from Yuning Lei’s work in micro and nanorobotics.">
-  <PageIntro eyebrow="An academic journal" title="News & activities." description="Research visits, conference conversations and milestones along the way. A photographic journal of my academic work." />
+<Layout title={t('News & activities', '新闻与活动')} description={t('Research visits, conference presentations and academic milestones from Yuning Lei’s work in micro and nanorobotics.', 'Yuning Lei 在微纳机器人领域的科研访问、会议报告与学术历程。')}>
+  <PageIntro eyebrow={t('An academic journal', '学术活动记录')} title={t('News & activities.', '新闻与活动')} description={t('Research visits, conference conversations and milestones along the way. A photographic journal of my academic work.', '通过照片记录科研访问、会议交流与学术历程。')} />
   <div class="shell journal page-body">
     <div class="journal-tools">
-      <nav class="journal-years" aria-label="Activity years"><span>Jump to year</span>{years.map(year => <a href={`#year-${year}`} data-year-link={year}>{year}</a>)}</nav>
-      <div class="news-filters" role="group" aria-label="Filter activities" data-news-filters hidden>
+      <nav class="journal-years" aria-label={t('Activity years', '活动年份')}><span>{t('Jump to year', '按年份浏览')}</span>{years.map(year => <a href={`#year-${year}`} data-year-link={year}>{year}</a>)}</nav>
+      <div class="news-filters" role="group" aria-label={t('Filter activities', '筛选活动')} data-news-filters hidden>
         {categories.map(({ value, label }) => <button type="button" data-news-filter={value} aria-pressed={value === 'all'}>{label}</button>)}
       </div>
-      <p class="journal-count" data-news-count role="status" aria-live="polite" aria-atomic="true">{entries.length} activities</p>
+      <p class="journal-count" data-news-count data-locale={locale} role="status" aria-live="polite" aria-atomic="true">{t(`${entries.length} activities`, `${entries.length} 项活动`)}</p>
     </div>
     {years.map(year => <section class="journal-year" id={`year-${year}`} data-news-year={year} aria-labelledby={`heading-${year}`}>
       <div class="journal-year-heading"><h2 id={`heading-${year}`}>{year}</h2><span aria-hidden="true"></span></div>
@@ -35,20 +38,20 @@ const categories = [
         {rendered.filter(({ entry }) => entry.data.date.startsWith(year)).map(({ entry, Content }) => <article class="activity-entry" id={entry.id} data-news-category={entry.data.category} aria-labelledby={`${entry.id}-heading`}>
           <ActivityGallery entry={entry} eager={entry === entries[0]} />
           <div class="activity-entry-copy">
-            <p class="eyebrow">{entry.data.category}</p>
-            <p class="activity-date"><time datetime={entry.data.date}>{activityDate(entry.data.date, entry.data.endDate)}</time></p>
-            <h3 id={`${entry.id}-heading`}>{entry.data.title}</h3>
-            <p class="activity-venue">{entry.data.venue}<span>{entry.data.location}</span></p>
+            <p class="eyebrow">{entry.view.category}</p>
+            <p class="activity-date"><time datetime={entry.data.date}>{activityDate(entry.data.date, entry.data.endDate, locale)}</time></p>
+            <h3 id={`${entry.id}-heading`}>{entry.view.title}</h3>
+            <p class="activity-venue">{entry.view.venue}<span>{entry.view.location}</span></p>
             <div class="activity-story"><Content /></div>
             <div class="activity-links">
-              {entry.data.relatedLink && <a class="text-link" href={entry.data.relatedLink.href}>{entry.data.relatedLink.label} <Arrow /></a>}
-              {entry.data.sourceLink && <a class="text-link activity-source" href={entry.data.sourceLink.url}>{entry.data.sourceLink.label} <Arrow diagonal /></a>}
+              {entry.data.relatedLink && <a class="text-link" href={localePath(entry.data.relatedLink.href, locale)}>{entry.view.relatedLabel} <Arrow /></a>}
+              {entry.data.sourceLink && <a class="text-link activity-source" href={entry.data.sourceLink.url}>{entry.view.sourceLabel} <Arrow diagonal /></a>}
             </div>
           </div>
         </article>)}
       </div>
     </section>)}
-    <p class="journal-endnote">Photographs from my research visits, conferences and academic milestones.</p>
+    <p class="journal-endnote">{t('Photographs from my research visits, conferences and academic milestones.', '这些照片记录了我的科研访问、学术会议与重要学术活动。')}</p>
   </div>
   <PhotoViewer />
 </Layout>
@@ -69,7 +72,7 @@ const categories = [
         if (link) link.hidden = year.hidden;
       });
       const visible = entries.filter(entry => !entry.hidden).length;
-      if (count) count.textContent = `${visible} ${visible === 1 ? 'activity' : 'activities'}`;
+      if (count) count.textContent = count.dataset.locale === 'zh' ? `${visible} 项活动` : `${visible} ${visible === 1 ? 'activity' : 'activities'}`;
     };
     buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.newsFilter || 'all')));
     // A home-page deep link must also work after filtering within this page.
