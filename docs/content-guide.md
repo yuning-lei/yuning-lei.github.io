@@ -6,7 +6,7 @@ Read `AGENTS.md` before editing academic content or media. Public pages contain 
 
 Edit `src/data/site.ts` for the basic profile, default SEO description and navigation. Edit `src/data/profile.ts` for the CV record, teaching, awards, professional contacts and profile links. Home copy is in `src/pages/index.astro`; About uses the reusable `CurriculumVitae.astro` and `CvTimeline.astro` components. The name links to Home; primary navigation is Research, Publications, Projects, About and Contact.
 
-Do not add empty biography sections or non-functional CV/profile links. The provided private CV was used as a source, not copied to public assets. The website links to a separate public derivative at `public/files/yuning-lei-cv.pdf`. Keep `npm run preview` running and run `npm run cv:pdf` to regenerate it after profile edits; then rebuild so `dist/` contains the updated PDF. The script uses the same browser configuration as verification and prints the About page with print-only citations. Inspect the PDF before publishing it. Add professional contacts/profile URLs only after owner verification; do not copy personal mobile numbers or private source documents into public files.
+Do not add empty biography sections or non-functional CV/profile links. The provided private CV was used as a source, not copied to public assets. The website links to a separate public derivative at `public/files/yuning-lei-cv.pdf`. Build the updated profile first, keep `npm run preview` running and run `npm run cv:pdf`; after it finishes, rebuild so `dist/` contains the updated PDF. Never run PDF generation and the static build concurrently. The script validates a complete PDF buffer before replacing the public file, uses the same browser configuration as verification and prints the About page with print-only citations. Inspect the PDF and compare source/build hashes before publishing it. Add professional contacts/profile URLs only after owner verification; do not copy personal mobile numbers or private source documents into public files.
 
 ## Collection visibility
 
@@ -50,7 +50,7 @@ authors:
   - "[Verified author name in exact citation order]"
 year: 2026 # Replace with the verified year.
 venue: "[Verified journal or conference]"
-publicationType: journal # Or conference.
+publicationType: journal # Or conference, or thesis.
 publicationStatus: published
 # volume: "[Verified volume]"
 # issue: "[Verified issue]"
@@ -67,6 +67,12 @@ Editorial `visibility` is separate from `publicationStatus`. Allowed publication
 
 The Publications page groups public entries by year (newest first), then `order`. Shared citation components display author order, venue, year, volume/issue/pages or article identifier. BibTeX files are generated from the reviewed metadata at `/publications/[id].bib`; no external file is guessed. Verify all citation data before making it public. A `pdf` link is optional and must point to an actual verified publisher/authorized file. Do not rehost a paper or figure without permission.
 
+For a doctoral thesis, use `publicationType: thesis`, retain the original thesis title, and set `venue` to the verified degree-awarding institution. Citations visibly identify the thesis, and BibTeX uses `@phdthesis` with `school`. A public thesis catalogue record does not establish journal peer review. Never invent a downloadable thesis PDF from a catalogue URL.
+
+Programme-only conference contributions are maintained in `profile.conferenceContributions` and displayed in their own section through `ConferenceContributions.astro`. Each needs verified author order and an official programme source; they are not counted as journal articles or proceedings papers. An ORCID work type alone does not establish archival publication, pages, DOI or peer-review status.
+
+The owner-confirmed identifier is stored in `profile.orcid` and rendered through `OrcidLink.astro` on About/Contact and the public CV. The shared layout emits `rel="me"` and Person `sameAs` metadata. Read only public ORCID data for manual updates; record reviewed additions and source discrepancies in `content-provenance.md`. Do not overwrite a CV date or job title merely because an imported record differs, and do not remove CV-verified work that is missing from ORCID.
+
 Homepage project/publication sections are omitted when no reviewed entries exist. Their landing pages give a concise availability message rather than showing fake entries.
 
 ## Images and attribution
@@ -75,10 +81,26 @@ Do not use generated scientific illustrations, stock images or third-party resea
 
 Store approved media locally in `src/assets/` or `public/`. Record author, source, license/permission and modifications in `content-provenance.md`. Include meaningful alt text and accurate captions; preserve scale bars and scientific interpretation. With no approved images, retain the text-led design.
 
-The site uses no scientific imagery. The About portrait comes from the owner's CV ZIP, with EXIF removed; preserve this provenance record when replacing it. The favicon is a non-scientific name mark. Locally bundled font licenses are in `public/licenses/`.
+The homepage features the owner's supplied `Teaser.svg` of silica origami on a tapered optical fiber. Edit its caption/alt text and asset references in `src/data/featured-work.ts`; `src/components/FeaturedWork.astro` displays the complete figure. Keep the original SVG in `public/media/` and preserve its frame, coloring, annotations and 20 µm scale bar in any responsive export. The displayed WebP variants are lossless exports; the full-original link is deliberate, so visitors can inspect details and annotations. Do not add publication associations or further performance claims without a source. The owner's 12 November 2026 description confirms the sub-50 µm structure size and laser actuation; the image's scale bar is a separate 20 µm reference.
+
+The About portrait comes from the owner's CV ZIP, with EXIF removed; preserve this provenance record when replacing it. The favicon is a non-scientific name mark. Locally bundled font licenses are in `public/licenses/`.
+
+## News & activities
+
+Edit `src/content/news/*.md`. Activities appear together at `/news/`, newest first, grouped by the year of `date`. Each entry has a stable anchor such as `/news/#mcgill-2026`; it does not create a separate article route. Home displays the three most recent public entries with `featured: true`. The footer provides a permanent journal link while preserving the five-item primary navigation.
+
+Required activity fields are `title`, a short `summary`, `category` (`Research visit`, `Conference` or `Milestone`), `date`, `location`, `venue`, `visibility`, `mediaPermission: owner-provided-for-website` and at least one `photos` item. Public entries additionally require `reviewed: true` and a nonempty `sources` list. A photo item uses a relative `image` path, meaningful `alt` text and an accurate `caption`. Astro validates local image paths and generates responsive variants. Put the lead photograph first; remaining photographs appear as thumbnails in the same gallery.
+
+Dates use quoted ISO strings: `"2026-08-23"`, with optional `endDate: "2026-08-28"`. Use month precision, such as `"2022-09"`, when only the month is verified. Never invent a day to enable sorting. Date ranges require real full dates in chronological order. The display formatter preserves month precision and formats all dates in UTC, independent of build-machine timezone.
+
+Optional `sourceLink: { label, url }` exposes an actual institutional report. Optional `relatedLink: { label, href }` connects a relevant existing local publication/project. Internal links must work. Keep source documents, private paths, EXIF/GPS information and unverified claims out of generated content. `sources` records traceability; `mediaPermission` records the owner's explicit reuse instruction and does not grant a general license.
+
+New event photography must be explicitly supplied/approved. Preserve the complete frame, keep experimental slides within their event context, strip EXIF/XMP/IPTC, and record original and derivative hashes in `docs/news-media.json`. Existing event assets are full-frame WebP files with a maximum side of 1920px; source files remain outside the repository unchanged. Do not replace a group photograph's scientific content or infer identities, outcomes, speaker roles or funding responsibilities from the picture alone.
+
+The filters and native modal viewer are progressive enhancements: no JavaScript is required to read activities or open a full photo. The viewer supports Arrow keys, Previous/Next, Escape, a close control and focus return. Preserve these fallbacks when updating components.
 
 ## Validation
 
-Run `npm run check` and `npm run build`. Preview the static output with `npm run preview`; in another terminal run `npm run verify:browser`. The browser check includes primary routes, links, local fonts, draft exclusion, sitemap, responsive layout, menu/keyboard behavior and automated WCAG A/AA rules.
+Run `npm run check`, `npm run build` and `npm run verify:build`. The artifact check requires the primary domain `https://ylei.de/` throughout canonical/Open Graph/Person metadata, sitemaps and robots, plus `ylei.de` in the CNAME artifact. If the owner changes the domain again, update Astro `site`, robots/CNAME, both verification scripts, README and AGENTS together. Preview the static output with `npm run preview`; in another terminal run `npm run verify:browser`. The browser check includes primary routes, links, local fonts, draft exclusion, sitemap, responsive layout, menu/keyboard behavior and automated WCAG A/AA rules.
 
 Review scientific meaning, source permissions and final accessibility manually as real content is added. No commit, push, merge or deployment without explicit owner approval.

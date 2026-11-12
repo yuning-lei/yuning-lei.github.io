@@ -1,5 +1,6 @@
-# yuning-lei.github.io
-Yuning Lei's personal page
+# Yuning Lei — academic website
+
+Primary website: **https://ylei.de/** · Repository: `yuning-lei/yuning-lei.github.io`.
 
 Academic portfolio for Yuning Lei, Ph.D., Research Associate at the University of Oldenburg, Germany.
 
@@ -7,10 +8,10 @@ Academic portfolio for Yuning Lei, Ph.D., Research Associate at the University o
 
 - Astro 7 with static HTML output and strict TypeScript
 - Tailwind CSS 4 through the officially recommended `@tailwindcss/vite` plugin
-- Validated Markdown collections for research, projects and publications
-- GitHub Pages at `https://yuning-lei.github.io/`
+- Validated Markdown collections for research, projects, publications and news
+- GitHub Pages with the primary custom domain `https://ylei.de/`
 
-Exact dependency versions are pinned in `package.json` and `package-lock.json`. Use Node.js 24 (also recorded in `.nvmrc`). No React or other client UI framework is needed. The mobile navigation is the only application JavaScript shipped to the browser. Inter and Manrope are served locally as Latin variable WOFF2 fonts, with their SIL Open Font License notices in `public/licenses/`.
+Exact dependency versions are pinned in `package.json` and `package-lock.json`. Use Node.js 24 (also recorded in `.nvmrc`). No React or other client UI framework is needed. Browser JavaScript is limited to the mobile navigation and the progressively enhanced activity filters/photo viewer. Inter and Manrope are served locally as Latin variable WOFF2 fonts, with their SIL Open Font License notices in `public/licenses/`.
 
 ## Local development
 
@@ -24,6 +25,7 @@ Open the local URL printed by Astro (normally `http://localhost:4321`).
 ```sh
 npm run check
 npm run build
+npm run verify:build
 npm run preview
 ```
 
@@ -33,11 +35,15 @@ For browser verification, keep `npm run preview` running and use `npm run verify
 
 ## Pages and content
 
-The pages are Home, Research, Publications, Projects, About / CV and Contact, with a custom 404 page. Primary navigation follows `Research · Publications · Projects · About · Contact`; the name links to Home. The design uses the exact warm palette in `AGENTS.md`, Inter body text, Manrope headings and a maximum content width of 1150px. The homepage is text-led; no generated scientific imagery is used.
+The pages are Home, Research, Publications, Projects, About / CV, Contact and News & activities, with a custom 404 page. Primary navigation follows `Research · Publications · Projects · About · Contact`; the name links to Home. The activity journal at `/news/` is linked from the homepage and footer. The design uses the exact warm palette in `AGENTS.md`, Inter body text, Manrope headings and a maximum content width of 1150px. The homepage prominently displays the owner's supplied silica-origami figure, with complete annotations, lossless responsive images and a full-original SVG link. No generated scientific imagery is used.
 
-See [the content guide](docs/content-guide.md) for editing instructions. Draft entries stay local and generate no public listings or detail pages. Homepage selections use reviewed `featured` entries; publications are grouped by year and include actual BibTeX downloads. The current content includes four publications, two projects, CV/teaching/service records, an owner-supplied portrait and professional contacts from the owner's October 2026 CV. Source records and remaining `NEEDS_VERIFICATION` items are in [content provenance](docs/content-provenance.md); see also [the CV update note](docs/cv-update.md). No academic facts or media have been invented.
+The journal presents seven owner-supplied activity groups from 2022–2026 with 20 local photographs, year navigation, category filters and a keyboard-accessible photo viewer. Without JavaScript, every activity remains readable and photo links open the full image. Text is written around Yuning Lei's participation, with institutional reports linked where available. Photographs preserve their full frames; metadata is removed and responsive derivatives load lazily. Image filenames and SHA-256 provenance are recorded in `docs/news-media.json`.
 
-The downloadable `public/files/yuning-lei-cv.pdf` is a public derivative of the reviewed website profile, excluding the original's mobile number and ambiguous presentation/ORCID entries. The original PDF and LaTeX archive are not public assets. To refresh the derivative, keep the local preview running, run `npm run cv:pdf`, inspect the PDF, then rebuild. This requires the existing local browser tools; GitHub Pages builds use the tracked PDF and need no browser or LaTeX installation.
+See [the content guide](docs/content-guide.md) for editing instructions. Draft entries stay local and generate no public listings or detail pages. Homepage selections use reviewed `featured` entries; publications are grouped by year and include actual BibTeX downloads. The current content includes four papers, a doctoral thesis, one separately listed conference-programme contribution, three projects and CV/teaching/service records. The owner's October 2026 CV and confirmed ORCID provide the academic sources. Source records and remaining `NEEDS_VERIFICATION` items are in [content provenance](docs/content-provenance.md); see also [the CV update note](docs/cv-update.md) and [the ORCID update](docs/orcid-update.md). No academic facts or media have been invented.
+
+The downloadable `public/files/yuning-lei-cv.pdf` is a public derivative of the reviewed website profile, excluding the original's mobile number and ambiguous presentation dates. It now includes the owner-confirmed ORCID iD `0000-0003-0711-4476`, the verified thesis and the separately identified MARSS 2022 programme contribution. The original PDF and LaTeX archive are not public assets. To refresh the derivative, keep the local preview running, run `npm run cv:pdf`, inspect the PDF, then rebuild. This requires the existing local browser tools; GitHub Pages builds use the tracked PDF and need no browser or LaTeX installation.
+
+ORCID is linked on About and Contact and recorded in the site's `rel="me"` and Person structured metadata. This is a static, reviewed import; browsers and GitHub Actions do not call ORCID. Local raw API snapshots remain in ignored `.preview/` storage, while traceable source IDs and hashes are recorded in the content documentation.
 
 Sprint 1 scope, decisions and validation are recorded in [the sprint note](docs/sprint-1.md).
 
@@ -45,14 +51,16 @@ The layout includes semantic landmarks, a skip link, keyboard focus styles, acti
 
 ## GitHub Pages deployment
 
-The workflow in `.github/workflows/pages.yml` checks types and builds pull requests without deploying them. On pushes to `main` (or a manual workflow run on `main`), it builds and deploys `dist/` to GitHub Pages. Deploy jobs use the `github-pages` environment and scoped Pages permissions.
+The workflow in `.github/workflows/pages.yml` checks types, builds and verifies the generated primary-domain metadata on pull requests. On pushes to `main` (or a manual workflow run on `main`), it builds and deploys `dist/` to GitHub Pages. Deploy jobs use the `github-pages` environment and scoped Pages permissions. The build verification checks every generated page's canonical/Open Graph/Person URLs, sitemap locations, robots.txt and the CNAME artifact.
 
-**Pushing `main` can trigger publication. Obtain the owner's approval before pushing or deploying.** The owner authorized publication of the current version on 11 November 2026. Future external changes still follow the approval rule in `AGENTS.md`.
+**Pushing `main` can trigger publication. Obtain the owner's approval before pushing or deploying.** The owner authorized the earlier CV release on 11 November 2026 and the `ylei.de` migration with the prepared portfolio updates on 12 November 2026. Future external changes still follow the approval rule in `AGENTS.md`.
 
 After approval:
 
-1. In the repository, open **Settings → Pages → Build and deployment** and select **GitHub Actions** as the source.
+1. In the repository, open **Settings → Pages → Build and deployment** and select **GitHub Actions** as the source. Keep **Custom domain** set to `ylei.de`; enable **Enforce HTTPS** when GitHub has provisioned the certificate.
 2. Review the content provenance and outstanding verification items. Commit and push the approved source and lockfile to `main`.
-3. Check the workflow result. The intended public URL is `https://yuning-lei.github.io/`.
+3. Check the workflow result and the HTTPS response at **https://ylei.de/**.
 
-This is a GitHub user site, so `astro.config.mjs` has `site: 'https://yuning-lei.github.io'` and no repository-name base path. Check the repository's Actions tab for build/deployment results; source publication alone is not evidence that the site deployment succeeded.
+The repository remains a GitHub user-site repository. `astro.config.mjs` uses `site: 'https://ylei.de'` and no repository-name base path; the shared layout derives canonical, Open Graph and structured identity URLs from that setting. `public/robots.txt` points to the new sitemap and `public/CNAME` records `ylei.de` in the generated artifact.
+
+GitHub Pages uses its repository **Custom domain** setting for Actions deployments; the CNAME artifact documents the intended domain and is checked for consistency. The old `yuning-lei.github.io` hostname remains the GitHub Pages/DNS target. The `www.ylei.de` CNAME should point to `yuning-lei.github.io`, with the apex configured as the primary website. See [the custom-domain note](docs/custom-domain.md) and [GitHub's domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). Source publication alone is not evidence that deployment and certificate provisioning succeeded.

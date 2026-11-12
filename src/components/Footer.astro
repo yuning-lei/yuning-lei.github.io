@@ -1,9 +1,10 @@
 ---
 import { site } from '../data/site';
+const isNews = Astro.url.pathname === '/news/';
 ---
 <footer class="site-footer">
   <div class="shell footer-inner">
     <p>© {new Date().getUTCFullYear()} {site.name}<span class="footer-dot">·</span><span>{site.location}</span></p>
-    <div><a href="/about/">About / CV</a><a href="/contact/">Contact</a><a href="#top">Back to top ↑</a></div>
+    <div><a href="/news/" aria-current={isNews ? 'page' : undefined}>News & activities</a><a href="/about/">About / CV</a><a href="/contact/">Contact</a><a href="#top">Back to top ↑</a></div>
   </div>
 </footer>

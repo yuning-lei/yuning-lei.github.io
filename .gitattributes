@@ -1,0 +1,4 @@
+# Preserve the exact owner-supplied scientific original and generated media bytes.
+public/media/silica-origami-teaser.svg binary
+*.webp binary
+*.pdf binary

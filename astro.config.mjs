@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import { readFileSync } from 'node:fs';
 
 export default defineConfig({
-  site: 'https://yuning-lei.github.io',
+  site: 'https://ylei.de',
   output: 'static',
   trailingSlash: 'always',
   integrations: [sitemap({

@@ -1,0 +1,12 @@
+---
+import { profile } from '../data/profile';
+---
+<a class="orcid-link" href={profile.orcid.href} rel="me external">
+  <span class="orcid-label">ORCID iD</span>{' '}<span class="orcid-number">{profile.orcid.id}</span>
+</a>
+<style>
+  .orcid-link { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; min-height: 28px; color: var(--color-accent); font-size: .78rem; line-height: 1.75; }
+  .orcid-label { font-weight: 600; }
+  .orcid-number { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .orcid-link:hover { color: var(--color-accent-hover); text-decoration: underline; text-underline-offset: 4px; }
+</style>

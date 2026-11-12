@@ -1,0 +1,327 @@
+{
+  "source": "owner-news-photos-2026-11-12",
+  "reuseAuthority": "Explicitly supplied by Yuning Lei for the requested website activities display; no broader license asserted.",
+  "processing": "Full-frame WebP event photographs, maximum 1920px per side, quality 88, orientation respected, EXIF/XMP/IPTC removed. Originals unchanged. Astro generates responsive derivatives.",
+  "images": [
+    {
+      "activity": "mcgill-2026",
+      "sourceFile": "23.08.2026-28.08.2026, Dr. James Mead and Dr. Yuning Lei visited Prof. Changhong Cao’s NanoFactory Laboratory at McGill University under the DAAD-Canada collaboration project framework..jpg",
+      "sourceSha256": "96db4384b7dbce297133d68682b4ee96174f5cb10f52a6330a7141ea3806dc2c",
+      "sourceDimensions": [
+        1957,
+        1279
+      ],
+      "asset": "src/assets/news/mcgill-group.webp",
+      "assetSha256": "ba540b5a3bf5122bcff1b82e32877b6a5ac3aa5ad597ffac6184db188497e708",
+      "dimensions": [
+        1920,
+        1255
+      ],
+      "bytes": 377036
+    },
+    {
+      "activity": "koc-amir-2026",
+      "sourceFile": "31.07.2026 Prof. Erdem Alaca, from the Department of Mechanical Engineering at Koç University, Istanbul, visited AMiR as part of our ongoing DAAD-TÜBITAK collaborative project tilted “NanowireMEMS.webp",
+      "sourceSha256": "fc0244d559fc5c36a6cfbdd3b5fd21736c549bf77d8392fbbef5df1a6da3ec2b",
+      "sourceDimensions": [
+        1200,
+        923
+      ],
+      "asset": "src/assets/news/alaca-amir.webp",
+      "assetSha256": "47de7a88cebb084557257ba3a0f7f61e7547f864cdb4dac79c227babb5dd13b4",
+      "dimensions": [
+        1200,
+        923
+      ],
+      "bytes": 210928
+    },
+    {
+      "activity": "louisville-2024",
+      "sourceFile": "01-12.09.2024 Dr. Yuning Lei, Dr. James Mead, and Dr. Liang Ma visited the J.B. Speed School of Engineering at the University of Louisville, KY, USA.-2 .jpg",
+      "sourceSha256": "2d2de879acaf30f51528792e37dd25cc17510c7c6bc04897b57e79b4ac6a56da",
+      "sourceDimensions": [
+        2016,
+        1134
+      ],
+      "asset": "src/assets/news/louisville-group.webp",
+      "assetSha256": "6ea014aaaff61024a134a58d447d15594f6896a147fc58032a3df816dfca27ed",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 215064
+    },
+    {
+      "activity": "louisville-2024",
+      "sourceFile": "01-12.09.2024 Dr. Yuning Lei, Dr. James Mead, and Dr. Liang Ma visited the J.B. Speed School of Engineering at the University of Louisville, KY, USA.-1 .jpg",
+      "sourceSha256": "3f2161fbbc42dcd66051996e5da298b8870106cdf2686e568ace10ab1204535f",
+      "sourceDimensions": [
+        4032,
+        3024
+      ],
+      "asset": "src/assets/news/louisville-visit.webp",
+      "assetSha256": "0a98e6714b39d7bdc1867fd11e1e605053e00b69e2e07c355768ca8d3a7914cb",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 356176
+    },
+    {
+      "activity": "marss-2024",
+      "sourceFile": "01-05.07.2024 Several members of the AMiR team have attended the International Conference on Manipulation, Automation and Robotics at the Small Scale (MARSS2024), hosted at TU Delft, in Delft, Netherlands  (1).jpeg",
+      "sourceSha256": "6e7cc4797d16a913ac8252a21ab1ec2878948b9c6da8a3b020e2efbdaaccbc6a",
+      "sourceDimensions": [
+        1600,
+        1200
+      ],
+      "asset": "src/assets/news/marss-talk-wide.webp",
+      "assetSha256": "7f1ec1434f056c580d374f03c5b254df6553f33ead8554bede15cc18166f70ca",
+      "dimensions": [
+        1600,
+        1200
+      ],
+      "bytes": 243688
+    },
+    {
+      "activity": "marss-2024",
+      "sourceFile": "01-05.07.2024 Several members of the AMiR team have attended the International Conference on Manipulation, Automation and Robotics at the Small Scale (MARSS2024), hosted at TU Delft, in Delft, Netherlands  (2).jpeg",
+      "sourceSha256": "6e2301984ff2c29e952ef4bb116f0e89fd4c5aa408cf36365957f3c41235d13a",
+      "sourceDimensions": [
+        1200,
+        1600
+      ],
+      "asset": "src/assets/news/marss-talk.webp",
+      "assetSha256": "93cafcde5f98e5d4993c8b5d76812a24d44512ec4b9e43212b2c84507c511ce9",
+      "dimensions": [
+        1200,
+        1600
+      ],
+      "bytes": 253646
+    },
+    {
+      "activity": "marss-2024",
+      "sourceFile": "01-05.07.2024 Several members of the AMiR team have attended the International Conference on Manipulation, Automation and Robotics at the Small Scale (MARSS2024), hosted at TU Delft, in Delft, Netherlands  (1).jpg",
+      "sourceSha256": "b460f936096192f2bc963b80239f35a990c8121f8258d6393eab490ba8edc32f",
+      "sourceDimensions": [
+        2016,
+        1134
+      ],
+      "asset": "src/assets/news/marss-team.webp",
+      "assetSha256": "9715c42306027e53698875abc56dae92039fc7eb1849a4c06c89c69a9d214bd0",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 215608
+    },
+    {
+      "activity": "marss-2024",
+      "sourceFile": "01-05.07.2024 Several members of the AMiR team have attended the International Conference on Manipulation, Automation and Robotics at the Small Scale (MARSS2024), hosted at TU Delft, in Delft, Netherlands  (2).jpg",
+      "sourceSha256": "9e4e251212bd2f684e70672cd319ab83b32c95399e165fb7ebc75c84d7b0555e",
+      "sourceDimensions": [
+        1701,
+        1134
+      ],
+      "asset": "src/assets/news/marss-campus.webp",
+      "assetSha256": "4ede6975cf3ca2fce04a0f5164e022eaab13eaf944ceefc3c6a7c0ebd47842a9",
+      "dimensions": [
+        1701,
+        1134
+      ],
+      "bytes": 529808
+    },
+    {
+      "activity": "marss-2024",
+      "sourceFile": "01-05.07.2024 Several members of the AMiR team have attended the International Conference on Manipulation, Automation and Robotics at the Small Scale (MARSS2024), hosted at TU Delft, in Delft, Netherlands  (3).jpg",
+      "sourceSha256": "959b0080862e977879eedd89b77345b4a774b1df016e88801ad07906212ff0d3",
+      "sourceDimensions": [
+        1600,
+        1200
+      ],
+      "asset": "src/assets/news/marss-colleagues.webp",
+      "assetSha256": "99d979205baabc64dcf6e7ac60013f44c8ee1ceaed76ccd74d5c6a9bd8179dec",
+      "dimensions": [
+        1600,
+        1200
+      ],
+      "bytes": 310072
+    },
+    {
+      "activity": "tianjin-2023",
+      "sourceFile": "29.11.2023 - 11.12.2023 Dr. Yuning Lei visited the School of Mechanical Engineering at Tianjin University, China (1).jpg",
+      "sourceSha256": "1ba247781a7bd4e853f0f8aaacc4626d118098c48210693a9ee6150c3d5221f1",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/tianjin-talk-wide.webp",
+      "assetSha256": "e958fbcca41e05c4d7a85fefc367bf04d8bbfc7a525ee659ff9326ebe98cb09d",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 315496
+    },
+    {
+      "activity": "tianjin-2023",
+      "sourceFile": "29.11.2023 - 11.12.2023 Dr. Yuning Lei visited the School of Mechanical Engineering at Tianjin University, China (1).jpeg",
+      "sourceSha256": "77ae6036698be1ec08f492ee3045b8b502f7ff52aca7caee57c720d91bc1182f",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/tianjin-talk.webp",
+      "assetSha256": "3ff8cc9e0025bf971e8ffab088592fa519720940eb0e61b2a13108d67abf480e",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 174442
+    },
+    {
+      "activity": "tianjin-2023",
+      "sourceFile": "29.11.2023 - 11.12.2023 Dr. Yuning Lei visited the School of Mechanical Engineering at Tianjin University, China (4).jpeg",
+      "sourceSha256": "53165074215e54067b27d10a8baf1130db0d8497da41df16e63321393050d4b1",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/tianjin-group.webp",
+      "assetSha256": "f1d3e52408de3082db7dd81379ddb66a453440198e6cac31ce373791929c2e4e",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 273126
+    },
+    {
+      "activity": "tianjin-2023",
+      "sourceFile": "29.11.2023 - 11.12.2023 Dr. Yuning Lei visited the School of Mechanical Engineering at Tianjin University, China (5).jpeg",
+      "sourceSha256": "36e3ff79339a402627d5e5d85c58e477cd1dc16bc505cfd6070713255660a8ff",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/tianjin-lab.webp",
+      "assetSha256": "554c0d518ab0a5eea4e681ab28ab5ff066b6a98fca464c04ea52fb59e5e5487e",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 290562
+    },
+    {
+      "activity": "phd-defense-2023",
+      "sourceFile": "Ph.D. thesis defense at Femto-ST - 2023.03.23 (2).jpeg",
+      "sourceSha256": "7d47729c3670495204a0ebc9741848a5776ecfd008be805c371b1b54760b8d12",
+      "sourceDimensions": [
+        1620,
+        1080
+      ],
+      "asset": "src/assets/news/defense-presentation.webp",
+      "assetSha256": "bc287491d2c8cee3b5b0781e50aefd2327fb33a5cb6cdaa0ab183e5194673f06",
+      "dimensions": [
+        1620,
+        1080
+      ],
+      "bytes": 120774
+    },
+    {
+      "activity": "phd-defense-2023",
+      "sourceFile": "Ph.D. thesis defense at Femto-ST - 2023.03.23 (1).jpeg",
+      "sourceSha256": "a95818baab6f0cd9ac3546dcc75f894083fdff8c1623262f59b75643813859a1",
+      "sourceDimensions": [
+        1440,
+        1080
+      ],
+      "asset": "src/assets/news/defense-preparation.webp",
+      "assetSha256": "39128e37accdc47891ffe5e4757a631392cee9c2c95810515041a62c57b9b070",
+      "dimensions": [
+        1440,
+        1080
+      ],
+      "bytes": 71522
+    },
+    {
+      "activity": "micronora-2022",
+      "sourceFile": "Gold micron award at MICRONORA trade fair 2022 (3).jpeg",
+      "sourceSha256": "bdcf00ffb2c5cfa270b254eea6e7c56d3dbf9f6d981578a72721304d027fec43",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/micronora-ceremony.webp",
+      "assetSha256": "8cbc8e35f289bb01163487b4a34cc717d980600a1f92c3f97c8900cb12bac5a9",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 386274
+    },
+    {
+      "activity": "micronora-2022",
+      "sourceFile": "Gold micron award at MICRONORA trade fair 2022 (1).jpeg",
+      "sourceSha256": "ee20cef098a943cb7dd8987339fc4d75d249adcf8abb6845d7c9026be3596579",
+      "sourceDimensions": [
+        1280,
+        1896
+      ],
+      "asset": "src/assets/news/micronora-certificate.webp",
+      "assetSha256": "f167ddb95dceac182ab021bdaeee9b2084e7c11b788cc1bf5d9033d70832675e",
+      "dimensions": [
+        1280,
+        1896
+      ],
+      "bytes": 208810
+    },
+    {
+      "activity": "micronora-2022",
+      "sourceFile": "Gold micron award at MICRONORA trade fair 2022 (2).jpeg",
+      "sourceSha256": "dbe61e08f2affe7ee8c193822db6156ef3d23ee06164aca57caa0824ef8bb80d",
+      "sourceDimensions": [
+        1280,
+        1706
+      ],
+      "asset": "src/assets/news/micronora-booth.webp",
+      "assetSha256": "a7d0b044050748a9f3386dcdafc47467d733d616ea587a96c4b7f4a0864691c8",
+      "dimensions": [
+        1280,
+        1706
+      ],
+      "bytes": 143288
+    },
+    {
+      "activity": "micronora-2022",
+      "sourceFile": "Gold micron award at MICRONORA trade fair 2022 (4).jpeg",
+      "sourceSha256": "99f65651e59410c0e856413051183c552f7cb8ba67a080404d952bf69c996e4d",
+      "sourceDimensions": [
+        2048,
+        1536
+      ],
+      "asset": "src/assets/news/micronora-award.webp",
+      "assetSha256": "aef6533bdaa4aae4af97150d1f4bc5446dbc9d3081e25b0f0919a3b44254ae9d",
+      "dimensions": [
+        1920,
+        1440
+      ],
+      "bytes": 216158
+    },
+    {
+      "activity": "micronora-2022",
+      "sourceFile": "Gold micron award at MICRONORA trade fair 2022 (1).jpg",
+      "sourceSha256": "df692ca88d0e2a01f03d0326cb35545afb4cad2e914d8b7822866142a462ea6e",
+      "sourceDimensions": [
+        1600,
+        1067
+      ],
+      "asset": "src/assets/news/micronora-demonstration.webp",
+      "assetSha256": "7ab21565e04388bbfbb5c9013feddfdb1f28665b96246881d49131730ccaea4d",
+      "dimensions": [
+        1600,
+        1067
+      ],
+      "bytes": 238670
+    }
+  ]
+}

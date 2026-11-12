@@ -2,12 +2,13 @@ import { chromium } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
+import { verifyNews } from './verify-news.mjs';
 
 await mkdir('.preview', { recursive: true });
 const channel = process.env.SITE_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : undefined);
 const browser = await chromium.launch({ channel, headless: true });
 const base = process.env.SITE_PREVIEW_URL || 'http://127.0.0.1:4321';
-const routes = ['/', '/research/', '/publications/', '/projects/', '/about/', '/contact/'];
+const routes = ['/', '/research/', '/publications/', '/projects/', '/about/', '/contact/', '/news/'];
 const failures = [];
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -18,11 +19,19 @@ try {
     assert.equal(response.status(), 200, route);
     assert.equal(await page.locator('h1').count(), 1, `One h1 on ${route}`);
     assert.equal(await page.locator('main').count(), 1, `One main landmark on ${route}`);
-    assert.equal(await page.locator('.site-header [aria-current="page"]').count(), 1, `One current page link on ${route}`);
+    assert.equal(await page.locator('.site-header [aria-current="page"]').count(), route === '/news/' ? 0 : 1, `Current primary page link on ${route}`);
+    if (route === '/news/') assert.equal(await page.locator('.site-footer [aria-current="page"]').getAttribute('href'), '/news/');
     assert.deepEqual(await page.locator('#primary-nav a').allTextContents(), ['Research', 'Publications', 'Projects', 'About', 'Contact']);
     assert.doesNotMatch(await page.locator('main').innerText(), /Content placeholder|Project details to come|Publication list in preparation|To be added/i, `No public draft content on ${route}`);
     assert.equal(await page.locator('meta[name="description"]').count(), 1);
-    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yuning-lei.github.io' + route);
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://ylei.de' + route);
+    assert.equal(await page.locator('meta[property="og:url"]').getAttribute('content'), 'https://ylei.de' + route);
+    assert.equal(await page.locator('link[rel="me"]').getAttribute('href'), 'https://orcid.org/0000-0003-0711-4476', 'Confirmed ORCID metadata');
+    const person = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+    assert.equal(person.identifier.value, '0000-0003-0711-4476');
+    assert.equal(person.url, 'https://ylei.de/');
+    assert.equal(person['@id'], 'https://ylei.de/#person');
+    assert.ok(person.sameAs.includes('https://orcid.org/0000-0003-0711-4476'), 'Structured identity includes the owner-confirmed ORCID');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `No desktop overflow on ${route}`);
     const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     assert.deepEqual(accessibility.violations.map(({ id, nodes }) => ({ id, elements: nodes.map(node => node.target) })), [], `Accessibility on ${route}`);
@@ -31,18 +40,41 @@ try {
       assert.equal(linked.status(), 200, `Internal link ${href} from ${route}`);
     }
   }
+  await verifyNews({ page, base });
   await page.goto(base + '/publications/');
-  assert.equal(await page.locator('.entry-row').count(), 4, 'Four CV publications');
-  assert.deepEqual(await page.locator('.publication-year > h2').allTextContents(), ['2025', '2024', '2022']);
+  assert.equal(await page.locator('.entry-row').count(), 5, 'Four papers plus the ORCID/Crossref-verified doctoral thesis');
+  assert.deepEqual(await page.locator('.publication-year > h2').allTextContents(), ['2025', '2024', '2023', '2022']);
+  assert.equal(await page.locator('#conference-contributions .conference-contribution').count(), 1, 'MARSS 2022 contribution is listed separately');
   for (const href of await page.locator('a[download$=".bib"]').evaluateAll(elements => elements.map(el => el.getAttribute('href')))) {
     const citation = await page.request.get(base + href);
     assert.equal(citation.status(), 200, `Downloadable BibTeX: ${href}`);
-    assert.match(await citation.text(), /^@(article|inproceedings)\{/);
+    assert.match(await citation.text(), /^@(article|inproceedings|phdthesis)\{/);
     assert.match(await citation.text(), /doi = \{10\./);
   }
+  const thesisBib = await (await page.request.get(base + '/publications/nanorobotic-origami-thesis-2023.bib')).text();
+  assert.match(thesisBib, /^@phdthesis\{/);
+  assert.match(thesisBib, /school = \{Université Bourgogne Franche-Comté\}/);
+  assert.doesNotMatch(thesisBib, /journal =|booktitle =/);
   await page.goto(base + '/projects/');
-  assert.equal(await page.locator('.entry-row').count(), 2, 'Two CV-supported projects');
+  assert.equal(await page.locator('.entry-row').count(), 3, 'CV/ORCID-supported projects include LicLoM');
+  await page.goto(base + '/projects/liclom/');
+  assert.match(await page.locator('main').innerText(), /57698722/);
+  assert.match(await page.locator('main').innerText(), /January 2024 – December 2025/);
+  await page.goto(base + '/projects/licovac/');
+  assert.match(await page.locator('main').innerText(), /451242348/);
+  assert.match(await page.locator('main').innerText(), /grant applicant/);
   await page.goto(base + '/about/');
+  const orcid = page.getByRole('link', { name: 'ORCID iD 0000-0003-0711-4476', exact: true });
+  assert.equal(await orcid.getAttribute('href'), 'https://orcid.org/0000-0003-0711-4476');
+  assert.match(await page.locator('main').innerText(), /Research Engineer \(Ingénieur d’étude\)/);
+  assert.match(await page.locator('main').innerText(), /Teaching Assistant/);
+  assert.match(await page.locator('main').innerText(), /IUT de Limoges/);
+  assert.match(await page.locator('main').innerText(), /French Government Doctoral Fellowship/);
+  const experience = await page.locator('#experience').innerText();
+  assert.match(experience, /March 2016 – September 2017/);
+  assert.equal(await page.locator('#experience h3').filter({ hasText: /^Research Assistant$/ }).count(), 2, 'Owner-confirmed ORCID titles for PRISME/WILO');
+  const education = await page.locator('#education').innerText();
+  for (const period of ['September 2017 – August 2019', 'September 2016 – August 2017', 'September 2014 – August 2016']) assert.ok(education.includes(period), 'Owner-confirmed ORCID education dates');
   assert.equal(await page.locator('.profile-portrait').evaluate(img => img.complete && img.naturalWidth > 0), true, 'Owner-provided portrait loads');
   const cv = await page.request.get(base + '/files/yuning-lei-cv.pdf');
   assert.equal(cv.status(), 200, 'Public CV download');
@@ -52,6 +84,12 @@ try {
   await page.goto(base);
   await page.evaluate(() => document.fonts.ready);
   assert.equal(await page.evaluate(() => document.fonts.check('16px Inter') && document.fonts.check('16px Manrope')), true, 'Local fonts load');
+  assert.equal(await page.locator('.featured-work-image').evaluate(img => img.complete && img.naturalWidth > 0), true, 'Featured scientific figure loads');
+  assert.match(await page.locator('.featured-work').innerText(), /sub-50 µm/);
+  assert.match(await page.locator('.featured-work').innerText(), /20 µm/);
+  const originalFigure = await page.request.get(base + '/media/silica-origami-teaser.svg');
+  assert.equal(originalFigure.status(), 200, 'Full original figure is available');
+  assert.match(await originalFigure.text(), /<svg\b/, 'Original link returns SVG artwork');
   await page.screenshot({ path: '.preview/home-desktop.png', fullPage: true });
   await page.keyboard.press('Tab');
   assert.equal(await page.locator(':focus').innerText(), 'Skip to content');
@@ -91,6 +129,10 @@ try {
   }
   const sitemap = await (await page.request.get(base + '/sitemap-0.xml')).text();
   assert.doesNotMatch(sitemap, /project-placeholder|publication-placeholder/);
+  assert.ok([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].every(([, url]) => new URL(url).origin === 'https://ylei.de'), 'Primary-domain sitemap URLs');
+  // CNAME is verified in the build artifact; Astro preview treats extensionless
+  // paths as page routes when trailingSlash is "always".
+  assert.match(await (await page.request.get(base + '/robots.txt')).text(), /Sitemap: https:\/\/ylei\.de\/sitemap-index\.xml/);
   const notFound = await page.goto(base + '/does-not-exist/');
   assert.equal(notFound.status(), 404);
   assert.match(await page.locator('h1').innerText(), /out of scale/);
@@ -98,9 +140,17 @@ try {
   const noJsPage = await noJs.newPage();
   await noJsPage.goto(base);
   assert.equal(await noJsPage.locator('#primary-nav').isVisible(), true, 'Navigation works without JavaScript');
+  await noJsPage.goto(base + '/news/');
+  assert.equal(await noJsPage.locator('.activity-entry:visible').count(), 7, 'All activities available without JavaScript');
+  assert.equal(await noJsPage.locator('[data-news-filters]').isVisible(), false, 'No inactive filter controls without JavaScript');
+  const noJsPhoto = noJsPage.locator('[data-gallery-item]').first();
+  const noJsHref = await noJsPhoto.getAttribute('href');
+  await noJsPhoto.click();
+  await noJsPage.waitForURL(base + noJsHref);
+  assert.equal(await noJsPage.locator('img').evaluate(image => image.complete && image.naturalWidth > 0), true, 'Full photo links work without JavaScript');
   await noJs.close();
   assert.deepEqual(failures, [], 'No browser errors');
-  console.log('PASS: six routes, four CV publications, two projects, BibTeX/PDF downloads, portrait, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, keyboard/mobile and no-JavaScript navigation, draft exclusion, sitemap, 404 and automated WCAG A/AA checks.');
+  console.log('PASS: seven primary routes, ORCID links/structured identity, five publications including the doctoral thesis, separate MARSS 2022 contribution, three projects with verified funding IDs, BibTeX/PDF downloads, seven activities / 20 photos, gallery filters/keyboard/focus/no-JS behavior, portrait/Teaser, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, mobile navigation, drafts, sitemap, 404 and automated WCAG A/AA checks.');
 } finally {
   await browser.close();
 }

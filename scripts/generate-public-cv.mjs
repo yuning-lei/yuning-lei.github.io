@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, rename, writeFile } from 'node:fs/promises';
 
 // Print the reviewed public profile, never the private source PDF or LaTeX archive.
 const channel = process.env.SITE_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : undefined);
@@ -12,8 +12,7 @@ try {
   await page.evaluate(() => document.fonts.ready);
   await page.emulateMedia({ media: 'print' });
   await mkdir('public/files', { recursive: true });
-  await page.pdf({
-    path: 'public/files/yuning-lei-cv.pdf',
+  const pdf = await page.pdf({
     format: 'A4',
     preferCSSPageSize: true,
     printBackground: true,
@@ -23,6 +22,15 @@ try {
     tagged: true,
     outline: true,
   });
+  if (pdf.length < 1024 || pdf.subarray(0, 5).toString() !== '%PDF-' || !pdf.toString('latin1').trimEnd().endsWith('%%EOF')) {
+    throw new Error('Refusing to replace the public CV with an incomplete PDF.');
+  }
+  // Finish and validate the PDF before replacing the public file. Keep generation
+  // and the subsequent static build sequential, especially in a synced checkout.
+  await mkdir('.preview', { recursive: true });
+  const temporary = `.preview/cv-generated-${process.pid}.pdf`;
+  await writeFile(temporary, pdf, { flag: 'wx' });
+  await rename(temporary, 'public/files/yuning-lei-cv.pdf');
   console.log('Generated public/files/yuning-lei-cv.pdf from the reviewed About page. Rebuild to include it in dist/.');
 } finally {
   await browser.close();

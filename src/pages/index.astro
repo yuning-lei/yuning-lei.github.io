@@ -6,8 +6,12 @@ import EntryList from '../components/EntryList.astro';
 import { isPublicEntry } from '../lib/content';
 import { site } from '../data/site';
 import { profile } from '../data/profile';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import ActivityHighlights from '../components/ActivityHighlights.astro';
+import { newestFirst } from '../lib/news';
 
 const research = (await getCollection('research', isPublicEntry)).sort((a, b) => a.data.order - b.data.order);
+const activities = (await getCollection('news', isPublicEntry)).filter(entry => entry.data.featured).sort(newestFirst).slice(0, 3);
 const projects = (await getCollection('projects', isPublicEntry)).filter(entry => entry.data.featured).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
 const publications = (await getCollection('publications', isPublicEntry))
   .filter(entry => entry.data.featured && 'publicationStatus' in entry.data && entry.data.publicationStatus === 'published')
@@ -23,13 +27,7 @@ const publications = (await getCollection('publications', isPublicEntry))
       <p class="hero-description">My research focuses on microrobotics, nanorobotics, SEM-based nanomanipulation, micro/nanofabrication and microactuation.</p>
       <div class="hero-actions"><a class="button" href="/research/">Explore research <Arrow /></a><a class="text-link" href="/about/">About me <Arrow diagonal /></a></div>
     </div>
-    <aside class="intro-note" aria-labelledby="focus-heading">
-      <span class="note-rule" aria-hidden="true"></span>
-      <p class="eyebrow">Research focus</p>
-      <h2 id="focus-heading">Robotics at<br />micro & nanoscales.</h2>
-      <p>Manipulation, fabrication<br />and actuation at small scales.</p>
-      <span class="intro-location">{site.location}</span>
-    </aside>
+    <FeaturedWork />
   </section>
 
   {research.length > 0 && <section class="research-band" aria-labelledby="research-heading">
@@ -38,6 +36,8 @@ const publications = (await getCollection('publications', isPublicEntry))
       <EntryList entries={research} collection="research" headingLevel={3} />
     </div>
   </section>}
+
+  <ActivityHighlights entries={activities} />
 
   {projects.length > 0 && <section class="shell section" aria-labelledby="projects-heading">
     <div class="section-heading"><p class="eyebrow">Selected work</p><h2 id="projects-heading">Research projects.</h2></div>

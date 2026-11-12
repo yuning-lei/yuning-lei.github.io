@@ -5,7 +5,7 @@ This file provides standing instructions for AI coding agents working anywhere i
 ## 1. Project and purpose
 
 - Repository: `yuning-lei/yuning-lei.github.io`
-- Public website: `https://yuning-lei.github.io/`
+- Public website: `https://ylei.de/` (primary custom domain; GitHub Pages hosting).
 - Owner: **Yuning Lei, Ph.D.**, Research Associate, University of Oldenburg, Germany.
 - Focus: microrobotics, SEM-based nanomanipulation, micro/nanofabrication, microactuation, and related engineering research.
 - Audience: researchers, academic collaborators, recruitment committees, and engineering professionals.
@@ -83,7 +83,7 @@ Separate **research areas** (ongoing expertise) from **projects** (specific work
 - Use Astro Content Collections with schema validation for publications and projects; keep scholarly data separate from UI components.
 - Build reusable accessible components (header, footer, section headings, research/project/publication cards) rather than duplicating layouts.
 - Minimize client-side JavaScript; no database, authentication, CMS, or large client-side framework unless clearly necessary and approved.
-- Configure GitHub Pages for the user site at `https://yuning-lei.github.io/`, without an unnecessary repository-name base path.
+- Configure GitHub Pages for the primary custom domain `https://ylei.de/`, without a repository-name base path. Keep Astro `site`, `public/CNAME`, robots/sitemap URLs and deployment checks consistent. The repository remains `yuning-lei/yuning-lei.github.io`.
 - Use semantic HTML, accessible menus, keyboard interaction, meaningful metadata, SEO, and Open Graph previews.
 - Keep responsive layouts functional at approximately 375, 768, 1024, and 1440 px; avoid horizontal scrolling.
 - Keep dependencies minimal, follow repository conventions, and do not introduce new infrastructure without explaining why.

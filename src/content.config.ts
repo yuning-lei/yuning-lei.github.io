@@ -42,7 +42,7 @@ const publications = defineCollection({
       authors: z.array(z.string().min(1)).min(1),
       year: z.number().int().min(1900).max(2100),
       venue: z.string().min(1),
-      publicationType: z.enum(['journal', 'conference']),
+      publicationType: z.enum(['journal', 'conference', 'thesis']),
       volume: z.string().optional(),
       issue: z.string().optional(),
       pages: z.string().optional(),
@@ -60,4 +60,43 @@ const publications = defineCollection({
   }),
 });
 
-export const collections = { research, projects, publications };
+// Month-only dates deliberately preserve the precision of the verified source.
+const activityDate = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])(-\d{2})?$/).refine(value => {
+  if (value.length === 7) return true;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}, 'Use a real calendar date, or YYYY-MM when the day is unconfirmed.');
+
+const news = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
+  schema: ({ image }) => z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    category: z.enum(['Research visit', 'Conference', 'Milestone']),
+    date: activityDate,
+    endDate: activityDate.optional(),
+    location: z.string().min(1),
+    venue: z.string().min(1),
+    featured: z.boolean().default(false),
+    visibility: z.enum(['draft', 'public']),
+    reviewed: z.boolean().default(false),
+    sources: z.array(z.string().min(1)).default([]),
+    sourceLink: z.object({ label: z.string().min(1), url: z.url() }).optional(),
+    relatedLink: z.object({ label: z.string().min(1), href: z.string().regex(/^\/[a-z0-9\-/]+\/$/) }).optional(),
+    mediaPermission: z.literal('owner-provided-for-website'),
+    photos: z.array(z.object({
+      image: image(),
+      alt: z.string().min(1),
+      caption: z.string().min(1),
+    })).min(1),
+  }).superRefine((data, context) => {
+    if (data.visibility === 'public' && (!data.reviewed || data.sources.length === 0)) {
+      context.addIssue({ code: 'custom', message: 'Public activities require verified sources and a review marker.' });
+    }
+    if (data.endDate && (data.date.length !== 10 || data.endDate.length !== 10 || data.endDate < data.date)) {
+      context.addIssue({ code: 'custom', path: ['endDate'], message: 'Date ranges require full dates in chronological order.' });
+    }
+  }),
+});
+
+export const collections = { research, projects, publications, news };

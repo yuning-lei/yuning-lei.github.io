@@ -1,0 +1,84 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Arrow from '../components/Arrow.astro';
+import ActivityGallery from '../components/ActivityGallery.astro';
+import PhotoViewer from '../components/PhotoViewer.astro';
+import { isPublicEntry } from '../lib/content';
+import { activityDate, newestFirst } from '../lib/news';
+import '../styles/news.css';
+
+const entries = (await getCollection('news', isPublicEntry)).sort(newestFirst);
+const years = [...new Set(entries.map(entry => entry.data.date.slice(0, 4)))];
+const rendered = await Promise.all(entries.map(async entry => ({ entry, Content: (await render(entry)).Content })));
+const categories = [
+  { value: 'all', label: 'All activities' },
+  { value: 'Research visit', label: 'Research visits' },
+  { value: 'Conference', label: 'Conferences' },
+  { value: 'Milestone', label: 'Milestones' },
+];
+---
+<Layout title="News & activities" description="Research visits, conference presentations and academic milestones from Yuning Lei’s work in micro and nanorobotics.">
+  <PageIntro eyebrow="An academic journal" title="News & activities." description="Research visits, conference conversations and milestones along the way. A photographic journal of my academic work." />
+  <div class="shell journal page-body">
+    <div class="journal-tools">
+      <nav class="journal-years" aria-label="Activity years"><span>Jump to year</span>{years.map(year => <a href={`#year-${year}`} data-year-link={year}>{year}</a>)}</nav>
+      <div class="news-filters" role="group" aria-label="Filter activities" data-news-filters hidden>
+        {categories.map(({ value, label }) => <button type="button" data-news-filter={value} aria-pressed={value === 'all'}>{label}</button>)}
+      </div>
+      <p class="journal-count" data-news-count role="status" aria-live="polite" aria-atomic="true">{entries.length} activities</p>
+    </div>
+    {years.map(year => <section class="journal-year" id={`year-${year}`} data-news-year={year} aria-labelledby={`heading-${year}`}>
+      <div class="journal-year-heading"><h2 id={`heading-${year}`}>{year}</h2><span aria-hidden="true"></span></div>
+      <div class="journal-entries">
+        {rendered.filter(({ entry }) => entry.data.date.startsWith(year)).map(({ entry, Content }) => <article class="activity-entry" id={entry.id} data-news-category={entry.data.category} aria-labelledby={`${entry.id}-heading`}>
+          <ActivityGallery entry={entry} eager={entry === entries[0]} />
+          <div class="activity-entry-copy">
+            <p class="eyebrow">{entry.data.category}</p>
+            <p class="activity-date"><time datetime={entry.data.date}>{activityDate(entry.data.date, entry.data.endDate)}</time></p>
+            <h3 id={`${entry.id}-heading`}>{entry.data.title}</h3>
+            <p class="activity-venue">{entry.data.venue}<span>{entry.data.location}</span></p>
+            <div class="activity-story"><Content /></div>
+            <div class="activity-links">
+              {entry.data.relatedLink && <a class="text-link" href={entry.data.relatedLink.href}>{entry.data.relatedLink.label} <Arrow /></a>}
+              {entry.data.sourceLink && <a class="text-link activity-source" href={entry.data.sourceLink.url}>{entry.data.sourceLink.label} <Arrow diagonal /></a>}
+            </div>
+          </div>
+        </article>)}
+      </div>
+    </section>)}
+    <p class="journal-endnote">Photographs from my research visits, conferences and academic milestones.</p>
+  </div>
+  <PhotoViewer />
+</Layout>
+<script>
+  const filters = document.querySelector<HTMLElement>('[data-news-filters]');
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-news-filter]'));
+  const entries = Array.from(document.querySelectorAll<HTMLElement>('[data-news-category]'));
+  const years = Array.from(document.querySelectorAll<HTMLElement>('[data-news-year]'));
+  const count = document.querySelector<HTMLElement>('[data-news-count]');
+  if (filters && entries.length > 0) {
+    filters.hidden = false;
+    const select = (value: string) => {
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.newsFilter === value)));
+      entries.forEach(entry => { entry.hidden = value !== 'all' && entry.dataset.newsCategory !== value; });
+      years.forEach(year => {
+        year.hidden = !year.querySelector('[data-news-category]:not([hidden])');
+        const link = document.querySelector<HTMLElement>(`[data-year-link="${year.dataset.newsYear}"]`);
+        if (link) link.hidden = year.hidden;
+      });
+      const visible = entries.filter(entry => !entry.hidden).length;
+      if (count) count.textContent = `${visible} ${visible === 1 ? 'activity' : 'activities'}`;
+    };
+    buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.newsFilter || 'all')));
+    // A home-page deep link must also work after filtering within this page.
+    window.addEventListener('hashchange', () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.hidden) {
+        select('all');
+        target.scrollIntoView();
+      }
+    });
+  }
+</script>

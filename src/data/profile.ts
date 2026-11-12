@@ -1,7 +1,8 @@
-/** Owner CV dated 20 October 2026; sources are recorded in docs/content-provenance.md. */
+/** Owner CV (20 October 2026), confirmed ORCID and official records; see docs/content-provenance.md. */
 export const profile = {
-  cvDate: '20 October 2026',
+  cvDate: '12 November 2026',
   cvDownload: '/files/yuning-lei-cv.pdf',
+  orcid: { id: '0000-0003-0711-4476', href: 'https://orcid.org/0000-0003-0711-4476' },
   department: 'Department of Computing Science',
   group: 'Microrobotics and Control Engineering (AMiR)',
   email: 'y.lei@uol.de',
@@ -10,6 +11,7 @@ export const profile = {
     { label: 'University profile', href: 'https://uol.de/en/computingscience/amir/people/dr-yuning-lei' },
     { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=Kl00YB0AAAAJ' },
     { label: 'ResearchGate', href: 'https://www.researchgate.net/profile/Yuning-Lei' },
+    { label: 'SciProfiles', href: 'https://sciprofiles.com/profile/1614377' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yuning-lei' },
   ],
   appointments: [
@@ -18,15 +20,23 @@ export const profile = {
       details: ['Microrobotics and Control Engineering, Department of Computing Science.', 'Research project PI for LiCoVac (Liquid Metal Contact Angle Measurement in Vacuum).', 'Planning and management of international collaborative research and staff exchanges (EU-HORIZON-MSCA, DAAD-PPP).'],
     },
     {
+      title: 'Research Engineer (Ingénieur d’étude)', institution: 'Université Bourgogne Franche-Comté', location: 'Besançon, France', period: 'October 2022 – March 2023',
+      details: ['Département AS2M.'],
+    },
+    {
       title: 'Ph.D. Fellow', institution: 'FEMTO-ST Institute', location: 'Besançon, France', period: 'October 2019 – March 2023',
       details: ['Silica origami fabrication, robotic microassembly, characterization and actuation at the tip of an optical fiber in SEM.', 'Advisors: Cédric Clévy, Jean-Yves Rauch and Philippe Lutz.', 'Contributions to the COLAMIR and DyNaBot collaborative research projects.'],
     },
     {
-      title: 'Laboratory Trainee', institution: 'PRISME Laboratory', location: 'Orléans, France', period: 'March – September 2019',
+      title: 'Teaching Assistant', institution: 'University of Franche-Comté', location: 'Besançon, France', period: 'October 2019 – March 2023',
+      details: ['UFR de sciences et techniques.'],
+    },
+    {
+      title: 'Research Assistant', institution: 'PRISME Laboratory', location: 'Orléans, France', period: 'March – September 2019',
       details: ['Data assimilation of parallel turbulent flows from experimental local measurements, using linearized Navier–Stokes equations and Kalman-filter-based feedback control.'],
     },
     {
-      title: 'Laboratory Apprentice Technician', institution: 'WILO Intec', location: 'Aubigny-sur-Nère, France', period: 'April 2016 – September 2017',
+      title: 'Research Assistant', institution: 'WILO Intec', location: 'Aubigny-sur-Nère, France', period: 'March 2016 – September 2017',
       details: ['Hydraulic testing of centrifugal pumps, measurement uncertainty analysis and development of an uncertainty-analysis tool.'],
     },
   ],
@@ -36,19 +46,23 @@ export const profile = {
       details: ['Dissertation: Nanorobotic Origami Unfolded at the Tip of Optical Fiber.', 'Defended on 24 March 2023 in Besançon.'],
     },
     {
-      title: 'M.Sc. in Mechatronics, Autonomous, Robotics and Signal', institution: 'University of Orléans', location: 'Orléans, France', period: 'September 2017 – September 2019',
+      title: 'M.Sc. in Mechatronics, Autonomous, Robotics and Signal', institution: 'University of Orléans', location: 'Orléans, France', period: 'September 2017 – August 2019',
       details: ['Robotic vision, visual servoing, mobile-robot control, complex-system modeling and feedback control.'],
     },
     {
-      title: 'B.Sc. in Expertise Environmental Measurements', institution: 'IUT de Bourges, University of Orléans', location: 'Bourges, France', period: 'September 2016 – September 2017',
+      title: 'B.Sc. in Expertise Environmental Measurements', institution: 'IUT de Bourges, University of Orléans', location: 'Bourges, France', period: 'September 2016 – August 2017',
       details: ['Environmental monitoring, physicochemical analysis, chromatography and spectrometry.'],
     },
     {
-      title: 'University Technology Degree (DUT) in Physical Measurements', institution: 'IUT de Bourges, University of Orléans', location: 'Bourges, France', period: 'September 2014 – September 2016', details: [],
+      title: 'University Technology Degree (DUT) in Physical Measurements', institution: 'IUT de Bourges, University of Orléans', location: 'Bourges, France', period: 'September 2014 – August 2016', details: [],
     },
     {
       title: 'First-year studies in Computer Science', institution: 'IUT de Lannion, University of Rennes', location: 'Lannion, France', period: 'September 2013 – June 2014',
       details: ['Completed the first year before switching to Physical Measurements.'],
+    },
+    {
+      title: 'University Diploma (DU) — Preparation for Scientific and Technological Training', institution: 'IUT de Limoges, University of Limoges', location: 'Limoges, France', period: 'September 2012 – August 2013',
+      details: ['Diplôme universitaire de préparation aux formations scientifiques et technologiques.'],
     },
   ],
   skills: [
@@ -70,7 +84,18 @@ export const profile = {
   awards: [
     { title: '“Micron d’Or” Award', event: 'Salon Micronora 2022, Association Micronora', period: 'September 2022' },
     { title: '3rd Award — Photo Contest', event: 'CAZAC Day 2022, Carl Zeiss Application Community', period: 'March 2022' },
-    { title: '“Breakthrough in Science” Award', event: 'Ph.D. Student Poster Competition, FEMTO-ST Institute', period: 'July 2020' },
+    { title: 'First Prize — “Breakthrough in Science” Award', event: 'Ph.D. Student Poster Competition, FEMTO-ST Institute', period: 'July 2020' },
+    { title: 'French Government Doctoral Fellowship (36 months)', event: 'Ministère de l’Enseignement supérieur, de la Recherche et de l’Innovation', period: 'October 2019 – October 2022' },
+  ],
+  conferenceContributions: [
+    {
+      title: 'Nanorobotics Polyarticulated Structure with Integrated Actuator at Tapered Optical Fiber Tip',
+      authors: ['Yuning Lei', 'Cédric Clévy', 'Jean-Yves Rauch', 'Philippe Lutz'],
+      venue: 'MARSS 2022', year: 2022, location: 'Toronto, Canada',
+      description: 'Listed in the official technical programme for 28 July 2022, in the Design and Fabrication (IV) session.',
+      programme: 'https://marss-conference.org/blog/wp-content/uploads/2022/07/MARSS2022_Technical-Program_website_FINAL-VERSION____10.pdf',
+      sources: ['owner-orcid-2026-11-12', 'ORCID work 142749297', 'MARSS 2022 official technical programme, page 21'],
+    },
   ],
   service: [
     { title: 'MARSS Community', description: 'Publicity Chair and Program Committee member', period: 'Since November 2020' },

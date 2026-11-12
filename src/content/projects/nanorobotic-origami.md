@@ -10,6 +10,7 @@ role: Ph.D. fellow, FEMTO-ST Institute
 period: October 2019 – March 2023
 relatedPublications:
   - folded-silica-nanorobotics-2022
+  - nanorobotic-origami-thesis-2023
 sources:
   - owner-cv-2026-10-20
 ---

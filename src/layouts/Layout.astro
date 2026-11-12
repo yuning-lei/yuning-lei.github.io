@@ -2,11 +2,19 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { profile } from '../data/profile';
 import '../styles/global.css';
 interface Props { title?: string; description?: string; noindex?: boolean; }
 const { title, description = site.description, noindex = false } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name}, ${site.qualification} | Micro & Nanorobotics`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const person = {
+  '@context': 'https://schema.org', '@type': 'Person',
+  '@id': new URL('/#person', Astro.site).href,
+  name: site.name, url: new URL('/', Astro.site).href,
+  identifier: { '@type': 'PropertyValue', propertyID: 'ORCID', value: profile.orcid.id },
+  sameAs: [profile.orcid.href, ...profile.links.map(link => link.href)],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -16,6 +24,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="theme-color" content="#FCFAF7" />
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
+    <link rel="me" href={profile.orcid.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(person).replace(/</g, '\\u003c')} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -4,13 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import EntryList from '../../components/EntryList.astro';
 import { isPublicEntry } from '../../lib/content';
+import ConferenceContributions from '../../components/ConferenceContributions.astro';
 
 const entries = await getCollection('publications', isPublicEntry);
 const years = [...new Set(entries.map(entry => 'year' in entry.data ? entry.data.year : 0))].sort((a, b) => b - a);
 ---
 <Layout title="Publications" description="Publications by Yuning Lei.">
-  <PageIntro eyebrow="Publications" title="Scientific contributions." description={entries.length ? 'Journal articles and conference papers, grouped by publication year.' : 'Publication details are not available on this website yet.'} />
+  <PageIntro eyebrow="Publications" title="Scientific contributions." description={entries.length ? 'Journal articles, conference papers and my doctoral thesis, grouped by year, followed by conference contributions.' : 'Publication details are not available on this website yet.'} />
   {entries.length > 0 && <div class="shell page-body">
     {years.map(year => <section class="publication-year" aria-labelledby={`year-${year}`}><h2 id={`year-${year}`}>{year}</h2><EntryList entries={entries.filter(entry => 'year' in entry.data && entry.data.year === year).sort((a, b) => a.data.order - b.data.order)} collection="publications" headingLevel={3} /></section>)}
+    <section id="conference-contributions" aria-labelledby="conference-contributions-heading"><div class="section-heading"><p class="eyebrow">Conference participation</p><h2 id="conference-contributions-heading">Conference contributions.</h2></div><ConferenceContributions /></section>
   </div>}
 </Layout>

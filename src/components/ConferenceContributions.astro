@@ -1,0 +1,22 @@
+---
+import { profile } from '../data/profile';
+import Arrow from './Arrow.astro';
+---
+<div class="conference-contributions">
+  {profile.conferenceContributions.map(item => <article class="conference-contribution">
+    <p class="eyebrow">Conference programme · {item.year}</p>
+    <h3>{item.title}</h3>
+    <p class="contribution-authors">{item.authors.map((author, index) => <>{index > 0 && '; '}{author === 'Yuning Lei' ? <strong>{author}</strong> : author}</>)}</p>
+    <p>{item.venue} · {item.location}</p>
+    <p>{item.description}</p>
+    <a class="text-link screen-only" href={item.programme}>Official programme (PDF) <Arrow diagonal /></a>
+  </article>)}
+</div>
+<style>
+  .conference-contribution { border-top: 1px solid var(--color-border); padding-block: 25px; max-width: 850px; }
+  .conference-contribution h3 { font-size: 1.2rem; margin-top: 8px; line-height: 1.5; }
+  .conference-contribution > p:not(.eyebrow) { font-size: .82rem; margin-top: 10px; }
+  .contribution-authors strong { color: var(--color-ink); font-weight: 600; }
+  .conference-contribution > .text-link { font-size: .76rem; margin-top: 15px; }
+  @media print { .conference-contribution { border: 0; padding: 0; break-inside: avoid; } .conference-contribution h3 { font-size: 10pt; margin-top: 0; } .conference-contribution > p:not(.eyebrow) { font-size: 9pt; margin-top: 4px; line-height: 1.5; } }
+</style>

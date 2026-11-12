@@ -8,7 +8,7 @@ export function toBibtex(entry: CollectionEntry<'publications'>) {
   const fields: [string, string | undefined][] = [
     ['title', `{${data.title}}`],
     ['author', data.authors.join(' and ')],
-    [data.publicationType === 'conference' ? 'booktitle' : 'journal', data.venue],
+    [data.publicationType === 'thesis' ? 'school' : data.publicationType === 'conference' ? 'booktitle' : 'journal', data.venue],
     ['year', String(data.year)],
     ['volume', data.volume],
     ['number', data.issue],
@@ -18,5 +18,6 @@ export function toBibtex(entry: CollectionEntry<'publications'>) {
     ['url', data.doi ?? data.url],
     ['note', data.publicationStatus !== 'published' ? data.publicationStatus : undefined],
   ];
-  return `@${data.publicationType === 'conference' ? 'inproceedings' : 'article'}{${entry.id},\n${fields.filter(([, value]) => value).map(([key, value]) => `  ${key} = {${escape(value!)}},`).join('\n')}\n}\n`;
+  const type = data.publicationType === 'thesis' ? 'phdthesis' : data.publicationType === 'conference' ? 'inproceedings' : 'article';
+  return `@${type}{${entry.id},\n${fields.filter(([, value]) => value).map(([key, value]) => `  ${key} = {${escape(value!)}},`).join('\n')}\n}\n`;
 }

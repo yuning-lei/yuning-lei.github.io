@@ -1,0 +1,92 @@
+<dialog class="photo-viewer" aria-labelledby="photo-viewer-title">
+  <div class="photo-viewer-header">
+    <h2 id="photo-viewer-title"></h2>
+    <button type="button" class="photo-viewer-close" aria-label="Close photo viewer" autofocus>Close <span aria-hidden="true">×</span></button>
+  </div>
+  <figure>
+    <div class="photo-viewer-stage"><img alt="" /></div>
+    <figcaption id="photo-viewer-caption"></figcaption>
+  </figure>
+  <div class="photo-viewer-controls">
+    <button type="button" data-photo-previous aria-label="Previous photo"><span aria-hidden="true">←</span> Previous</button>
+    <p data-photo-position role="status" aria-live="polite" aria-atomic="true"></p>
+    <button type="button" data-photo-next aria-label="Next photo">Next <span aria-hidden="true">→</span></button>
+  </div>
+</dialog>
+<script>
+  const viewer = document.querySelector<HTMLDialogElement>('.photo-viewer');
+  if (viewer && typeof viewer.showModal === 'function') {
+    const title = viewer.querySelector<HTMLElement>('#photo-viewer-title')!;
+    const photo = viewer.querySelector<HTMLImageElement>('img')!;
+    const caption = viewer.querySelector<HTMLElement>('figcaption')!;
+    const position = viewer.querySelector<HTMLElement>('[data-photo-position]')!;
+    const previous = viewer.querySelector<HTMLButtonElement>('[data-photo-previous]')!;
+    const next = viewer.querySelector<HTMLButtonElement>('[data-photo-next]')!;
+    const close = viewer.querySelector<HTMLButtonElement>('.photo-viewer-close')!;
+    let items: HTMLAnchorElement[] = [];
+    let index = 0;
+    let scrollStyle = '';
+    let trigger: HTMLAnchorElement | undefined;
+    const show = (number: number) => {
+      index = number;
+      const item = items[index];
+      photo.width = Number(item.dataset.photoWidth);
+      photo.height = Number(item.dataset.photoHeight);
+      photo.src = item.href;
+      photo.alt = item.querySelector('img')?.alt || item.dataset.caption || '';
+      caption.textContent = item.dataset.caption || '';
+      position.textContent = `${index + 1} / ${items.length}`;
+      // Keep both controls focusable during navigation, including at the ends.
+      previous.setAttribute('aria-disabled', String(index === 0));
+      next.setAttribute('aria-disabled', String(index === items.length - 1));
+      previous.hidden = next.hidden = items.length === 1;
+    };
+    document.querySelectorAll<HTMLElement>('[data-gallery]').forEach(gallery => {
+      gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-item]').forEach(item => {
+        item.addEventListener('click', event => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          items = Array.from(gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-item]'));
+          trigger = item;
+          title.textContent = gallery.dataset.galleryTitle || 'Activity photos';
+          show(items.indexOf(item));
+          scrollStyle = document.body.style.overflow;
+          document.body.style.overflow = 'hidden';
+          viewer.showModal();
+          close.focus();
+        });
+      });
+    });
+    previous.addEventListener('click', () => { if (index > 0) show(index - 1); });
+    next.addEventListener('click', () => { if (index < items.length - 1) show(index + 1); });
+    close.addEventListener('click', () => viewer.close());
+    viewer.addEventListener('keydown', event => {
+      if (event.key === 'Tab') {
+        const controls = Array.from(viewer.querySelectorAll<HTMLButtonElement>('button')).filter(button => !button.hidden);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        if (event.key === 'ArrowLeft' && index > 0) show(index - 1);
+        if (event.key === 'ArrowRight' && index < items.length - 1) show(index + 1);
+      }
+    });
+    viewer.addEventListener('click', event => {
+      const bounds = viewer.getBoundingClientRect();
+      if (event.target === viewer && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) viewer.close();
+    });
+    viewer.addEventListener('close', () => {
+      document.body.style.overflow = scrollStyle;
+      photo.removeAttribute('src');
+      trigger?.focus();
+    });
+  }
+</script>
