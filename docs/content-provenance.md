@@ -251,6 +251,23 @@ Both languages now contain eight teaching records. Chinese programme labels inhe
 
 Release validation passed `npm run check` for 47 files, `npm run build` for 38 pages, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual`. All six linked course/programme destinations returned HTTP 200. Both five-page tagged CVs were rendered and visually reviewed, and PDF annotations include all six destinations. The eight teaching records, Chinese wording, education separators, responsive layouts and source/build asset equality were checked.
 
+## owner-service-and-motivation-update-2026-11-13
+
+The owner explicitly requested and authorized publication of the service links, expanded organization names, contact-angle measurement, GIS-assisted EBID/IBID, the CAZAC Day 2022 SEM photography third prize, the Section 61 field, and the Chinese position title **博士后研究员**. English uses **Research Associate**. Membership dates and MARSS roles derive from the owner-confirmed CV and request. The linked committee pages supply official destinations for each role.
+
+- [MARSS Organization Committee](https://marss-conference.org/committees/organization-committee/) and [MARSS Program Committee](https://marss-conference.org/committees/program-com/) are linked separately from the corresponding service roles.
+- [IEEE Robotics and Automation Society](https://www.ieee-ras.org/) supplies the official society destination.
+- [SAGIP](https://www.sagip.org/fr) expands to **Société d’Automatique, de Génie Industriel et de Productique**, as recorded in its [statutes](https://www.sagip.org/sites/default/files/2021-01/Statuts%20de%20SAGIP%20Mai%202020-1-fr.pdf). English and Chinese use descriptive translations of the full name.
+- [GDR Robotique](https://www.gdr-robotique.org/) identifies itself as **Groupement de Recherche en Robotique**. The display translations are Robotics Research Network and 机器人学研究联合体.
+- [GDR MACS](https://gdr-macs.cnrs.fr/) redirects to the current official site. Its [2024–2028 renewal dossier](https://gdr-macs.fr/sites/default/files/2023-11/MACS2024_2028_VHAL.pdf) records **Modélisation, analyse et conduite des systèmes dynamiques**. English and Chinese expand the name as a research network for modeling, analysis and control of dynamical systems.
+- [The official CNU section list](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038015526/2026-04-08) defines Section 61 as **Génie informatique, automatique et traitement du signal**, rendered as Computer Engineering, Automatic Control and Signal Processing / 计算机工程、自动控制与信号处理. The existing March 2026 qualification comes from the owner's CV.
+
+The owner requested public project descriptions centered on his confirmed contributions. LiCoVac now introduces his research leadership, and LicLoM presents his successful proposal authorship and project management. The linked funding identifiers and periods remain documented in the project entries.
+
+Both homepages introduce a research motivation section after the featured work, using **Accelerating the next era of micro- and nanorobotics.** and **推动微纳机器人迈向新纪元。** The four English lines supplied by the owner are preserved on both pages, attributed to William Blake's public-domain **Auguries of Innocence**, with a link to the [Academy of American Poets text](https://poets.org/poem/auguries-innocence). This section uses semantic text and the existing warm design palette.
+
+Validation passed `npm run check` across 47 files, `npm run build` for 48 HTML pages, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual` across all 24 page pairs. Additional checks cover the new service destinations, organization names, skills, SEM photography award, CNU field, Chinese position title and motivation section. Both languages were checked at 375/768/1024/1440px, and automated WCAG A/AA checks passed. All six service links and the poem destination returned HTTP 200. Both five-page tagged CVs were rendered and visually reviewed, their updated text and six service annotations were checked, and the English printed skill labels were checked for spacing. The current PDF sizes and hashes are recorded in `bilingual-site.md`.
+
 ## Font register
 - Inter: `@fontsource-variable/inter` 5.3.0; [Fontsource package](https://fontsource.org/fonts/inter); SIL OFL 1.1; notice shipped in `public/licenses/Inter-OFL.txt`.
 - Manrope: `@fontsource-variable/manrope` 5.3.0; [Fontsource package](https://fontsource.org/fonts/manrope); SIL OFL 1.1; notice shipped in `public/licenses/Manrope-OFL.txt`.

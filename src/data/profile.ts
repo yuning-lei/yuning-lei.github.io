@@ -73,8 +73,8 @@ export const profile = {
   ],
   skills: [
     { title: 'SEM / FIB', description: 'Zeiss Auriga 60, Thermo Fisher APREO S, FEI Helios NanoLab, FEI Quanta 600 and Tescan Lyra2.' },
-    { title: 'Microfabrication', description: 'Lithography, physical vapor deposition (PVD), wet etching and plasma etching (RIE/DRIE).' },
-    { title: 'Characterization', description: 'Nanoindentation, interferometry and profilometry.' },
+    { title: 'Micro- and nanofabrication', description: 'Lithography, physical vapor deposition (PVD), wet etching, plasma etching (RIE/DRIE) and GIS-assisted electron/ion beam-induced deposition (EBID/IBID).' },
+    { title: 'Characterization', description: 'Contact-angle measurement, nanoindentation, interferometry and profilometry.' },
     { title: 'Robotics & computing', description: 'MATLAB/Simulink, LabVIEW, ROS, V-REP; C/C++, Java, Python, MATLAB and Visual Basic.' },
     { title: 'Design & simulation', description: 'SolidWorks, Creo, AutoCAD/Inventor, Blender, Inkscape, Alphacam; COMSOL and ANSYS.' },
   ],
@@ -122,7 +122,7 @@ export const profile = {
   ],
   awards: [
     { title: '“Micron d’Or” Award', event: 'Salon Micronora 2022, Association Micronora', period: 'September 2022', activityHref: '/news/#micronora-2022' },
-    { title: '3rd Award — Photo Contest', event: 'CAZAC Day 2022, Carl Zeiss Application Community', period: 'March 2022' },
+    { title: 'Third Prize — SEM Photography Competition', event: 'CAZAC Day 2022, Carl Zeiss Application Community', period: 'March 2022' },
     { title: 'First Prize — “Breakthrough in Science” Award', event: 'Ph.D. Student Poster Competition, FEMTO-ST Institute', period: 'July 2020' },
     { title: 'French Government Doctoral Fellowship (36 months)', event: 'Ministère de l’Enseignement supérieur, de la Recherche et de l’Innovation', period: 'October 2019 – October 2022' },
   ],
@@ -165,11 +165,17 @@ export const profile = {
     },
   ],
   service: [
-    { title: 'MARSS Community', description: 'Publicity Chair and Program Committee member', period: 'Since November 2020' },
-    { title: 'IEEE Robotics and Automation Society', description: 'Member', period: 'Since February 2021' },
-    { title: 'SAGIP', description: 'Member', period: 'Since November 2020' },
-    { title: 'GDR Robotique', description: 'Member', period: 'Since September 2017' },
-    { title: 'GDR MACS', description: 'Member', period: 'Since November 2020' },
+    {
+      title: 'MARSS Community', description: 'Publicity Chair and Program Committee member', period: 'Since November 2020',
+      links: [
+        { label: 'Publicity Chair', href: 'https://marss-conference.org/committees/organization-committee/' },
+        { label: 'Program Committee member', href: 'https://marss-conference.org/committees/program-com/' },
+      ],
+    },
+    { title: 'IEEE Robotics and Automation Society', description: 'Member', period: 'Since February 2021', href: 'https://www.ieee-ras.org/' },
+    { title: 'Society for Automatic Control, Industrial Engineering and Manufacturing (SAGIP)', description: 'Member', period: 'Since November 2020', href: 'https://www.sagip.org/fr' },
+    { title: 'Robotics Research Network (GDR Robotique)', description: 'Member', period: 'Since September 2017', href: 'https://www.gdr-robotique.org/' },
+    { title: 'Research Network for Modeling, Analysis and Control of Dynamical Systems (GDR MACS)', description: 'Member', period: 'Since November 2020', href: 'https://gdr-macs.cnrs.fr/' },
   ],
   languages: [
     { name: 'Chinese', description: 'Native' },
@@ -177,5 +183,9 @@ export const profile = {
     { name: 'English', description: 'B1; TOEIC 720/990 (December 2017)' },
     { name: 'German', description: 'Elementary' },
   ],
-  qualification: { title: 'CNU qualification, Section 61', description: 'Qualification for Associate Professor positions in French universities.', period: 'March 2026' },
+  qualification: {
+    title: 'CNU qualification, Section 61',
+    description: 'Qualification for Associate Professor positions in French universities in Computer Engineering, Automatic Control and Signal Processing (Génie informatique, automatique et traitement du signal).',
+    period: 'March 2026',
+  },
 } as const;

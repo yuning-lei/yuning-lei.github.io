@@ -23,7 +23,20 @@ const t = (en: string, zh: string) => tr(locale, en, zh);
     </div>
   </section>
   <section class="cv-section" id="skills" aria-labelledby="skills-heading"><div><p class="eyebrow">{t('Methods & tools', '方法与工具')}</p><h2 id="skills-heading">{t('Technical skills', '技术技能')}</h2></div><dl class="cv-skills">{profile.skills.map(skill => <div class="cv-skill"><dt>{skill.title}</dt><dd>{skill.description}</dd></div>)}</dl></section>
-  <section class="cv-section" id="service" aria-labelledby="service-heading"><div><p class="eyebrow">{t('Academic community', '学术社区')}</p><h2 id="service-heading">{t('Service & memberships', '学术服务与组织成员')}</h2></div><div class="cv-timeline">{profile.service.map(item => <article class="cv-entry"><p class="cv-period">{item.period}</p><div><h3>{item.title}</h3><p class="cv-description">{item.description}</p></div></article>)}</div></section>
+  <section class="cv-section" id="service" aria-labelledby="service-heading">
+    <div><p class="eyebrow">{t('Academic community', '学术社区')}</p><h2 id="service-heading">{t('Service & memberships', '学术服务与组织成员')}</h2></div>
+    <div class="cv-timeline">
+      {profile.service.map(item => <article class="cv-entry">
+        <p class="cv-period">{item.period}</p>
+        <div>
+          <h3>{'href' in item ? <a href={item.href}>{item.title}</a> : item.title}</h3>
+          {'links' in item
+            ? <ul class="service-roles">{item.links.map(link => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+            : <p class="cv-description">{item.description}</p>}
+        </div>
+      </article>)}
+    </div>
+  </section>
   <section class="cv-section" id="awards" aria-labelledby="awards-heading">
     <div><p class="eyebrow">{t('Recognition', '奖励与资助')}</p><h2 id="awards-heading">{t('Honors & fellowships', '荣誉与奖学金')}</h2></div>
     <div class="cv-timeline">
@@ -37,11 +50,12 @@ const t = (en: string, zh: string) => tr(locale, en, zh);
       </article>)}
     </div>
   </section>
-  <section class="cv-section" aria-labelledby="qualification-heading"><div><p class="eyebrow">{t('Qualification', '任职资格')}</p><h2 id="qualification-heading">{t('CNU qualification', 'CNU 任职资格')}</h2></div><article class="cv-entry"><p class="cv-period">{profile.qualification.period}</p><div><h3>{profile.qualification.title}</h3><p class="cv-description">{profile.qualification.description}</p></div></article></section>
+  <section class="cv-section" id="qualification" aria-labelledby="qualification-heading"><div><p class="eyebrow">{t('Qualification', '任职资格')}</p><h2 id="qualification-heading">{t('CNU qualification', 'CNU 任职资格')}</h2></div><article class="cv-entry"><p class="cv-period">{profile.qualification.period}</p><div><h3>{profile.qualification.title}</h3><p class="cv-description">{profile.qualification.description}</p></div></article></section>
   <section class="cv-section" aria-labelledby="languages-heading"><div><p class="eyebrow">{t('Languages', '语言能力')}</p><h2 id="languages-heading">{t('Languages', '语言能力')}</h2></div><dl class="cv-skills">{profile.languages.map(language => <div class="cv-skill"><dt>{language.name}</dt><dd>{language.description}</dd></div>)}</dl></section>
 </div>
 <style>
-  #teaching a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
-  #teaching a:hover { color: var(--color-accent-hover); }
-  @media print { #teaching a { color: inherit; text-decoration: none; } }
+  :is(#teaching, #service) a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
+  :is(#teaching, #service) a:hover { color: var(--color-accent-hover); }
+  #service .service-roles { display: flex; flex-wrap: wrap; gap: 4px 20px; padding: 0; margin: 3px 0 0; list-style: none; }
+  @media print { :is(#teaching, #service) a { color: inherit; text-decoration: none; } }
 </style>

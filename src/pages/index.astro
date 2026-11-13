@@ -34,6 +34,22 @@ const publications = (await localizedCollection('publications', locale))
     <FeaturedWork />
   </section>
 
+  <section class="shell motivation" aria-labelledby="motivation-heading">
+    <div>
+      <p class="eyebrow">{t('Research motivation', '科研愿景')}</p>
+      <h2 id="motivation-heading">{t('Accelerating the next era of micro- and nanorobotics.', '推动微纳机器人迈向新纪元。')}</h2>
+    </div>
+    <figure>
+      <blockquote lang="en" cite="https://poets.org/poem/auguries-innocence">
+        <span>To see a World in a Grain of Sand</span>
+        <span>And a Heaven in a Wild Flower,</span>
+        <span>Hold Infinity in the palm of your hand</span>
+        <span>And Eternity in an hour.</span>
+      </blockquote>
+      <figcaption lang="en">William Blake · <a href="https://poets.org/poem/auguries-innocence"><cite>Auguries of Innocence</cite></a></figcaption>
+    </figure>
+  </section>
+
   {research.length > 0 && <section class="research-band" aria-labelledby="research-heading">
     <div class="shell section research-section">
       <div class="section-aside"><p class="eyebrow">{t('Research themes', '研究主题')}</p><h2 id="research-heading">{t('Areas of focus.', '研究方向')}</h2><p>{t('Long-term research specializations across robotics, manipulation and fabrication.', '围绕机器人技术、微纳操纵与制造开展长期研究。')}</p><a class="text-link" href={localePath('/research/', locale)}>{t('Research overview', '研究概览')} <Arrow /></a></div>
@@ -57,7 +73,18 @@ const publications = (await localizedCollection('publications', locale))
 
   <section class="shell section profile-section" aria-labelledby="profile-heading">
     <div><p class="eyebrow">{t('Academic profile', '学术履历')}</p><h2 id="profile-heading">{t('About Yuning.', '关于雷宇宁')}</h2></div>
-    <div><p class="profile-lead">{t(`I am a ${site.role} in ${profile.group} at the ${site.institution}.`, '我在奥尔登堡大学微机器人与控制工程研究组（AMiR）担任科研人员（Research Associate）。')}</p><p>{t('I received my Ph.D. in Engineering Science from Université Bourgogne Franche-Comté in 2023, following doctoral research on nanorobotic origami at FEMTO-ST Institute.', '我在 FEMTO-ST 研究所开展纳米机器人折纸研究，并于 2023 年获得勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）工程科学博士学位。')}</p><a class="text-link section-link" href={localePath('/about/', locale)}>{t('About & CV', '关于我与简历')} <Arrow diagonal /></a></div>
+    <div><p class="profile-lead">{t(`I am a ${site.role} in ${profile.group} at the ${site.institution}.`, '我在奥尔登堡大学微机器人与控制工程研究组（AMiR）担任博士后研究员。')}</p><p>{t('I received my Ph.D. in Engineering Science from Université Bourgogne Franche-Comté in 2023, following doctoral research on nanorobotic origami at FEMTO-ST Institute.', '我在 FEMTO-ST 研究所开展纳米机器人折纸研究，并于 2023 年获得勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）工程科学博士学位。')}</p><a class="text-link section-link" href={localePath('/about/', locale)}>{t('About & CV', '关于我与简历')} <Arrow diagonal /></a></div>
   </section>
   <section class="shell home-contact" aria-labelledby="contact-heading"><div><p class="eyebrow">{t('Contact', '联系')}</p><h2 id="contact-heading">{t('Research & collaboration.', '科研交流与合作')}</h2></div><a class="text-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow diagonal /></a></section>
 </Layout>
+
+<style>
+  .motivation { display: grid; gap: 28px; padding-block: 36px 44px; border-top: 1px solid var(--color-border); }
+  .motivation h2 { max-width: 530px; margin-top: 14px; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.4; }
+  .motivation blockquote { margin: 0; padding-left: 20px; border-left: 2px solid var(--color-secondary-accent); color: var(--color-text); font-size: clamp(.85rem, 1.3vw, 1rem); line-height: 1.9; }
+  .motivation blockquote span { display: block; }
+  .motivation figcaption { margin-top: 14px; padding-left: 22px; color: var(--color-text); font-size: .72rem; }
+  .motivation figcaption a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
+  .motivation figcaption a:hover { color: var(--color-accent-hover); }
+  @media (min-width: 768px) { .motivation { grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding-block: 44px; } }
+</style>

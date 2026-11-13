@@ -18,7 +18,7 @@ sources:
 
 LicLoM brought together the University of Oldenburg and the University of Louisville. The project set out to relate adhesion and friction measurements made with liquid-metal droplet probes to the motion of laser-driven microrobots on dry surfaces. One aim was to inform locomotion control in vacuum.
 
-I wrote the successful DAAD-PPP proposal and managed the project, including research planning and follow-up with the Louisville team. Prof. Sergej Fatikow was the principal investigator at the University of Oldenburg.
+I wrote the successful DAAD-PPP proposal and managed the project, including research planning and follow-up with the Louisville team.
 
 My ORCID record lists **DAAD project 57698722** with a funding period of **January 2024 – December 2025**. [AMiR’s grant announcement](https://uol.de/en/computingscience/amir/news-events-press) records the award.
 

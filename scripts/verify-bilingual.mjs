@@ -100,7 +100,19 @@ try {
   assert.equal(await page.locator('[data-language-switch]').getAttribute('href'), '/about/#education');
   assert.match(await page.locator('#education').innerText(), /2017 年 9 月—2019 年 8 月/);
   assert.match(await page.locator('#experience').innerText(), /2016 年 3 月—2017 年 9 月/);
-  assert.match(await page.locator('main').innerText(), /副教授岗位的任职资格/);
+  assert.match(await page.locator('#qualification').innerText(), /法国大学副教授任职资格评审/);
+  assert.match(await page.locator('#qualification').innerText(), /计算机工程、自动控制与信号处理/);
+  assert.match(await page.locator('#experience').innerText(), /博士后研究员/);
+  assert.equal(await page.locator('#service a').count(), 6);
+  assert.deepEqual(await page.locator('#service h3').allTextContents(), [
+    'MARSS 学术社区', 'IEEE 机器人与自动化学会',
+    '自动控制、工业工程与生产工程学会（SAGIP）',
+    '机器人学研究联合体（GDR Robotique）',
+    '动态系统建模、分析与控制研究联合体（GDR MACS）',
+  ]);
+  assert.match(await page.locator('#skills').innerText(), /接触角测量/);
+  assert.match(await page.locator('#skills').innerText(), /GIS.*EBID\/IBID/);
+  assert.match(await page.locator('#awards').innerText(), /扫描电镜摄影比赛三等奖/);
   assert.equal(await page.locator('#teaching h2').innerText(), '讲座与习题课');
   assert.equal(await page.locator('#teaching .cv-entry').count(), 8);
   assert.equal(await page.locator('#teaching a[href^="https://"]').count(), 8);

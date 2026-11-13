@@ -110,7 +110,7 @@ try {
   assert.equal(await page.locator('.entry-row').count(), 8, 'All reviewed research projects are listed');
   await page.goto(base + '/projects/liclom/');
   assert.match(await page.locator('.detail-role').innerText(), /Project manager and proposal author/);
-  assert.match(await page.locator('.prose').innerText(), /I wrote the successful DAAD-PPP proposal.*Prof\. Sergej Fatikow was the principal investigator/);
+  assert.match(await page.locator('.prose').innerText(), /I wrote the successful DAAD-PPP proposal and managed the project, including research planning and follow-up with the Louisville team/);
   assert.match(await page.locator('main').innerText(), /57698722/);
   assert.match(await page.locator('main').innerText(), /January 2024 – December 2025/);
   for (const id of ['daad-finland', 'daad-hong-kong']) {
@@ -125,7 +125,7 @@ try {
   assert.equal(await page.getByRole('link', { name: 'European Commission CORDIS project record' }).getAttribute('href'), 'https://cordis.europa.eu/project/id/101086226');
   await page.goto(base + '/projects/licovac/');
   assert.match(await page.locator('main').innerText(), /451242348/);
-  assert.match(await page.locator('main').innerText(), /grant applicant/);
+  assert.match(await page.locator('.prose').innerText(), /I lead the research activities in LiCoVac/);
   await page.goto(base + '/about/');
   const orcid = page.getByRole('link', { name: 'ORCID iD 0000-0003-0711-4476', exact: true });
   assert.equal(await orcid.getAttribute('href'), 'https://orcid.org/0000-0003-0711-4476');
@@ -133,6 +133,27 @@ try {
   assert.match(await page.locator('main').innerText(), /Teaching Assistant/);
   assert.match(await page.locator('main').innerText(), /IUT de Limoges/);
   assert.match(await page.locator('main').innerText(), /French Government Doctoral Fellowship/);
+  assert.equal(await page.locator('#service .cv-entry').count(), 5);
+  assert.deepEqual(await page.locator('#service a').evaluateAll(links => links.map(link => link.getAttribute('href'))), [
+    'https://marss-conference.org/committees/organization-committee/',
+    'https://marss-conference.org/committees/program-com/',
+    'https://www.ieee-ras.org/', 'https://www.sagip.org/fr',
+    'https://www.gdr-robotique.org/', 'https://gdr-macs.cnrs.fr/',
+  ]);
+  assert.match(await page.locator('#service').innerText(), /Society for Automatic Control, Industrial Engineering and Manufacturing \(SAGIP\)/);
+  assert.match(await page.locator('#skills').innerText(), /Contact-angle measurement/);
+  assert.match(await page.locator('#skills').innerText(), /GIS-assisted electron\/ion beam-induced deposition \(EBID\/IBID\)/);
+  assert.match(await page.locator('#awards').innerText(), /Third Prize — SEM Photography Competition/);
+  assert.match(await page.locator('#qualification').innerText(), /Computer Engineering, Automatic Control and Signal Processing/);
+  await page.setViewportSize({ width: 680, height: 1000 });
+  await page.emulateMedia({ media: 'print' });
+  assert.deepEqual(await page.locator('.cv-skill').evaluateAll(skills => skills.filter(skill => {
+    const label = document.createRange();
+    label.selectNodeContents(skill.querySelector('dt'));
+    return label.getBoundingClientRect().right > skill.querySelector('dd').getBoundingClientRect().left - 4;
+  }).map(skill => skill.querySelector('dt').textContent)), [], 'Printed skill labels have space before descriptions');
+  await page.emulateMedia({ media: 'screen' });
+  await page.setViewportSize({ width: 1440, height: 1000 });
   const teaching = page.locator('#teaching');
   assert.equal(await teaching.locator('.cv-entry').count(), 8, 'Eight owner-confirmed teaching records');
   assert.equal(await teaching.locator('a[href^="https://"]').count(), 8, 'Course and programme links are available');
@@ -159,6 +180,12 @@ try {
   assert.equal(await page.locator('.featured-work-image').evaluate(img => img.complete && img.naturalWidth > 0), true, 'Featured scientific figure loads');
   assert.match(await page.locator('.featured-work').innerText(), /sub-50 µm/);
   assert.match(await page.locator('.featured-work').innerText(), /20 µm/);
+  assert.equal(await page.locator('#motivation-heading').innerText(), 'Accelerating the next era of micro- and nanorobotics.');
+  assert.deepEqual(await page.locator('.motivation blockquote span').allTextContents(), [
+    'To see a World in a Grain of Sand', 'And a Heaven in a Wild Flower,',
+    'Hold Infinity in the palm of your hand', 'And Eternity in an hour.',
+  ]);
+  assert.equal(await page.locator('.motivation figcaption a').getAttribute('href'), 'https://poets.org/poem/auguries-innocence');
   const originalFigure = await page.request.get(base + '/media/silica-origami-teaser.svg');
   assert.equal(originalFigure.status(), 200, 'Full original figure is available');
   assert.match(await originalFigure.text(), /<svg\b/, 'Original link returns SVG artwork');

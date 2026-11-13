@@ -18,9 +18,9 @@ export const site = {
 export function getSite(locale: Locale) {
   return locale === 'zh' ? { ...site,
     name: chineseName,
-    qualification: '博士', role: '科研人员（Research Associate）',
+    qualification: '博士', role: '博士后研究员',
     institution: '奥尔登堡大学', location: '德国奥尔登堡',
-    description: '雷宇宁，博士，德国奥尔登堡大学科研人员。研究方向包括微机器人、纳米机器人、扫描电子显微镜下的纳米操纵、微纳制造与微致动。',
+    description: '雷宇宁，博士，德国奥尔登堡大学博士后研究员。研究方向包括微机器人、纳米机器人、扫描电子显微镜下的纳米操纵、微纳制造与微致动。',
   } : site;
 }
 

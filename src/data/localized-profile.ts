@@ -10,7 +10,7 @@ const chinese = {
   address: [...profile.address.slice(0, 2), '德国'],
   links: profile.links.map(link => ({ ...link, label: link.label === 'University profile' ? '大学主页' : link.label === 'Google Scholar' ? 'Google 学术' : link.label })),
   appointments: [
-    { title: '科研人员（Research Associate）', institution: '奥尔登堡大学', location: '德国奥尔登堡', period: '2023 年 4 月—至今',
+    { title: '博士后研究员', institution: '奥尔登堡大学', location: '德国奥尔登堡', period: '2023 年 4 月—至今',
       details: [
         '计算机科学系，微机器人与控制工程研究组。',
         'LiCoVac（真空环境下的液态金属接触角测量）科研项目负责人。',
@@ -42,8 +42,8 @@ const chinese = {
   ],
   skills: [
     { title: 'SEM／FIB', description: 'Zeiss Auriga 60、Thermo Fisher APREO S、FEI Helios NanoLab、FEI Quanta 600 和 Tescan Lyra2。' },
-    { title: '微纳制造', description: '光刻、物理气相沉积（PVD）、湿法刻蚀与等离子体刻蚀（RIE/DRIE）。' },
-    { title: '表征技术', description: '纳米压痕、干涉测量与轮廓测量。' },
+    { title: '微纳制造', description: '光刻、物理气相沉积（PVD）、湿法刻蚀、等离子体刻蚀（RIE/DRIE），以及气体注入系统（GIS）辅助电子束／离子束诱导沉积（EBID/IBID）。' },
+    { title: '表征技术', description: '接触角测量、纳米压痕、干涉测量与轮廓测量。' },
     { title: '机器人与编程', description: 'MATLAB/Simulink、LabVIEW、ROS、V-REP；C/C++、Java、Python、MATLAB 和 Visual Basic。' },
     { title: '设计与仿真', description: 'SolidWorks、Creo、AutoCAD/Inventor、Blender、Inkscape、Alphacam；COMSOL 和 ANSYS。' },
   ],
@@ -83,22 +83,28 @@ const chinese = {
   ],
   awards: [
     { ...profile.awards[0], title: 'Micron d’Or 奖', event: 'Micronora 2022 展会，Micronora 协会', period: '2022 年 9 月' },
-    { title: '摄影比赛三等奖', event: 'CAZAC Day 2022，Carl Zeiss Application Community', period: '2022 年 3 月' },
+    { title: '扫描电镜摄影比赛三等奖', event: 'CAZAC Day 2022，Carl Zeiss Application Community', period: '2022 年 3 月' },
     { title: '“Breakthrough in Science” 一等奖', event: 'FEMTO-ST 研究所博士生海报竞赛', period: '2020 年 7 月' },
     { title: '法国政府博士奖学金（36 个月）', event: '法国高等教育、研究与创新部', period: '2019 年 10 月—2022 年 10 月' },
   ],
   service: [
-    { title: 'MARSS 学术社区', description: '宣传主席及程序委员会成员', period: '自 2020 年 11 月起' },
-    { title: 'IEEE 机器人与自动化学会', description: '会员', period: '自 2021 年 2 月起' },
-    { title: 'SAGIP', description: '会员', period: '自 2020 年 11 月起' },
-    { title: 'GDR Robotique', description: '成员', period: '自 2017 年 9 月起' },
-    { title: 'GDR MACS', description: '成员', period: '自 2020 年 11 月起' },
+    {
+      ...profile.service[0], title: 'MARSS 学术社区', description: '宣传主席及程序委员会委员', period: '自 2020 年 11 月起',
+      links: [
+        { ...profile.service[0].links[0], label: '宣传主席' },
+        { ...profile.service[0].links[1], label: '程序委员会委员' },
+      ],
+    },
+    { ...profile.service[1], title: 'IEEE 机器人与自动化学会', description: '会员', period: '自 2021 年 2 月起' },
+    { ...profile.service[2], title: '自动控制、工业工程与生产工程学会（SAGIP）', description: '会员', period: '自 2020 年 11 月起' },
+    { ...profile.service[3], title: '机器人学研究联合体（GDR Robotique）', description: '成员', period: '自 2017 年 9 月起' },
+    { ...profile.service[4], title: '动态系统建模、分析与控制研究联合体（GDR MACS）', description: '成员', period: '自 2020 年 11 月起' },
   ],
   languages: [
     { name: '中文', description: '母语' }, { name: '法语', description: '高级' },
     { name: '英语', description: 'B1；TOEIC 720/990（2017 年 12 月）' }, { name: '德语', description: '初级' },
   ],
-  qualification: { title: '法国 CNU 第 61 学科任职资格', description: '申请法国大学副教授岗位的任职资格。', period: '2026 年 3 月' },
+  qualification: { ...profile.qualification, title: '法国 CNU 第 61 学科任职资格', description: '通过法国大学副教授任职资格评审，第 61 学科领域为计算机工程、自动控制与信号处理（Génie informatique, automatique et traitement du signal）。', period: '2026 年 3 月' },
 };
 
 export function getProfile(locale: Locale) {
