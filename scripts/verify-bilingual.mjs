@@ -101,6 +101,15 @@ try {
   assert.match(await page.locator('#education').innerText(), /2017 年 9 月—2019 年 8 月/);
   assert.match(await page.locator('#experience').innerText(), /2016 年 3 月—2017 年 9 月/);
   assert.match(await page.locator('main').innerText(), /副教授岗位的任职资格/);
+  assert.equal(await page.locator('#teaching h2').innerText(), '讲座与习题课');
+  assert.equal(await page.locator('#teaching .cv-entry').count(), 8);
+  assert.equal(await page.locator('#teaching a[href^="https://"]').count(), 8);
+  assert.doesNotMatch(await page.locator('#teaching').innerText(), /讲授/);
+  assert.match(await page.locator('#teaching .cv-entry').first().innerText(), /自 2025\/26 冬季学期起/);
+  assert.match(await page.locator('#teaching .cv-entry').first().innerText(), /习题课 · 每学期 2 小时 × 6 节/);
+  assert.match(await page.locator('#education').innerText(), /奥尔良大学 · 布尔日大学技术学院/);
+  assert.match(await page.locator('#education').innerText(), /雷恩大学 · 拉尼永大学技术学院/);
+  assert.match(await page.locator('#education').innerText(), /利摩日大学 · 利摩日大学技术学院/);
   await page.goto(base + '/zh/publications/');
   assert.equal(await page.locator('.entry-row').count(), 5);
   assert.equal(await page.locator('.conference-contribution').count(), 4);

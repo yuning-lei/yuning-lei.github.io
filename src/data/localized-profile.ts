@@ -26,12 +26,12 @@ const chinese = {
       details: ['博士论文：Nanorobotic Origami Unfolded at the Tip of Optical Fiber（在光纤端部展开的纳米机器人折纸结构）。', '于 2023 年 3 月 24 日在贝桑松完成答辩。'] },
     { title: '机电一体化、自主系统、机器人与信号硕士（M.Sc.）', institution: '奥尔良大学（University of Orléans）', location: '法国奥尔良', period: '2017 年 9 月—2019 年 8 月',
       details: ['机器人视觉、视觉伺服、移动机器人控制、复杂系统建模与反馈控制。'] },
-    { title: '环境测量专业理学学士（B.Sc.）', institution: '奥尔良大学布尔日大学技术学院（IUT de Bourges）', location: '法国布尔日', period: '2016 年 9 月—2017 年 8 月',
+    { title: '环境测量专业理学学士（B.Sc.）', institution: '奥尔良大学 · 布尔日大学技术学院（IUT de Bourges）', location: '法国布尔日', period: '2016 年 9 月—2017 年 8 月',
       details: ['环境监测、物理化学分析、色谱与谱学测量（spectrometry）。'] },
-    { title: '物理测量大学技术文凭（DUT）', institution: '奥尔良大学布尔日大学技术学院（IUT de Bourges）', location: '法国布尔日', period: '2014 年 9 月—2016 年 8 月', details: [] },
-    { title: '计算机科学专业一年级学习', institution: '雷恩大学拉尼永大学技术学院（IUT de Lannion）', location: '法国拉尼永', period: '2013 年 9 月—2014 年 6 月',
+    { title: '物理测量大学技术文凭（DUT）', institution: '奥尔良大学 · 布尔日大学技术学院（IUT de Bourges）', location: '法国布尔日', period: '2014 年 9 月—2016 年 8 月', details: [] },
+    { title: '计算机科学专业一年级学习', institution: '雷恩大学 · 拉尼永大学技术学院（IUT de Lannion）', location: '法国拉尼永', period: '2013 年 9 月—2014 年 6 月',
       details: ['完成第一年学习后，转入物理测量专业。'] },
-    { title: '大学文凭（DU）——科学与技术培训预备课程', institution: '利摩日大学利摩日大学技术学院（IUT de Limoges）', location: '法国利摩日', period: '2012 年 9 月—2013 年 8 月',
+    { title: '大学文凭（DU）——科学与技术培训预备课程', institution: '利摩日大学 · 利摩日大学技术学院（IUT de Limoges）', location: '法国利摩日', period: '2012 年 9 月—2013 年 8 月',
       details: ['原文：Diplôme universitaire de préparation aux formations scientifiques et technologiques。'] },
   ],
   skills: [
@@ -42,13 +42,38 @@ const chinese = {
     { title: '设计与仿真', description: 'SolidWorks、Creo、AutoCAD/Inventor、Blender、Inkscape、Alphacam；COMSOL 和 ANSYS。' },
   ],
   teaching: [
-    { title: '力传感（微机器人 I）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
-    { title: '扫描探针显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
-    { title: '扫描电镜中的原子力显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2024—2026 年春季', format: '讲授', workload: '每学期 1.5 小时 × 1 节' },
-    { title: '自动化纳米操纵（微机器人 II）', institution: '奥尔登堡大学 AMiR', period: '2023 年春季', format: '讲授', workload: '每学期 1.5 小时 × 2 节' },
-    { title: '数字控制', institution: 'MIR 硕士课程，UFR-ST', period: '2021 年及 2022 年秋季', format: '习题课', workload: '每学期 4 小时 × 5 节' },
-    { title: '自动化与控制', institution: 'ISIFC，UFC', period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 4 小时 × 8 节' },
-    { title: '基于 MATLAB 与 Simulink 的伺服控制', institution: 'SAPIAA 硕士课程，UFR-ST', period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 1.5 小时 × 4 节' },
+    {
+      ...profile.teaching[0], title: '模糊控制与人工神经网络', institution: '奥尔登堡大学 AMiR',
+      period: '自 2025/26 冬季学期起', format: '习题课', workload: '每学期 2 小时 × 6 节',
+    },
+    {
+      ...profile.teaching[1], title: '力传感（微机器人 I）', institution: '奥尔登堡大学 AMiR',
+      period: '2024—2026 年春季', format: '讲座', workload: '每学期 1.5 小时 × 1 节',
+    },
+    {
+      ...profile.teaching[2], title: '扫描探针显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR',
+      period: '2024—2026 年春季', format: '讲座', workload: '每学期 1.5 小时 × 1 节',
+    },
+    {
+      ...profile.teaching[3], title: '扫描电镜中的原子力显微镜（微机器人 II）', institution: '奥尔登堡大学 AMiR',
+      period: '2024—2026 年春季', format: '讲座', workload: '每学期 1.5 小时 × 1 节',
+    },
+    {
+      ...profile.teaching[4], title: '自动化纳米操纵（微机器人 II）', institution: '奥尔登堡大学 AMiR',
+      period: '2023 年春季', format: '讲座', workload: '每学期 1.5 小时 × 2 节',
+    },
+    {
+      ...profile.teaching[5], title: '数字控制', institution: 'MIR 硕士课程，UFR-ST',
+      period: '2021 年及 2022 年秋季', format: '习题课', workload: '每学期 4 小时 × 5 节',
+    },
+    {
+      ...profile.teaching[6], title: '自动化与控制', institution: 'ISIFC，UFC',
+      period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 4 小时 × 8 节',
+    },
+    {
+      ...profile.teaching[7], title: '基于 MATLAB 与 Simulink 的伺服控制', institution: 'SAPIAA 硕士课程，UFR-ST',
+      period: '2020 年及 2021 年秋季', format: '习题课', workload: '每学期 1.5 小时 × 4 节',
+    },
   ],
   awards: [
     { title: 'Micron d’Or 奖', event: 'Micronora 2022 展会，Micronora 协会', period: '2022 年 9 月' },

@@ -107,6 +107,14 @@ try {
   assert.match(await page.locator('main').innerText(), /Teaching Assistant/);
   assert.match(await page.locator('main').innerText(), /IUT de Limoges/);
   assert.match(await page.locator('main').innerText(), /French Government Doctoral Fellowship/);
+  const teaching = page.locator('#teaching');
+  assert.equal(await teaching.locator('.cv-entry').count(), 8, 'Eight owner-confirmed teaching records');
+  assert.equal(await teaching.locator('a[href^="https://"]').count(), 8, 'Course and programme links are available');
+  const fuzzy = teaching.locator('.cv-entry').first();
+  assert.match(await fuzzy.innerText(), /Fuzzy-control and Artificial Neural Networks/);
+  assert.match(await fuzzy.innerText(), /Winter semester 2025\/26 – present/);
+  assert.match(await fuzzy.innerText(), /Tutorials · 2 h × 6 sessions per semester/);
+  assert.equal(await fuzzy.getByRole('link').getAttribute('href'), 'https://uol.de/en/computingscience/amir/teaching/lecture-fuzzy-control-and-artificial-neural-networks');
   const experience = await page.locator('#experience').innerText();
   assert.match(experience, /March 2016 – September 2017/);
   assert.equal(await page.locator('#experience h3').filter({ hasText: /^Research Assistant$/ }).count(), 2, 'Owner-confirmed ORCID titles for PRISME/WILO');

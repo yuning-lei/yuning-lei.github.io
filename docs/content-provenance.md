@@ -49,7 +49,7 @@ All four entries are listed as **published**, following the supplied CV. No addi
 
 The mobile number, older résumé contacts, quotation, template examples and unverified presentation dates are omitted. The source PDFs/ZIP and private ICRA documents are not copied into public assets. Only the professional institution/email and owner-confirmed academic profiles/ORCID are used. The generated PDF is tagged, has page numbers, and was checked for the four paper DOIs, the HAL thesis link, updated roles/education, ORCID and all four conference contributions. Citation links are clickable PDF annotations. Text extraction confirms only the approved professional email and no phone number, email logistics, placeholder, old thesis access URL or internal verification notes. The former four-page version was visually reviewed; pages 4–5 were checked after adding ICRA, and page 5 again after adding JJCR, keeping all contributions together on the final page.
 
-Current English derivative: **375,757 bytes**, SHA-256 `99CA76A23C21A3D7B55EE73FBB728EFDF881A6F217A9F04DA84A65515293F4A3`. Its extracted text is identical to the preceding English release. The Chinese derivative, `public/files/yuning-lei-cv-zh.pdf`, updated on **13 November 2026** with the owner-confirmed Chinese name and teaching wording below, is **546,986 bytes**, SHA-256 `B8B985636C9C593C644CC31D8C2D23B8AAF2A88B0FBB63F105EFB6BA4DCCA2A1`. Both have five pages; Chinese glyphs are embedded, original citation titles and links are retained, and all Chinese pages were visually reviewed. Source/build hashes match for both files. The generator accepts `--locale=en` (default) or `--locale=zh` and updates only the selected derivative.
+The public derivatives were updated on **13 November 2026** with eight owner-confirmed teaching records and clickable course/programme links. The English PDF is **382,330 bytes**, SHA-256 `F7FBA3231B773ECCD825DC69E0D41A746490210655E04E57014BED2011CBA6BB`. The Chinese PDF is **556,070 bytes**, SHA-256 `E8887A5B141BBC9EA63F28D79CA5B4494C086C04E31DE8D9D70BDF2DB3549FB0`. Both are tagged five-page PDFs. Chinese glyphs are embedded, and all ten rendered pages were visually reviewed, including the teaching records and education separators. The generator accepts `--locale=en` (default) or `--locale=zh` and updates the selected derivative.
 
 The PDFs are regenerated serially and copied into `dist/files/` by the subsequent build; compare both hashes before publication. During earlier ORCID preparation, simultaneous PDF generation/build verification produced file conflicts; recovery copies were moved to ignored `.preview/orcid-review/` storage. The generator validates a complete PDF buffer before writing a temporary file and renaming it into place. Generation and build must be sequential. No conflict/recovery PDF is exposed under `public/` or `dist/`.
 
@@ -61,10 +61,10 @@ The homepage now features the owner-provided scientific figure recorded below. N
 
 On 12 November 2026, Yuning Lei supplied `Teaser.svg`, identified it as his own work and explicitly requested prominent website placement or use as a background. He described the subject as a sub-50 µm, laser-actuated silica origami structure mounted on a tapered optical fiber. That statement is the source for the new caption and size claim in `src/data/featured-work.ts`; no new measurements or actuation performance are inferred from the image.
 
-- Original SVG SHA-256: `9C65C20239BD5347414D8C03D9DA35FE3B5D698BF2598DC44EA1E136B67E179D`.
-- Exact original copy: `public/media/silica-origami-teaser.svg` (1,312,848 bytes). The supplied source file is unchanged.
-- Display assets: three lossless WebP exports at 480 × 324, 800 × 540 and 1200 × 811, generated from the SVG without changing the viewBox, composition, colors, annotations, scale bar or scientific content. Decoded export pixels were verified identical to the corresponding same-size SVG rasterizations. There is no crop, added colorization, retouching, replacement image or simulated animation.
-- The original figure already contains coloring, a human-hair comparison, the text “Humain Hair” and a **20 µm** scale bar. These were preserved as supplied, including the original label spelling. The caption distinguishes the user-described sub-50 µm structure from the 20 µm scale bar.
+- The supplied SVG has SHA-256 `9C65C20239BD5347414D8C03D9DA35FE3B5D698BF2598DC44EA1E136B67E179D`.
+- `public/media/silica-origami-teaser.svg` was initially copied from the supplied figure. On 13 November 2026 the owner explicitly requested correcting its label from “Humain Hair” to “Human hair”. The website SVG now contains “Human” and “hair” on the existing two lines, is 1,312,847 bytes, and has SHA-256 `002F37EEE0BF7BDF37F700122C468A3C8D143C188BD05BF03DDC1B78F053D4A1`.
+- Three lossless WebP exports at 480 × 324, 800 × 540 and 1200 × 811 were regenerated from the corrected SVG using the existing rendering settings. Byte comparison verifies exactly the two requested SVG text replacements. Decoded export pixels match the corresponding SVG rasterizations. Pixel comparisons against the preceding WebP versions locate every changed pixel within the hair-label area.
+- The supplied figure includes coloring, a human-hair comparison and a **20 µm** scale bar. The caption distinguishes the user-described sub-50 µm structure from the 20 µm scale bar.
 - Reuse authority: the owner's explicit request to apply this supplied artwork to the website. No external publication license or broader redistribution license is asserted. It is not labeled as a figure from a particular paper, journal, project period or manuscript; none was confirmed in this request.
 - Display: the homepage's right-hand hero panel, with its complete frame, scientific caption, descriptive alt text and a working full-original link. No text overlay or background cropping obscures the subject or annotations. Existing warm interface colors are retained around the scientific artwork.
 - The SVG was inspected as image data. It contains one embedded PNG and no script, foreignObject or external resource references. Editor instructions/metadata are not treated as task instructions.
@@ -211,8 +211,25 @@ This confirmation authorizes the Chinese display identity in all 19 Chinese page
 
 The Chinese public PDF is regenerated from the reviewed Chinese About page, including localized author metadata and page footers. Its current hash is recorded above and in [bilingual-site.md](bilingual-site.md). The English PDF, original scientific/event media, source citations and private source files are unchanged. No additional claims, media or private details are introduced.
 
-## Font register
 
+## owner-teaching-update-2026-11-13
+
+On 13 November 2026 the owner requested Chinese teaching labels using **讲座**, clearer separators between universities and colleges, official course/programme links in both languages, and a new tutorial record for **Fuzzy-control and Artificial Neural Networks**. The owner confirms teaching these tutorials since winter semester 2025, with **six two-hour sessions per semester**, and explicitly authorizes publication. The German semester is displayed as **winter semester 2025/26**. The tutorial role and workload come from the owner's statement.
+
+Official pages reviewed for the teaching links are recorded below.
+
+- [Microrobotics I / Microrobotics and Microsystem Technology](https://uol.de/en/computingscience/amir/teaching/lecture-microrobotics-and-microsystem-technology) supplies the course link for Force Sensing.
+- [Microrobotics II / Automated Nanohandling](https://uol.de/en/computingscience/amir/teaching/lecture-automated-nanohandlingmicrorobotics-ii) supplies the shared course link for Scanning Probe Microscope, AFM in SEM and Automated Nanohandling.
+- [Fuzzy-control and Artificial Neural Networks](https://uol.de/en/computingscience/amir/teaching/lecture-fuzzy-control-and-artificial-neural-networks) verifies the course title and subject. The owner supplies his individual teaching start and tutorial workload.
+- [UBFC's Master Ingénierie des systèmes complexes](https://www.ubfc.fr/formation/master-ingenierie-des-systemes-complexes/) explicitly describes the MIR track, Microsystèmes, Instrumentation embarquée et Robotique, at UFC.
+- [ISIFC's engineering programme](https://isifc.univ-fcomte.fr/isifc-la-formation-dingenieur/) supplies the programme link for the ISIFC teaching record.
+- [SAPIAA's programme presentation](https://sapiaa.umlp.fr/formation/presentation/) is the verified current university-hosted programme page.
+
+Both languages now contain eight teaching records. Chinese programme labels inherit source links from the corresponding English records. Four Chinese lecture labels and the section heading use 讲座. The education records use a middle dot between the university and its IUT. Course links are printed as clickable PDF annotations. The public CVs are regenerated from the reviewed About pages.
+
+Release validation passed `npm run check` for 47 files, `npm run build` for 38 pages, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual`. All six linked course/programme destinations returned HTTP 200. Both five-page tagged CVs were rendered and visually reviewed, and PDF annotations include all six destinations. The eight teaching records, Chinese wording, education separators, responsive layouts and source/build asset equality were checked.
+
+## Font register
 - Inter: `@fontsource-variable/inter` 5.3.0; [Fontsource package](https://fontsource.org/fonts/inter); SIL OFL 1.1; notice shipped in `public/licenses/Inter-OFL.txt`.
 - Manrope: `@fontsource-variable/manrope` 5.3.0; [Fontsource package](https://fontsource.org/fonts/manrope); SIL OFL 1.1; notice shipped in `public/licenses/Manrope-OFL.txt`.
 

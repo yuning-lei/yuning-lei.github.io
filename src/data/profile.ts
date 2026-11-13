@@ -1,6 +1,6 @@
 /** Owner CV (20 October 2026), confirmed ORCID and official records; see docs/content-provenance.md. */
 export const profile = {
-  cvDate: '12 November 2026',
+  cvDate: '13 November 2026',
   cvDownload: '/files/yuning-lei-cv.pdf',
   orcid: { id: '0000-0003-0711-4476', href: 'https://orcid.org/0000-0003-0711-4476' },
   department: 'Department of Computing Science',
@@ -73,13 +73,46 @@ export const profile = {
     { title: 'Design & simulation', description: 'SolidWorks, Creo, AutoCAD/Inventor, Blender, Inkscape, Alphacam; COMSOL and ANSYS.' },
   ],
   teaching: [
-    { title: 'Force Sensing (Microrobotics I)', institution: 'AMiR, University of Oldenburg', period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session' },
-    { title: 'Scanning Probe Microscope (Microrobotics II)', institution: 'AMiR, University of Oldenburg', period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session' },
-    { title: 'AFM in SEM (Microrobotics II)', institution: 'AMiR, University of Oldenburg', period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session' },
-    { title: 'Automated Nanohandling (Microrobotics II)', institution: 'AMiR, University of Oldenburg', period: 'Spring 2023', format: 'Lectures', workload: '1.5 h × 2 sessions' },
-    { title: 'Digital Control', institution: 'Master MIR, UFR-ST', period: 'Fall 2021 & 2022', format: 'Tutorials', workload: '4 h × 5 sessions' },
-    { title: 'Automation and Control', institution: 'ISIFC, UFC', period: 'Fall 2020 & 2021', format: 'Tutorials', workload: '4 h × 8 sessions' },
-    { title: 'Servo-control with MATLAB and Simulink', institution: 'Master SAPIAA, UFR-ST', period: 'Fall 2020 & 2021', format: 'Tutorials', workload: '1.5 h × 4 sessions' },
+    {
+      title: 'Fuzzy-control and Artificial Neural Networks', institution: 'AMiR, University of Oldenburg',
+      period: 'Winter semester 2025/26 – present', format: 'Tutorials', workload: '2 h × 6 sessions per semester',
+      href: 'https://uol.de/en/computingscience/amir/teaching/lecture-fuzzy-control-and-artificial-neural-networks',
+    },
+    {
+      title: 'Force Sensing (Microrobotics I)', institution: 'AMiR, University of Oldenburg',
+      period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session',
+      href: 'https://uol.de/en/computingscience/amir/teaching/lecture-microrobotics-and-microsystem-technology',
+    },
+    {
+      title: 'Scanning Probe Microscope (Microrobotics II)', institution: 'AMiR, University of Oldenburg',
+      period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session',
+      href: 'https://uol.de/en/computingscience/amir/teaching/lecture-automated-nanohandlingmicrorobotics-ii',
+    },
+    {
+      title: 'AFM in SEM (Microrobotics II)', institution: 'AMiR, University of Oldenburg',
+      period: 'Spring 2024–2026', format: 'Lecture', workload: '1.5 h × 1 session',
+      href: 'https://uol.de/en/computingscience/amir/teaching/lecture-automated-nanohandlingmicrorobotics-ii',
+    },
+    {
+      title: 'Automated Nanohandling (Microrobotics II)', institution: 'AMiR, University of Oldenburg',
+      period: 'Spring 2023', format: 'Lectures', workload: '1.5 h × 2 sessions',
+      href: 'https://uol.de/en/computingscience/amir/teaching/lecture-automated-nanohandlingmicrorobotics-ii',
+    },
+    {
+      title: 'Digital Control', institution: 'Master MIR, UFR-ST',
+      period: 'Fall 2021 & 2022', format: 'Tutorials', workload: '4 h × 5 sessions',
+      institutionHref: 'https://www.ubfc.fr/formation/master-ingenierie-des-systemes-complexes/',
+    },
+    {
+      title: 'Automation and Control', institution: 'ISIFC, UFC',
+      period: 'Fall 2020 & 2021', format: 'Tutorials', workload: '4 h × 8 sessions',
+      institutionHref: 'https://isifc.univ-fcomte.fr/isifc-la-formation-dingenieur/',
+    },
+    {
+      title: 'Servo-control with MATLAB and Simulink', institution: 'Master SAPIAA, UFR-ST',
+      period: 'Fall 2020 & 2021', format: 'Tutorials', workload: '1.5 h × 4 sessions',
+      institutionHref: 'https://sapiaa.umlp.fr/formation/presentation/',
+    },
   ],
   awards: [
     { title: '“Micron d’Or” Award', event: 'Salon Micronora 2022, Association Micronora', period: 'September 2022' },

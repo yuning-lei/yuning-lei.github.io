@@ -23,12 +23,12 @@ All scientific and event imagery is shared unchanged with the English site. The 
 
 ## Public CVs
 
-The generator accepts `--locale=en` (default) or `--locale=zh`, validates the complete PDF buffer before replacing only the selected output, and uses the corresponding About page. Both PDFs are tagged, five pages, with page numbers and usable citation links. Chinese glyphs are embedded; original publication and presentation titles remain present. The extracted English text matches the previously published English CV exactly. Both extracted versions contain four paper DOI URLs, the HAL record, all four conferences, and only the approved professional email; no personal phone, mail logistics or private source document is published.
+The generator accepts `--locale=en` (default) or `--locale=zh`, validates the complete PDF buffer before replacing the selected output, and uses the corresponding About page. Both PDFs are tagged, five pages, with page numbers and clickable citation/course/programme links. Chinese glyphs are embedded. Both versions include eight owner-confirmed teaching records, four paper DOI URLs, the HAL record, four conference contributions and the approved professional email.
 
 | File | Bytes | SHA-256 |
 | --- | --- | --- |
-| `public/files/yuning-lei-cv.pdf` | 375,757 | `99CA76A23C21A3D7B55EE73FBB728EFDF881A6F217A9F04DA84A65515293F4A3` |
-| `public/files/yuning-lei-cv-zh.pdf` (updated 13 November 2026) | 546,986 | `B8B985636C9C593C644CC31D8C2D23B8AAF2A88B0FBB63F105EFB6BA4DCCA2A1` |
+| `public/files/yuning-lei-cv.pdf` (updated 13 November 2026) | 382,330 | `F7FBA3231B773ECCD825DC69E0D41A746490210655E04E57014BED2011CBA6BB` |
+| `public/files/yuning-lei-cv-zh.pdf` (updated 13 November 2026) | 556,070 | `E8887A5B141BBC9EA63F28D79CA5B4494C086C04E31DE8D9D70BDF2DB3549FB0` |
 
 Source/build PDF hashes match. Generation and the following static build are sequential. All five Chinese PDF pages, Chinese desktop/mobile Home and Publications, and the complete scientific figure on mobile were visually reviewed. A screenshot taken before the asynchronously decoded hero image painted was recaptured after explicitly awaiting image decoding; mobile and desktop image loads were verified.
 
