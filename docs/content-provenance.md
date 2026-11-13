@@ -45,11 +45,16 @@ All four entries are listed as **published**, following the supplied CV. No addi
 
 ## Public CV derivative
 
-`public/files/yuning-lei-cv.pdf` is a separate, five-page public derivative generated from the website's reviewed About page by `npm run cv:pdf`. It is not the original PDF and does not claim to preserve its layout or every entry. The current derivative is dated **12 November 2026**, incorporating the owner-confirmed ORCID updates, HAL thesis access record, supplied ISOT/JJCR programmes and ICRA presentation confirmation below alongside the original 20 October CV source. It includes career/education, teaching, skills, service, awards/fellowship, qualification, languages, the four papers, the doctoral thesis and four separate ICRA 2023 / MARSS 2022 / ISOT 2021 / JJCR 2021 contributions. The conference section stays together on page 5 without reducing font sizes.
+The English and Chinese public CV PDFs are generated from the corresponding About pages. Both are dated **13 November 2026** and include the owner-confirmed collaboration roles on page 1 and eight teaching records with clickable course and programme links. Each includes career and education, skills, service, honors, qualifications, languages, four papers, the doctoral thesis and four conference contributions. The conference contributions appear together on page 5.
 
 The mobile number, older résumé contacts, quotation, template examples and unverified presentation dates are omitted. The source PDFs/ZIP and private ICRA documents are not copied into public assets. Only the professional institution/email and owner-confirmed academic profiles/ORCID are used. The generated PDF is tagged, has page numbers, and was checked for the four paper DOIs, the HAL thesis link, updated roles/education, ORCID and all four conference contributions. Citation links are clickable PDF annotations. Text extraction confirms only the approved professional email and no phone number, email logistics, placeholder, old thesis access URL or internal verification notes. The former four-page version was visually reviewed; pages 4–5 were checked after adding ICRA, and page 5 again after adding JJCR, keeping all contributions together on the final page.
 
-The public derivatives were updated on **13 November 2026** with eight owner-confirmed teaching records and clickable course/programme links. The English PDF is **382,330 bytes**, SHA-256 `F7FBA3231B773ECCD825DC69E0D41A746490210655E04E57014BED2011CBA6BB`. The Chinese PDF is **556,070 bytes**, SHA-256 `E8887A5B141BBC9EA63F28D79CA5B4494C086C04E31DE8D9D70BDF2DB3549FB0`. Both are tagged five-page PDFs. Chinese glyphs are embedded, and all ten rendered pages were visually reviewed, including the teaching records and education separators. The generator accepts `--locale=en` (default) or `--locale=zh` and updates the selected derivative.
+| Public CV | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `public/files/yuning-lei-cv.pdf` | 384,174 | `2A9B4C591A1A90DBAA199A9D4C1ED834A5A59525A1745008D27FB085B14778CA` |
+| `public/files/yuning-lei-cv-zh.pdf` | 567,606 | `2A56E2548AD62137373CE814034851D2C071ED07837AB247F96504870C5C9F4F` |
+
+Source and build copies match. The generator accepts `--locale=en` (default) or `--locale=zh` and updates the selected PDF.
 
 The PDFs are regenerated serially and copied into `dist/files/` by the subsequent build; compare both hashes before publication. During earlier ORCID preparation, simultaneous PDF generation/build verification produced file conflicts; recovery copies were moved to ignored `.preview/orcid-review/` storage. The generator validates a complete PDF buffer before writing a temporary file and renaming it into place. Generation and build must be sequential. No conflict/recovery PDF is exposed under `public/` or `dist/`.
 
@@ -93,6 +98,8 @@ Original filenames, SHA-256 hashes, original/display dimensions and asset hashes
 | Micronora / Micron d’Or | September 2022; CV, supplied photographs/certificate and [FEMTO-ST’s official report](https://www.femto-st.fr/fr/L-institut/actualite/micron-dor-sur-le-salon-micronora-2022) | Team/institute recognition for a light-actuated nanorobotic structure. Does not recast the award as Lei’s sole individual achievement or copy priority/application claims from the report. Month precision is intentional. |
 
 The news text is newly written around Lei’s participation. Institutional links are displayed alongside the corresponding activities; CV and owner-confirmation source IDs remain in structured Markdown. Only these seven photo-backed activities were added. No additional awards, publications, appointments, grants, measurements or unpublished manuscripts were inferred from the wider institutional news page.
+
+The Micron d’Or entry links to *Un microsystème 3D actionné par la lumière*, published in *En direct* issue 303 (November–December 2022) and republished by *Journal en direct* on Echosciences Bourgogne-Franche-Comté on 28 November 2022. The article covers the FEMTO-ST team’s award for the light-actuated microgripper. [Original article](https://endirect.univ-fcomte.fr/publication/un-microsysteme-3d-actionne-par-la-lumiere/) · [Issue archive](https://endirect.univ-fcomte.fr/archives/) · [Echosciences repost](https://www.echosciences-bfc.fr/articles/un-microsysteme-3d-actionne-par-la-lumiere)
 
 ### owner-defense-date-confirmation-2026-11-12
 
@@ -209,7 +216,22 @@ On 13 November 2026 the owner explicitly confirmed **雷宇宁** as his Chinese 
 
 This confirmation authorizes the Chinese display identity in all 19 Chinese pages and the Chinese PDF, including metadata, captions/alt text and author/speaker credits. English names, canonical citation data, author order and BibTeX remain unchanged. Chinese teaching descriptions now use `每学期 … 小时 × … 节` for all seven courses, as owner-confirmed wording rather than an inferred frequency. The Chinese profile date is 13 November 2026. The nine thesis-record labels place punctuation outside Markdown bold delimiters to render correctly; their academic facts are unchanged.
 
-The Chinese public PDF is regenerated from the reviewed Chinese About page, including localized author metadata and page footers. Its current hash is recorded above and in [bilingual-site.md](bilingual-site.md). The English PDF, original scientific/event media, source citations and private source files are unchanged. No additional claims, media or private details are introduced.
+The Chinese public PDF was regenerated from the Chinese About page for that release, including localized author metadata and page footers. Its release hash is recorded in [bilingual-site.md](bilingual-site.md).
+
+## owner-collaboration-projects-2026-11-13
+
+The owner confirmed that he wrote the successful LicLoM proposal and managed the project, managed and supervised the Oldenburg research for the Finland and Hong Kong collaborations, and serves as project manager and consortium contact for Oldenburg in ENSIGN. The three owner-supplied DAAD-PPP descriptions inform the summaries of research aims and methods. The source proposals are stored outside the site. Budgets, unpublished data, figures, internal work plans and contact details were excluded from the project entries.
+
+| Project | Sources and attribution |
+| --- | --- |
+| LicLoM | `owner-liclom-proposal` identifies Prof. Sergej Fatikow as Oldenburg PI and describes Lei’s planning and follow-up responsibilities. The owner confirmed proposal authorship and project management. [AMiR’s news](https://uol.de/en/computingscience/amir/news-events-press) records the DAAD award and the Louisville visit. ORCID funding `1934338` supplies project 57698722 and the January 2024–December 2025 term. |
+| DAAD-PPP Finland | `owner-finland-ppp-proposal` describes the comparison of water and liquid-metal droplet measurements. [AMiR’s news](https://uol.de/en/computingscience/amir/news-events-press) confirms the collaboration and September 2023 visit. [Aalto University’s project record](https://research.aalto.fi/en/projects/daad-mobility/) gives the period for Aalto’s participation. |
+| DAAD-PPP Hong Kong | `owner-hong-kong-ppp-proposal` describes the AFM research aims. The [Hong Kong Research Grants Council award list](https://www.ugc.edu.hk/eng/rgc/funding_opport/ge_hk_jrs/funding_results/gehk2425.html) confirms project G-HKU705/24, its title and the institutions. [AMiR’s news](https://uol.de/en/computingscience/amir/news-events-press) confirms the 2025–2026 collaboration. |
+| ENSIGN | The [European Commission CORDIS record](https://cordis.europa.eu/project/id/101086226) confirms the objective, MSCA Staff Exchanges scheme, grant agreement 101086226, project period, Aarhus University as coordinator and the University of Oldenburg as participant. The owner confirms his institutional role. |
+
+## owner-doctoral-projects-2026-11-13
+
+The owner confirmed that his doctoral research at FEMTO-ST was related to DyNaBot and COLAMIR and that he attended COLAMIR project meetings. The [DyNaBot record](https://anr.fr/Project-ANR-21-CE10-0016) and the [COLAMIR record](https://anr.fr/Project-ANR-16-CE10-0009) supply the project titles, objectives, FEMTO-ST coordination and the start months and durations. The project entries link back to the doctoral research page, and the About page and downloadable CVs describe the owner-confirmed connection and meeting attendance.
 
 
 ## owner-teaching-update-2026-11-13
@@ -241,6 +263,7 @@ Only unmodified Latin normal variable WOFF2 assets are bundled. Chinese uses ins
 | --- | --- | --- |
 | MARSS 2022 archival publication metadata | Confirm any proceedings paper/DOI/pages or provide an actual publication record | Displayed as a separate official-programme contribution, not counted as a published paper |
 | HAL thesis direct full-text response | The official PDF endpoints returned an access-restriction HTML response to automated retrieval | Link only to the owner-supplied HAL record; no direct PDF button or locally rehosted manuscript |
+| Oldenburg funding period for DAAD-PPP Finland | The proposal gives a requested period. An Oldenburg award record would establish the approved period. | The project page attributes the March 2023–February 2025 period to Aalto University. |
 | Future scientific media | Any further files require their own provenance/disclosure/reuse review | Only explicitly supplied/approved figures, portrait and event photographs are used |
 
 No private CV source documents, personal mobile number, outdated contact details or non-public manuscripts are included in public content. The CV-based version was released with explicit owner approval on 11 November 2026. On 12 November 2026 the owner designated `https://ylei.de/` as the primary website and explicitly authorized pushing the prepared domain/Teaser/News/ORCID updates. Publication results are recorded in `custom-domain.md`.

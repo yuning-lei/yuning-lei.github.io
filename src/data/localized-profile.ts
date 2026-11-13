@@ -11,10 +11,16 @@ const chinese = {
   links: profile.links.map(link => ({ ...link, label: link.label === 'University profile' ? '大学主页' : link.label === 'Google Scholar' ? 'Google 学术' : link.label })),
   appointments: [
     { title: '科研人员（Research Associate）', institution: '奥尔登堡大学', location: '德国奥尔登堡', period: '2023 年 4 月—至今',
-      details: ['计算机科学系，微机器人与控制工程研究组。', 'LiCoVac（真空环境下的液态金属接触角测量）科研项目负责人。', '规划和管理国际合作研究与人员交流（EU-HORIZON-MSCA、DAAD-PPP）。'] },
+      details: [
+        '计算机科学系，微机器人与控制工程研究组。',
+        'LiCoVac（真空环境下的液态金属接触角测量）科研项目负责人。',
+        '撰写获批的 LicLoM 项目申请书，管理与路易斯维尔大学的 DAAD-PPP 合作。',
+        '管理与阿尔托大学和香港大学的 DAAD-PPP 合作，并监督奥尔登堡大学方的研究工作。',
+        '担任 ENSIGN（地平线欧洲 MSCA 人员交流）奥尔登堡大学方的项目经理与联合体联络人。',
+      ] },
     { title: '研究工程师（Ingénieur d’étude）', institution: '勃艮第—弗朗什孔泰大学（Université Bourgogne Franche-Comté）', location: '法国贝桑松', period: '2022 年 10 月—2023 年 3 月', details: ['AS2M 部门。'] },
     { title: '博士研究人员（Ph.D. Fellow）', institution: 'FEMTO-ST 研究所', location: '法国贝桑松', period: '2019 年 10 月—2023 年 3 月',
-      details: ['扫描电镜内光纤端部二氧化硅折纸结构的制造、机器人微装配、表征与致动。', '导师：Cédric Clévy、Jean-Yves Rauch 和 Philippe Lutz。', '参与 COLAMIR 与 DyNaBot 合作研究项目。'] },
+      details: ['扫描电镜内光纤端部二氧化硅折纸结构的制造、机器人微装配、表征与致动。', '导师：Cédric Clévy、Jean-Yves Rauch 和 Philippe Lutz。', '博士研究与 ANR 资助的 DyNaBot 和 COLAMIR 项目相关。曾参加 COLAMIR 项目会议。'] },
     { title: '助教（Teaching Assistant）', institution: '弗朗什孔泰大学（University of Franche-Comté）', location: '法国贝桑松', period: '2019 年 10 月—2023 年 3 月', details: ['科学与技术学院（UFR de sciences et techniques）。'] },
     { title: '研究助理（Research Assistant）', institution: 'PRISME 实验室', location: '法国奥尔良', period: '2019 年 3 月—9 月',
       details: ['基于实验局部测量数据，利用线性化 Navier–Stokes 方程和卡尔曼滤波反馈控制，对平行湍流进行数据同化。'] },
@@ -76,7 +82,7 @@ const chinese = {
     },
   ],
   awards: [
-    { title: 'Micron d’Or 奖', event: 'Micronora 2022 展会，Micronora 协会', period: '2022 年 9 月' },
+    { ...profile.awards[0], title: 'Micron d’Or 奖', event: 'Micronora 2022 展会，Micronora 协会', period: '2022 年 9 月' },
     { title: '摄影比赛三等奖', event: 'CAZAC Day 2022，Carl Zeiss Application Community', period: '2022 年 3 月' },
     { title: '“Breakthrough in Science” 一等奖', event: 'FEMTO-ST 研究所博士生海报竞赛', period: '2020 年 7 月' },
     { title: '法国政府博士奖学金（36 个月）', event: '法国高等教育、研究与创新部', period: '2019 年 10 月—2022 年 10 月' },

@@ -17,7 +17,13 @@ export const profile = {
   appointments: [
     {
       title: 'Research Associate', institution: 'University of Oldenburg', location: 'Oldenburg, Germany', period: 'April 2023 – present',
-      details: ['Microrobotics and Control Engineering, Department of Computing Science.', 'Research project PI for LiCoVac (Liquid Metal Contact Angle Measurement in Vacuum).', 'Planning and management of international collaborative research and staff exchanges (EU-HORIZON-MSCA, DAAD-PPP).'],
+      details: [
+        'Microrobotics and Control Engineering, Department of Computing Science.',
+        'Research project PI for LiCoVac (Liquid Metal Contact Angle Measurement in Vacuum).',
+        'Wrote the successful DAAD-PPP proposal for LicLoM and managed the collaboration with the University of Louisville.',
+        'Managed DAAD-PPP collaborations with Aalto University and The University of Hong Kong and supervised the research at Oldenburg.',
+        'Project manager and consortium contact for the University of Oldenburg in ENSIGN (Horizon Europe MSCA Staff Exchanges).',
+      ],
     },
     {
       title: 'Research Engineer (Ingénieur d’étude)', institution: 'Université Bourgogne Franche-Comté', location: 'Besançon, France', period: 'October 2022 – March 2023',
@@ -25,7 +31,7 @@ export const profile = {
     },
     {
       title: 'Ph.D. Fellow', institution: 'FEMTO-ST Institute', location: 'Besançon, France', period: 'October 2019 – March 2023',
-      details: ['Silica origami fabrication, robotic microassembly, characterization and actuation at the tip of an optical fiber in SEM.', 'Advisors: Cédric Clévy, Jean-Yves Rauch and Philippe Lutz.', 'Contributions to the COLAMIR and DyNaBot collaborative research projects.'],
+      details: ['Silica origami fabrication, robotic microassembly, characterization and actuation at the tip of an optical fiber in SEM.', 'Advisors: Cédric Clévy, Jean-Yves Rauch and Philippe Lutz.', 'Doctoral research related to the ANR projects DyNaBot and COLAMIR. Attended COLAMIR project meetings.'],
     },
     {
       title: 'Teaching Assistant', institution: 'University of Franche-Comté', location: 'Besançon, France', period: 'October 2019 – March 2023',
@@ -115,7 +121,7 @@ export const profile = {
     },
   ],
   awards: [
-    { title: '“Micron d’Or” Award', event: 'Salon Micronora 2022, Association Micronora', period: 'September 2022' },
+    { title: '“Micron d’Or” Award', event: 'Salon Micronora 2022, Association Micronora', period: 'September 2022', activityHref: '/news/#micronora-2022' },
     { title: '3rd Award — Photo Contest', event: 'CAZAC Day 2022, Carl Zeiss Application Community', period: 'March 2022' },
     { title: 'First Prize — “Breakthrough in Science” Award', event: 'Ph.D. Student Poster Competition, FEMTO-ST Institute', period: 'July 2020' },
     { title: 'French Government Doctoral Fellowship (36 months)', event: 'Ministère de l’Enseignement supérieur, de la Recherche et de l’Innovation', period: 'October 2019 – October 2022' },

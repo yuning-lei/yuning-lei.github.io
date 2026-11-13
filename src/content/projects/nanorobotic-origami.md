@@ -14,6 +14,7 @@ relatedPublications:
 sources:
   - owner-cv-2026-10-20
   - owner-hal-thesis-2026-11-12
+  - owner-doctoral-projects-2026-11-13
   - https://theses.hal.science/tel-04146180v1
 ---
 
@@ -26,3 +27,7 @@ The research was supervised by Cédric Clévy, Jean-Yves Rauch and Philippe Lutz
 The thesis investigates focused ion beam fabrication of elastic silica joints and their assembly into polyarticulated structures, with laser actuation delivered through the optical fiber.
 
 The English-language dissertation is available in [HAL, version 1](https://theses.hal.science/tel-04146180v1), deposited on 29 June 2023. Its English title is *Nanorobotic Origami Unfolded at the Tip of Optical Fiber*; HAL’s citation title is *Origami nanorobotique déployé en bout de fibre*.
+
+## Related ANR projects
+
+My doctoral research was related to [DyNaBot](/projects/dynabot/), which studied dynamic nanorobotics inside electron microscopes, and [COLAMIR](/projects/colamir/), which studied collaborative robotics for microassembly. I also attended COLAMIR project meetings.

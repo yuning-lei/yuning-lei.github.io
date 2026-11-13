@@ -18,3 +18,7 @@ period: 2019 年 10 月—2023 年 3 月
 论文研究了利用聚焦离子束制造弹性二氧化硅关节，将其装配为多关节结构，并通过光纤传输激光实现致动。
 
 英文博士论文于 **2023 年 6 月 29 日**存档，可通过 [HAL 第 1 版记录](https://theses.hal.science/tel-04146180v1)访问。英文题名为 *Nanorobotic Origami Unfolded at the Tip of Optical Fiber*；HAL 引文使用的法文题名为 *Origami nanorobotique déployé en bout de fibre*。
+
+## 相关 ANR 项目
+
+我的博士研究与 [DyNaBot](/zh/projects/dynabot/) 和 [COLAMIR](/zh/projects/colamir/) 项目相关。DyNaBot 研究电子显微镜内的动态纳米机器人技术，COLAMIR 研究用于微装配的人机协作机器人技术。我也参加了 COLAMIR 项目会议。

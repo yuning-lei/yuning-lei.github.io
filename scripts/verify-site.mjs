@@ -92,11 +92,37 @@ try {
   assert.deepEqual(thesisAccessibility.violations.map(({ id, nodes }) => ({ id, elements: nodes.map(node => node.target) })), [], 'Updated thesis page accessibility');
   await page.goto(base + '/projects/nanorobotic-origami/');
   assert.ok(await page.locator('a[href="https://theses.hal.science/tel-04146180v1"]').count() > 0, 'Doctoral project reaches HAL');
+  const doctoralProjects = [
+    { id: 'dynabot', title: 'DyNaBot', anr: 'ANR-21-CE10-0016' },
+    { id: 'colamir', title: 'COLAMIR', anr: 'ANR-16-CE10-0009' },
+  ];
+  for (const { id, title, anr } of doctoralProjects) {
+    const href = `/projects/${id}/`;
+    assert.equal(await page.getByRole('link', { name: title, exact: true }).getAttribute('href'), href);
+    const response = await page.request.get(base + href);
+    assert.equal(response.status(), 200, `Project detail for ${title}`);
+    const html = await response.text();
+    assert.ok(html.includes(`href="https://anr.fr/Project-${anr}"`), `ANR record for ${title}`);
+    assert.ok(html.includes('href="/projects/nanorobotic-origami/"'), `Doctoral research link from ${title}`);
+  }
+  assert.match(await page.locator('.prose').innerText(), /I also attended COLAMIR project meetings/);
   await page.goto(base + '/projects/');
-  assert.equal(await page.locator('.entry-row').count(), 3, 'CV/ORCID-supported projects include LicLoM');
+  assert.equal(await page.locator('.entry-row').count(), 8, 'All reviewed research projects are listed');
   await page.goto(base + '/projects/liclom/');
+  assert.match(await page.locator('.detail-role').innerText(), /Project manager and proposal author/);
+  assert.match(await page.locator('.prose').innerText(), /I wrote the successful DAAD-PPP proposal.*Prof\. Sergej Fatikow was the principal investigator/);
   assert.match(await page.locator('main').innerText(), /57698722/);
   assert.match(await page.locator('main').innerText(), /January 2024 – December 2025/);
+  for (const id of ['daad-finland', 'daad-hong-kong']) {
+    const response = await page.goto(`${base}/projects/${id}/`);
+    assert.equal(response.status(), 200, `Project detail for ${id}`);
+    assert.equal(await page.locator('.detail-role').innerText(), 'Project manager, University of Oldenburg');
+    assert.match(await page.locator('.prose').innerText(), /supervis(e|ed) research activities at Oldenburg/);
+  }
+  await page.goto(base + '/projects/ensign/');
+  assert.match(await page.locator('.detail-role').innerText(), /Project manager and institutional contact, University of Oldenburg/);
+  assert.match(await page.locator('.prose').innerText(), /coordinated by Aarhus University/);
+  assert.equal(await page.getByRole('link', { name: 'European Commission CORDIS project record' }).getAttribute('href'), 'https://cordis.europa.eu/project/id/101086226');
   await page.goto(base + '/projects/licovac/');
   assert.match(await page.locator('main').innerText(), /451242348/);
   assert.match(await page.locator('main').innerText(), /grant applicant/);
@@ -116,6 +142,7 @@ try {
   assert.match(await fuzzy.innerText(), /Tutorials · 2 h × 6 sessions per semester/);
   assert.equal(await fuzzy.getByRole('link').getAttribute('href'), 'https://uol.de/en/computingscience/amir/teaching/lecture-fuzzy-control-and-artificial-neural-networks');
   const experience = await page.locator('#experience').innerText();
+  assert.match(experience, /Attended COLAMIR project meetings/);
   assert.match(experience, /March 2016 – September 2017/);
   assert.equal(await page.locator('#experience h3').filter({ hasText: /^Research Assistant$/ }).count(), 2, 'Owner-confirmed ORCID titles for PRISME/WILO');
   const education = await page.locator('#education').innerText();
@@ -195,7 +222,7 @@ try {
   assert.equal(await noJsPage.locator('img').evaluate(image => image.complete && image.naturalWidth > 0), true, 'Full photo links work without JavaScript');
   await noJs.close();
   assert.deepEqual(failures, [], 'No browser errors');
-  console.log('PASS: seven primary routes, ORCID links/structured identity, five publications including the doctoral thesis, separate ICRA 2023 / MARSS 2022 / ISOT 2021 / JJCR 2021 contributions, three projects with verified funding IDs, BibTeX/PDF downloads, seven activities / 20 photos, gallery filters/keyboard/focus/no-JS behavior, portrait/Teaser, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, mobile navigation, drafts, sitemap, 404 and automated WCAG A/AA checks.');
+  console.log('PASS: seven primary routes, ORCID links/structured identity, five publications including the doctoral thesis, separate ICRA 2023 / MARSS 2022 / ISOT 2021 / JJCR 2021 contributions, eight projects including collaboration roles and funding records, BibTeX/PDF downloads, seven activities / 20 photos, gallery filters/keyboard/focus/no-JS behavior, portrait/Teaser, internal links, SEO, 320/375/390/768/960/1024/1440px layouts, local fonts, mobile navigation, drafts, sitemap, 404 and automated WCAG A/AA checks.');
 } finally {
   await browser.close();
 }

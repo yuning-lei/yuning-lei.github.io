@@ -1,20 +1,25 @@
 ---
 title: LicLoM
-summary: DAAD-PPP collaboration on liquid-metal-based surface characterization for locomotive microrobots.
-category: DAAD research collaboration
+summary: Using liquid-metal droplets to study surfaces for microrobot locomotion in dry environments.
+category: DAAD-PPP · United States
 order: 3
-featured: false
+featured: true
 visibility: public
 reviewed: true
+role: Project manager and proposal author
 sources:
+  - owner-collaboration-projects-2026-11-13
+  - owner-liclom-proposal
   - owner-orcid-2026-11-12
   - https://uol.de/en/computingscience/amir/news-events-press
 ---
 
 ## Liquid metal-based characterization of the dry environment surface for Locomotive Microrobot
 
-LicLoM is a DAAD collaboration connecting AMiR at the University of Oldenburg with the University of Louisville. I contributed to the project proposal and participated in the research exchange with Louisville.
+LicLoM brought together the University of Oldenburg and the University of Louisville. The project set out to relate adhesion and friction measurements made with liquid-metal droplet probes to the motion of laser-driven microrobots on dry surfaces. One aim was to inform locomotion control in vacuum.
 
-The project is listed in my ORCID record under **DAAD project 57698722**, with a funding period of **January 2024 – December 2025**, through the Programme for Project-Related Personal Exchange (PPP).
+I wrote the successful DAAD-PPP proposal and managed the project, including research planning and follow-up with the Louisville team. Prof. Sergej Fatikow was the principal investigator at the University of Oldenburg.
 
-The [September 2024 research visit](/news/#louisville-2024) included a presentation of my AMiR research, a tour of the LARRI facilities and discussions on the collaboration. [AMiR’s institutional news](https://uol.de/en/computingscience/amir/news-events-press) records both the proposal contribution and the visit.
+My ORCID record lists **DAAD project 57698722** with a funding period of **January 2024 – December 2025**. [AMiR’s grant announcement](https://uol.de/en/computingscience/amir/news-events-press) records the award.
+
+In September 2024, I presented my AMiR research at Louisville, toured the LARRI facilities and discussed the collaboration with the team. [Research visit to Louisville](/news/#louisville-2024)

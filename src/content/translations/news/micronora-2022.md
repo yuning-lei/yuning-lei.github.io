@@ -23,3 +23,5 @@ photos:
 ---
 
 我与 FEMTO-ST 团队一同参加了 Micronora 2022。研究所因一项光致动纳米机器人结构获得 Micron d’Or 奖，该工作将二氧化硅折纸结构与光纤支撑相结合。这是对我博士研究期间团队共同工作的认可。
+
+《En direct》第 303 期（2022 年 11 至 12 月）刊载了[《Un microsystème 3D actionné par la lumière》](https://endirect.univ-fcomte.fr/publication/un-microsysteme-3d-actionne-par-la-lumiere/)（光致动三维微系统），介绍团队的获奖情况与光致动微夹持器。该报道于 2022 年 11 月 28 日转载至 [Echosciences Bourgogne-Franche-Comté](https://www.echosciences-bfc.fr/articles/un-microsysteme-3d-actionne-par-la-lumiere)。

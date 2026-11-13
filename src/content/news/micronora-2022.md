@@ -11,6 +11,8 @@ sources:
   - owner-news-photos-2026-11-12
   - owner-cv-2026-10-20
   - https://www.femto-st.fr/fr/L-institut/actualite/micron-dor-sur-le-salon-micronora-2022
+  - https://endirect.univ-fcomte.fr/publication/un-microsysteme-3d-actionne-par-la-lumiere/
+  - https://www.echosciences-bfc.fr/articles/un-microsysteme-3d-actionne-par-la-lumiere
 sourceLink:
   label: FEMTO-ST report
   url: https://www.femto-st.fr/fr/L-institut/actualite/micron-dor-sur-le-salon-micronora-2022
@@ -36,3 +38,5 @@ photos:
     caption: "Discussing our work at the FEMTO-ST exhibition booth."
 ---
 I joined the FEMTO-ST team at Micronora 2022, where the institute received a Micron d’Or for a light-actuated nanorobotic structure. The work combines silica origami with an optical-fiber support. This was recognition of a team effort during my doctoral research.
+
+*En direct* covered the award and our light-actuated microgripper in [*Un microsystème 3D actionné par la lumière*](https://endirect.univ-fcomte.fr/publication/un-microsysteme-3d-actionne-par-la-lumiere/) (issue 303, November–December 2022). The same article appeared on [Echosciences Bourgogne-Franche-Comté](https://www.echosciences-bfc.fr/articles/un-microsysteme-3d-actionne-par-la-lumiere) on 28 November 2022.
