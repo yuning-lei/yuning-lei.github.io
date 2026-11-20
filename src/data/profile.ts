@@ -1,6 +1,6 @@
 /** Owner CV (20 October 2026), confirmed ORCID and official records; see docs/content-provenance.md. */
 export const profile = {
-  cvDate: '13 November 2026',
+  cvDate: '20 November 2026',
   cvDownload: '/files/yuning-lei-cv.pdf',
   orcid: { id: '0000-0003-0711-4476', href: 'https://orcid.org/0000-0003-0711-4476' },
   department: 'Department of Computing Science',
@@ -74,7 +74,7 @@ export const profile = {
   skills: [
     { title: 'SEM / FIB', description: 'Zeiss Auriga 60, Thermo Fisher APREO S, FEI Helios NanoLab, FEI Quanta 600 and Tescan Lyra2.' },
     { title: 'Micro- and nanofabrication', description: 'Lithography, physical vapor deposition (PVD), wet etching, plasma etching (RIE/DRIE) and GIS-assisted electron/ion beam-induced deposition (EBID/IBID).' },
-    { title: 'Characterization', description: 'Contact-angle measurement, nanoindentation, interferometry and profilometry.' },
+    { title: 'Characterization', description: 'Contact-angle measurement, vibrometer measurements, atomic force microscopy (AFM), nanoindentation, interferometry and profilometry.' },
     { title: 'Robotics & computing', description: 'MATLAB/Simulink, LabVIEW, ROS, V-REP; C/C++, Java, Python, MATLAB and Visual Basic.' },
     { title: 'Design & simulation', description: 'SolidWorks, Creo, AutoCAD/Inventor, Blender, Inkscape, Alphacam; COMSOL and ANSYS.' },
   ],
@@ -181,7 +181,11 @@ export const profile = {
     { name: 'Chinese', description: 'Native' },
     { name: 'French', description: 'Advanced' },
     { name: 'English', description: 'B1; TOEIC 720/990 (December 2017)' },
-    { name: 'German', description: 'Elementary' },
+    { name: 'German', description: 'A1 (Goethe exam, 91 points)' },
+  ],
+  additionalInformation: [
+    { name: 'Residence status', description: 'Permanent residence in Germany' },
+    { name: 'Driving licence', description: 'French driving licence, category B1' },
   ],
   qualification: {
     title: 'CNU qualification, Section 61',

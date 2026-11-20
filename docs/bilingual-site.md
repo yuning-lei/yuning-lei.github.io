@@ -27,8 +27,8 @@ The generator accepts `--locale=en` (default) or `--locale=zh`, validates the co
 
 | File | Bytes | SHA-256 |
 | --- | --- | --- |
-| `public/files/yuning-lei-cv.pdf` (updated 13 November 2026) | 388,920 | `97195D81BF74E503C20409F6E220903FD510C67AF42FA740B14F39BD65E6D117` |
-| `public/files/yuning-lei-cv-zh.pdf` (updated 13 November 2026) | 568,033 | `4B0888839DE328A7DF4D0089182D2033239BACE2CC85B76A42AFFFD47FB415C7` |
+| `public/files/yuning-lei-cv.pdf` (updated 20 November 2026) | 391,667 | `E7E23B786177FD1CC80F5042158636BA56ACC3E4F011A64E3094C6477CE6F02E` |
+| `public/files/yuning-lei-cv-zh.pdf` (updated 20 November 2026) | 578,840 | `BECBD9EBFF6AB217453BB1DD196D4B6CCA8B4F4168AAAFB56DC96F62775ED451` |
 
 Source/build PDF hashes match. Generation and the following static build are sequential. All five Chinese PDF pages, Chinese desktop/mobile Home and Publications, and the complete scientific figure on mobile were visually reviewed. A screenshot taken before the asynchronously decoded hero image painted was recaptured after explicitly awaiting image decoding; mobile and desktop image loads were verified.
 

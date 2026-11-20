@@ -268,6 +268,32 @@ Both homepages introduce a research motivation section after the featured work, 
 
 Validation passed `npm run check` across 47 files, `npm run build` for 48 HTML pages, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual` across all 24 page pairs. Additional checks cover the new service destinations, organization names, skills, SEM photography award, CNU field, Chinese position title and motivation section. Both languages were checked at 375/768/1024/1440px, and automated WCAG A/AA checks passed. All six service links and the poem destination returned HTTP 200. Both five-page tagged CVs were rendered and visually reviewed, their updated text and six service annotations were checked, and the English printed skill labels were checked for spacing. The current PDF sizes and hashes are recorded in `bilingual-site.md`.
 
+## owner-featured-images-and-skills-2026-11-20
+
+On 20 November 2026 the owner supplied five research images and explicitly requested their inclusion in the homepage's featured work. Their filenames supply the subject descriptions. The owner also confirms vibrometer measurements and AFM as characterization skills. Both profile languages and their public CVs reflect these additions, with the record date updated to 20 November 2026.
+
+| Local asset in `src/assets/featured/` | Owner-provided subject | Source SHA-256 |
+| --- | --- | --- |
+| `silica-origami-20um.webp` | Polyarticulated silica origami smaller than 20 µm | `6743cec326eee721267c1e0d090ca64c2b1a3d31ea1a8929290eaac5ed16ea0b` |
+| `galinstan-manipulation.png` | Manipulation of micrometre-sized Galinstan droplets inside SEM | `0c7204ce453104844cc6a3a88056b99bb0e5d47320cf0c03afb074328d6157d0` |
+| `sem-kinematics.webp` | Nanorobot kinematics experiments inside SEM | `21a382a6bf633a84ee75396accd25b9278738a63d1b537bce5b163a1df246231` |
+| `optothermal-microactuator.webp` | Laser-driven optothermal microactuator | `ff7dcbe3e0910b4dd7ce255d72a3ad90a22668bdb8861af17cd3f4c948614754` |
+| `fiber-butterfly.webp` | Charging-induced butterfly-like distortion around an optical fiber end face, awarded Third Prize in the CAZAC Day 2022 SEM Photography Competition | `7d6cfd1d2e43a67d239ac9227e52de513f082ab0181a683c98f8425e92f1355d` |
+
+The Galinstan TIFF is 16-bit grayscale and is stored as a 16-bit PNG. The supplied butterfly file has a `.png` filename and TIFF encoding, so it is decoded from its actual format. The other four images use lossless WebP. Full-resolution dimensions and decoded pixels were verified against each supplied file, including all 16-bit gray values for Galinstan. Instrument annotations, scale bars and complete frames are preserved. Color profiles are retained where supplied. Embedded camera metadata is removed from the website assets.
+
+Both homepages reuse the existing photo viewer for the original teaser and five additional thumbnails. Thumbnails use responsive derivatives with the complete frame. Full-resolution assets load when selected. English and Chinese captions and alt text follow the owner's descriptions, including the charging effect and the specific image's CAZAC award. The source images retain their original scientific annotations and credits. Attribution identifies the owner as the supplier.
+
+Local validation passed `npm run check` for 47 files, `npm run build` for 48 HTML pages, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual` for all 24 page pairs. Additional gallery checks verified both languages at 375/768/1024/1440px, all six images, exact full-resolution asset hashes, deferred full-image loading, complete-frame thumbnails, keyboard navigation, focus return, direct image links with JavaScript disabled, and automated WCAG A/AA checks with the viewer open. Both tagged five-page CVs include vibrometer and AFM, were rendered and visually reviewed, and match their build copies byte for byte. Their current sizes and hashes are recorded in `bilingual-site.md`.
+
+## owner-additional-cv-information-2026-11-20
+
+The owner confirms German **A1**, a **Goethe exam score of 91 points**, **permanent residence in Germany**, and a **French category B1 driving licence**. The bilingual About/CV pages and public PDFs use these statements directly. The score is displayed in points. The licence category is recorded as the owner supplied it. Residence and licence information appear in an Additional information section after Languages.
+
+The owner explicitly requests publication after these additions, authorizing the release of this information together with the prepared homepage gallery and vibrometer/AFM updates.
+
+Release checks passed `npm run check`, `npm run build`, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual`. The additional About-page and PDF checks verify the A1 level, 91-point score, German permanent residence and French B1 category in both languages. Both final five-page PDFs were rendered and visually reviewed. The local release downloads were synchronized with the final PDFs and checked for matching hashes before publication.
+
 ## Font register
 - Inter: `@fontsource-variable/inter` 5.3.0; [Fontsource package](https://fontsource.org/fonts/inter); SIL OFL 1.1; notice shipped in `public/licenses/Inter-OFL.txt`.
 - Manrope: `@fontsource-variable/manrope` 5.3.0; [Fontsource package](https://fontsource.org/fonts/manrope); SIL OFL 1.1; notice shipped in `public/licenses/Manrope-OFL.txt`.

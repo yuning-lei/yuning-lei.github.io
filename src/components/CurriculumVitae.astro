@@ -52,6 +52,10 @@ const t = (en: string, zh: string) => tr(locale, en, zh);
   </section>
   <section class="cv-section" id="qualification" aria-labelledby="qualification-heading"><div><p class="eyebrow">{t('Qualification', '任职资格')}</p><h2 id="qualification-heading">{t('CNU qualification', 'CNU 任职资格')}</h2></div><article class="cv-entry"><p class="cv-period">{profile.qualification.period}</p><div><h3>{profile.qualification.title}</h3><p class="cv-description">{profile.qualification.description}</p></div></article></section>
   <section class="cv-section" aria-labelledby="languages-heading"><div><p class="eyebrow">{t('Languages', '语言能力')}</p><h2 id="languages-heading">{t('Languages', '语言能力')}</h2></div><dl class="cv-skills">{profile.languages.map(language => <div class="cv-skill"><dt>{language.name}</dt><dd>{language.description}</dd></div>)}</dl></section>
+  <section class="cv-section" id="additional-information" aria-labelledby="additional-information-heading">
+    <div><h2 id="additional-information-heading">{t('Additional information', '其他信息')}</h2></div>
+    <dl class="cv-skills">{profile.additionalInformation.map(item => <div class="cv-skill"><dt>{item.name}</dt><dd>{item.description}</dd></div>)}</dl>
+  </section>
 </div>
 <style>
   :is(#teaching, #service) a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }

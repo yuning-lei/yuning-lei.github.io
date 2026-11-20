@@ -4,7 +4,7 @@ import type { Locale } from '../lib/i18n';
 // Display translations only. Source links, author order and identifiers come from profile.ts.
 const chinese = {
   ...profile,
-  cvDate: '2026 年 11 月 13 日',
+  cvDate: '2026 年 11 月 20 日',
   cvDownload: '/files/yuning-lei-cv-zh.pdf',
   department: '计算机科学系', group: '微机器人与控制工程研究组（AMiR）',
   address: [...profile.address.slice(0, 2), '德国'],
@@ -43,7 +43,7 @@ const chinese = {
   skills: [
     { title: 'SEM／FIB', description: 'Zeiss Auriga 60、Thermo Fisher APREO S、FEI Helios NanoLab、FEI Quanta 600 和 Tescan Lyra2。' },
     { title: '微纳制造', description: '光刻、物理气相沉积（PVD）、湿法刻蚀、等离子体刻蚀（RIE/DRIE），以及气体注入系统（GIS）辅助电子束／离子束诱导沉积（EBID/IBID）。' },
-    { title: '表征技术', description: '接触角测量、纳米压痕、干涉测量与轮廓测量。' },
+    { title: '表征技术', description: '接触角测量、测振仪测量、原子力显微镜（AFM）、纳米压痕、干涉测量与轮廓测量。' },
     { title: '机器人与编程', description: 'MATLAB/Simulink、LabVIEW、ROS、V-REP；C/C++、Java、Python、MATLAB 和 Visual Basic。' },
     { title: '设计与仿真', description: 'SolidWorks、Creo、AutoCAD/Inventor、Blender、Inkscape、Alphacam；COMSOL 和 ANSYS。' },
   ],
@@ -102,13 +102,17 @@ const chinese = {
   ],
   languages: [
     { name: '中文', description: '母语' }, { name: '法语', description: '高级' },
-    { name: '英语', description: 'B1；TOEIC 720/990（2017 年 12 月）' }, { name: '德语', description: '初级' },
+    { name: '英语', description: 'B1；TOEIC 720/990（2017 年 12 月）' }, { name: '德语', description: 'A1（歌德考试 91 分）' },
+  ],
+  additionalInformation: [
+    { name: '居留身份', description: '德国永久居留' },
+    { name: '驾驶资格', description: '法国驾照，B1 类' },
   ],
   qualification: { ...profile.qualification, title: '法国 CNU 第 61 学科任职资格', description: '通过法国大学副教授任职资格评审，第 61 学科领域为计算机工程、自动控制与信号处理（Génie informatique, automatique et traitement du signal）。', period: '2026 年 3 月' },
 };
 
 export function getProfile(locale: Locale) {
-  for (const key of ['appointments', 'education', 'skills', 'teaching', 'awards', 'service', 'languages'] as const) {
+  for (const key of ['appointments', 'education', 'skills', 'teaching', 'awards', 'service', 'languages', 'additionalInformation'] as const) {
     if (chinese[key].length !== profile[key].length) throw new Error(`Chinese profile coverage is incomplete: ${key}`);
   }
   return locale === 'zh' ? chinese : profile;
