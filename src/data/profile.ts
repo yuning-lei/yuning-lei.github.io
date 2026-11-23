@@ -75,7 +75,7 @@ export const profile = {
     { title: 'SEM / FIB', description: 'Zeiss Auriga 60, Thermo Fisher APREO S, FEI Helios NanoLab, FEI Quanta 600 and Tescan Lyra2.' },
     { title: 'Micro- and nanofabrication', description: 'Lithography, physical vapor deposition (PVD), wet etching, plasma etching (RIE/DRIE) and GIS-assisted electron/ion beam-induced deposition (EBID/IBID).' },
     { title: 'Characterization', description: 'Contact-angle measurement, vibrometer measurements, atomic force microscopy (AFM), nanoindentation, interferometry and profilometry.' },
-    { title: 'Robotics & computing', description: 'MATLAB/Simulink, LabVIEW, ROS, V-REP; C/C++, Java, Python, MATLAB and Visual Basic.' },
+    { title: 'Robotics & computing', description: 'MATLAB/Simulink, LabVIEW, ROS, V-REP; C/C++, Java, Python and Visual Basic.' },
     { title: 'Design & simulation', description: 'SolidWorks, Creo, AutoCAD/Inventor, Blender, Inkscape, Alphacam; COMSOL and ANSYS.' },
   ],
   teaching: [

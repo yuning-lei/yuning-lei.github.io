@@ -294,6 +294,12 @@ The owner explicitly requests publication after these additions, authorizing the
 
 Release checks passed `npm run check`, `npm run build`, `npm run verify:build`, `npm run verify:browser` and `npm run verify:bilingual`. The additional About-page and PDF checks verify the A1 level, 91-point score, German permanent residence and French B1 category in both languages. Both final five-page PDFs were rendered and visually reviewed. The local release downloads were synchronized with the final PDFs and checked for matching hashes before publication.
 
+## owner-cv-pdf-comments-2026-11-23
+
+The owner's four annotations on page 3 of the Chinese CV request removing the second MATLAB entry after MATLAB/Simulink, aligning the two MARSS service roles on one line, adding 熟练使用 before the SEM/FIB instrument list and 等 at its end. The Chinese profile follows this wording. The same duplicate MATLAB entry is removed from the English profile. A scoped list-item margin reset aligns the MARSS roles in the shared webpage and print component. Both public CVs are regenerated from their corresponding About pages.
+
+Validation passed `npm run check`, `npm run build` and `npm run verify:build`. Targeted checks confirmed the corrected text, role alignment at 375/768/1024/1440px and in print, and About-page WCAG A/AA checks in both languages. Both five-page PDFs were rendered and visually reviewed. Extracted PDF word positions confirm matching vertical coordinates for the two MARSS roles in each language. The final source and build PDF downloads match byte for byte.
+
 ## Font register
 - Inter: `@fontsource-variable/inter` 5.3.0; [Fontsource package](https://fontsource.org/fonts/inter); SIL OFL 1.1; notice shipped in `public/licenses/Inter-OFL.txt`.
 - Manrope: `@fontsource-variable/manrope` 5.3.0; [Fontsource package](https://fontsource.org/fonts/manrope); SIL OFL 1.1; notice shipped in `public/licenses/Manrope-OFL.txt`.

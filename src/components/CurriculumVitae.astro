@@ -61,5 +61,6 @@ const t = (en: string, zh: string) => tr(locale, en, zh);
   :is(#teaching, #service) a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
   :is(#teaching, #service) a:hover { color: var(--color-accent-hover); }
   #service .service-roles { display: flex; flex-wrap: wrap; gap: 4px 20px; padding: 0; margin: 3px 0 0; list-style: none; }
+  #service .service-roles li { margin: 0; }
   @media print { :is(#teaching, #service) a { color: inherit; text-decoration: none; } }
 </style>

@@ -41,10 +41,10 @@ const chinese = {
       details: ['原文：Diplôme universitaire de préparation aux formations scientifiques et technologiques。'] },
   ],
   skills: [
-    { title: 'SEM／FIB', description: 'Zeiss Auriga 60、Thermo Fisher APREO S、FEI Helios NanoLab、FEI Quanta 600 和 Tescan Lyra2。' },
+    { title: 'SEM／FIB', description: '熟练使用 Zeiss Auriga 60、Thermo Fisher APREO S、FEI Helios NanoLab、FEI Quanta 600 和 Tescan Lyra2 等。' },
     { title: '微纳制造', description: '光刻、物理气相沉积（PVD）、湿法刻蚀、等离子体刻蚀（RIE/DRIE），以及气体注入系统（GIS）辅助电子束／离子束诱导沉积（EBID/IBID）。' },
     { title: '表征技术', description: '接触角测量、测振仪测量、原子力显微镜（AFM）、纳米压痕、干涉测量与轮廓测量。' },
-    { title: '机器人与编程', description: 'MATLAB/Simulink、LabVIEW、ROS、V-REP；C/C++、Java、Python、MATLAB 和 Visual Basic。' },
+    { title: '机器人与编程', description: 'MATLAB/Simulink、LabVIEW、ROS、V-REP；C/C++、Java、Python 和 Visual Basic。' },
     { title: '设计与仿真', description: 'SolidWorks、Creo、AutoCAD/Inventor、Blender、Inkscape、Alphacam；COMSOL 和 ANSYS。' },
   ],
   teaching: [
